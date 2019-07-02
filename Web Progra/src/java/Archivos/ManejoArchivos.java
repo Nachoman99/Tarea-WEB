@@ -142,7 +142,8 @@ public class ManejoArchivos {
 
     public void escribirArchivo(String ruta, User user) throws FileNotFoundException, IOException {
         File file = new File(ruta);
-        BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+        FileWriter wr = new FileWriter(file.getAbsoluteFile(), true);
+        BufferedWriter writer = new BufferedWriter(wr);
         writer.write(user.getId() + "," + user.getName() + "," + user.getSecondName() + "," + user.getEmail() + "," + user.getProvincia() + "," + user.getCanton() + ","
                 + user.getDistrito() + "," + user.getPassword() + "," + conversor(user));
         writer.write("\n");

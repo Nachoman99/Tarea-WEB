@@ -38,7 +38,7 @@ public class Main {
         lista.add(pro2);
         User user = new User("123", "Juan", "Trejos", "qwer", "Puntarenas", "Montes", "Union", "123", lista);
         archivos.escribirArchivo("Prueba.txt", user);
-       // System.out.println(archivos.leerArchivo("Prueba.txt"));
+        System.out.println(archivos.leerArchivo("Prueba.txt"));
         ////////////////////////
         ArrayList<Producto> listaProd = new ArrayList<>();
         Producto pr = new Producto(null, "Celular", "Huawei", "Entretenimiento", 2000, 3);
