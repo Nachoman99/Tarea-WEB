@@ -64,6 +64,7 @@ public class Controlador extends HttpServlet {
         String accion = request.getParameter("accion");
         System.out.println("La accion es: " + accion);
         if (accion.equalsIgnoreCase("registrarse")) {
+            acceso = registrarse;
             String nombre = request.getParameter("txtName");
             String id = request.getParameter("txtId");
             String apellidos = request.getParameter("txtSecondName");
@@ -72,13 +73,16 @@ public class Controlador extends HttpServlet {
             String canton = request.getParameter("txtCanton");
             String distrito = request.getParameter("txtDistrito");
             String password = request.getParameter("txtPassword");
+            System.out.println("Hola");
             if (nombre != null && id != null && apellidos != null && correo != null && provincia != null && canton != null && distrito != null && password != null) {
                 try {
                     if (verifyEmail(correo)) {
+                        System.out.println("putt");
                         user = new User(id, nombre, apellidos, correo, provincia, canton, distrito, password);
                         dao.registrarse(user);
                         acceso = lista;
                     }
+                    System.out.println("kkkk");
                 } catch (ExceptionsControler ex) {
                     ex.printStackTrace();
                 }
@@ -92,7 +96,7 @@ public class Controlador extends HttpServlet {
 //            user.setProvincia(provincia);
 //            user.setPassword(password);
 //            dao.registrarse(user);
-
+//            acceso = lista;
         } else if (accion.equalsIgnoreCase("ingresar")) {
             String correo = request.getParameter("txtCorreo");
             String password = request.getParameter("txtPassword");
