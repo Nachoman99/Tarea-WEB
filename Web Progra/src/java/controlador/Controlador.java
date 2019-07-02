@@ -101,7 +101,14 @@ public class Controlador extends HttpServlet {
             String correo = request.getParameter("txtCorreo");
             String password = request.getParameter("txtPassword");
             //Verificar si el usuario existe
+        } else if(accion.equalsIgnoreCase("añadir")){
+            acceso=añadir;
+        }else if(accion.equalsIgnoreCase("introducir")){
+            //metodo de meter la vara saica
+            acceso=lista;
         }
+        
+        
         RequestDispatcher vista = request.getRequestDispatcher(acceso);
         vista.forward(request, response);
         /*

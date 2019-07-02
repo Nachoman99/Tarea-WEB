@@ -13,7 +13,7 @@
     </head>
     <body>
         <h1>Ingresar</h1>
-        <form action="Controlador"
+        <form action="Controlador">
             Correo:<br>
             <input type="text" correo="txtCorreo"><br>
             Contraseña:<br>

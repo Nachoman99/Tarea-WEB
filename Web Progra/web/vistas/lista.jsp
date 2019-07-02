@@ -9,9 +9,19 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Lista</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>Lista de Productos</h1>
+        <a href="Controlador?accion=añadir">Agregar un Nuevo Producto</a>
+        <br>
+        <br>
+        
+        
+        
+        
+        
+        
+        
     </body>
 </html>
