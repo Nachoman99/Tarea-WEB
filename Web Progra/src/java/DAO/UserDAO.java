@@ -6,6 +6,7 @@
 package DAO;
  
 import java.util.ArrayList;
+import java.util.List;
 import modelo.User;
 
 /**
@@ -14,11 +15,32 @@ import modelo.User;
  */
 public class UserDAO implements UserInterface{
 
-    private ArrayList<User> users = new ArrayList<>();
+    private List<User> users;
+
+    public UserDAO() {
+        users= DatosArray.getInstance().alumnos;
+    }
+    
+    
     
     @Override
     public void registrarse(User user) {
         users.add(user);
+    }
+
+    @Override
+    public List<User> listar() {
+        return users;
+    }
+
+    @Override
+    public boolean actualizar(User user) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean insertarProducto(User user) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }
