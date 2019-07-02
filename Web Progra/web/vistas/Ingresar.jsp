@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Ingresar</title>
     </head>
     <body>
         <h1>Ingresar</h1>
@@ -17,7 +17,7 @@
             Correo:<br>
             <input type="text" correo="txtCorreo"><br>
             Contraseña:<br>
-            <input type="text" password="txtPassword"><br>
+            <input type="password" password="txtPassword"><br>
             <br>
             <input type="submit" location="accion" value="INGRESAR">
             <a href="Controlador?accion=inicio">Regresar a la página de inicio</a>

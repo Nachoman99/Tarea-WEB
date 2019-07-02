@@ -8,6 +8,8 @@ package controlador;
 import DAO.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,22 +22,26 @@ import modelo.User;
  *
  * @author Kevin Trejos
  */
-
 @WebServlet(name = "Controlador", urlPatterns = {"/Controlador"})
-public class Controlador extends HttpServlet{
-    
+public class Controlador extends HttpServlet {
+
     public String registrarse = "vistas/Registrarse.jsp";
-    
+    public String ingresar = "vistas/Ingresar.jsp";
+    public String añadir = "vistas/añadir.jsp";
+    public String lista = "vistas/añadir.jsp";
+    public String perfil = "vistas/perfil.jsp";
+    public String trueque = "vistas/trueque.jsp";
+
     public User user = new User();
     public UserDAO dao = new UserDAO();
 
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try(PrintWriter out = response.getWriter()){
+        try (PrintWriter out = response.getWriter()) {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Controlador</title>");            
+            out.println("<title>Servlet Controlador</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet Controlador at " + request.getContextPath() + "</h1>");
@@ -43,7 +49,15 @@ public class Controlador extends HttpServlet{
             out.println("</html>");
         }
     }
-    
+
+    private boolean verifyEmail(String email) throws ExceptionsControler {
+        if (email.contains("@")) {
+            return true;
+        } else {
+            throw new ExceptionsControler("Formato de correo inválido");
+        }
+    }
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String acceso = "";
@@ -58,17 +72,28 @@ public class Controlador extends HttpServlet{
             String canton = request.getParameter("txtCanton");
             String distrito = request.getParameter("txtDistrito");
             String password = request.getParameter("txtPassword");
-            user.setId(id);
-            user.setEmail(correo);
-            user.setName(nombre);
-            user.setSecondName(apellidos);
-            user.setCanton(canton);
-            user.setDistrito(distrito);
-            user.setProvincia(provincia);
-            user.setPassword(password);
-            dao.registrarse(user);
-            acceso = registrarse;
-        }else if(accion.equalsIgnoreCase("ingresar")){
+            if (nombre != null && id != null && apellidos != null && correo != null && provincia != null && canton != null && distrito != null && password != null) {
+                try {
+                    if (verifyEmail(correo)) {
+                        user = new User(id, nombre, apellidos, correo, provincia, canton, distrito, password);
+                        dao.registrarse(user);
+                        acceso = lista;
+                    }
+                } catch (ExceptionsControler ex) {
+                    ex.printStackTrace();
+                }
+            }
+//            user.setId(id);
+//            user.setEmail(correo);
+//            user.setName(nombre);
+//            user.setSecondName(apellidos);
+//            user.setCanton(canton);
+//            user.setDistrito(distrito);
+//            user.setProvincia(provincia);
+//            user.setPassword(password);
+//            dao.registrarse(user);
+
+        } else if (accion.equalsIgnoreCase("ingresar")) {
             String correo = request.getParameter("txtCorreo");
             String password = request.getParameter("txtPassword");
             //Verificar si el usuario existe
@@ -110,14 +135,14 @@ public class Controlador extends HttpServlet{
        
         RequestDispatcher vista = request.getRequestDispatcher(acceso);
         vista.forward(request, response);
-        */
+         */
     }
-    
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
-    
+
     public String getServletInfo() {
         return "Short description";
     }
