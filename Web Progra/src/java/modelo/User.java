@@ -5,6 +5,8 @@
  */
 package modelo;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Kevin Trejos
@@ -18,12 +20,13 @@ public class User {
     private String provincia;
     private String canton;
     private String distrito;
-    private String password;
-
+    private String password; 
+    private ArrayList<Producto> listaProductos;
+    
     public User() {
     }
 
-    public User(String id, String name, String secondName, String email, String provincia, String canton, String distrito, String password) {
+    public User(String id, String name, String secondName, String email, String provincia, String canton, String distrito, String password, ArrayList<Producto> listaProductos) {
         this.id = id;
         this.name = name;
         this.secondName = secondName;
@@ -32,6 +35,7 @@ public class User {
         this.canton = canton;
         this.distrito = distrito;
         this.password = password;
+        this.listaProductos = listaProductos;
     }
 
     public String getId() {
@@ -98,8 +102,24 @@ public class User {
         this.password = password;
     }
 
+    public ArrayList<Producto> getListaProductos() {
+        return listaProductos;
+    }
+
+    public void setListaProductos(ArrayList<Producto> listaProductos) {
+        this.listaProductos = listaProductos;
+    }
+    
+    public void agregarProducto(Producto producto){
+        listaProductos.add(producto);
+    }
+    
+    public boolean eliminarProducto(Producto producto){
+        return listaProductos.remove(producto);
+    }
+    
     @Override
     public String toString() {
-        return "User{" + "id=" + id + ", name=" + name + ", secondName=" + secondName + ", email=" + email + ", provincia=" + provincia + ", canton=" + canton + ", distrito=" + distrito + ", password=" + password + '}';
+        return "User{" + "id=" + id + ", name=" + name + ", secondName=" + secondName + ", email=" + email + ", provincia=" + provincia + ", canton=" + canton + ", distrito=" + distrito + ", password=" + password + ", listaProductos=" + listaProductos + '}';
     }
 }

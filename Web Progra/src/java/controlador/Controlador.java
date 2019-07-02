@@ -78,7 +78,7 @@ public class Controlador extends HttpServlet {
                 try {
                     if (verifyEmail(correo)) {
                         System.out.println("putt");
-                        user = new User(id, nombre, apellidos, correo, provincia, canton, distrito, password);
+                        user = new User(id, nombre, apellidos, correo, provincia, canton, distrito, password, null);
                         dao.registrarse(user);
                         acceso = lista;
                     }
