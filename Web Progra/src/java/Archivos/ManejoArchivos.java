@@ -13,6 +13,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import modelo.Producto;
 import modelo.User;
@@ -56,6 +57,7 @@ public class ManejoArchivos {
         ArrayList<Producto> listaProductos = new ArrayList<>();
         ArrayList<String> listaImages = new ArrayList<>();
         while ((str = br.readLine()) != null) {
+            listaProductos = new ArrayList<>();
             parts = str.split(",");
             id = parts[0];
             nombre = parts[1];
@@ -67,8 +69,10 @@ public class ManejoArchivos {
             password = parts[7];
             productos = parts[8];
             prosucts = productos.split("¿");
+//            System.out.println(prosucts.length);
             for (int i = 0; i < prosucts.length; i++) {
                 if (prosucts[i] != null) {
+//                    System.out.println("+"+Arrays.toString(prosucts));
                     producto1 = prosucts[i];
                     partsProducto = producto1.split("-");
                     descCorta = partsProducto[0];

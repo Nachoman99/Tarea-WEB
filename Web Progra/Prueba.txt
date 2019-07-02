@@ -1,8 +1,2 @@
 123,Juan,Trejos,qwer,Puntarenas,Montes,Union,123,TELE-SAMSUMG-Hogar-1000-1-Imagen1# Imagen2#¿PC-HP-Estudio-1000000-2-JPG# JPG2#¿
 098,Kevin,trejos,kevin.trejos,Alajuela,San ramón,San Ramón,qwer,Celular-Huawei-Entretenimiento-2000-3-null¿
-123,Juan,Trejos,qwer,Puntarenas,Montes,Union,123,TELE-SAMSUMG-Hogar-1000-1-Imagen1# Imagen2#¿PC-HP-Estudio-1000000-2-JPG# JPG2#¿
-098,Kevin,trejos,kevin.trejos,Alajuela,San ramón,San Ramón,qwer,Celular-Huawei-Entretenimiento-2000-3-null¿
-123,Juan,Trejos,qwer,Puntarenas,Montes,Union,123,TELE-SAMSUMG-Hogar-1000-1-Imagen1# Imagen2#¿PC-HP-Estudio-1000000-2-JPG# JPG2#¿
-098,Kevin,trejos,kevin.trejos,Alajuela,San ramón,San Ramón,qwer,Celular-Huawei-Entretenimiento-2000-3-null¿
-123,Juan,Trejos,qwer,Puntarenas,Montes,Union,123,TELE-SAMSUMG-Hogar-1000-1-Imagen1# Imagen2#¿PC-HP-Estudio-1000000-2-JPG# JPG2#¿
-098,Kevin,trejos,kevin.trejos,Alajuela,San ramón,San Ramón,qwer,Celular-Huawei-Entretenimiento-2000-3-null¿
