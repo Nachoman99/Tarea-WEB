@@ -1,1 +1,1 @@
-123,Juan,Trejos,qwer,Puntarenas,Montes,Union,123,#Imagen1-TELE-SAMSUMG-Hogar-1000-1-#Imagen1#JPG-PC-HP-Estudio-1000000-2-
+123,Juan,Trejos,qwer,Puntarenas,Montes,Union,123,TELE-SAMSUMG-Hogar-1000-1-#Imagen1-PC-HP-Estudio-1000000-2-#Imagen1-#JPG-

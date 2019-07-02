@@ -19,6 +19,7 @@ import modelo.User;
 public class Main {
  
     public static void main(String[] args) throws IOException {
+        
         ManejoArchivos archivos = new ManejoArchivos();
         ArrayList<String> listaImages = new ArrayList<>();
         ArrayList<String> listaImages2 = new ArrayList<>();

@@ -68,12 +68,12 @@ public class ManejoArchivos {
             password = parts[7];
             productos = parts[8];
             prosucts = productos.split("-");
-            images = prosucts[0];
-            descCorta = prosucts[1];
-            descLarga = prosucts[2];
-            categoria = prosucts[3];
-            precio = Integer.parseInt(prosucts[4]);
-            consecutivo = Integer.parseInt(prosucts[5]);
+            descCorta = prosucts[0];
+            descLarga = prosucts[1];
+            categoria = prosucts[2];
+            precio = Integer.parseInt(prosucts[3]);
+            consecutivo = Integer.parseInt(prosucts[4]);
+            images = prosucts[5];
             listImages = images.split("#");
             for (int i = 0; i < listImages.length; i++) {
                 if (listImages[i] != null && i == 0) {
@@ -118,12 +118,10 @@ public class ManejoArchivos {
         for (int i = 0; i < user.getListaProductos().size(); i++) {
             imagesList = user.getListaProductos().get(i).getListaImagenes();
             for (int j = 0; j < imagesList.size(); j++) {
-//                if (imagesList.get(j) != null) {
-                strImages += "#" + imagesList.remove(j);
-//                }
+                strImages += "#" + imagesList.remove(j) + "-";
             }
-            strProducts += strImages + "-" + user.getListaProductos().get(i).getDescripcionCorta() + "-" + user.getListaProductos().get(i).getDescripcionDetallada() + "-"
-                    + user.getListaProductos().get(i).getCategoria() + "-" + user.getListaProductos().get(i).getPrecio() + "-" + user.getListaProductos().get(i).getNumeroConsecutivo() + "-";
+            strProducts += user.getListaProductos().get(i).getDescripcionCorta() + "-" + user.getListaProductos().get(i).getDescripcionDetallada() + "-"
+                    + user.getListaProductos().get(i).getCategoria() + "-" + user.getListaProductos().get(i).getPrecio() + "-" + user.getListaProductos().get(i).getNumeroConsecutivo()  +"-"+ strImages;
         }
         return strProducts;
     }
