@@ -12,6 +12,7 @@ import java.util.ArrayList;
  * @author Nacho
  */
 public class Producto {
+    
     private ArrayList<String> listaImagenes;
     private String descripcionCorta;
     private String descripcionDetallada;
@@ -19,6 +20,17 @@ public class Producto {
     private int precio;
     private int numeroConsecutivo;
 
+    public Producto(ArrayList<String> listaImagenes, String descripcionCorta, String descripcionDetallada, String categoria, int precio, int numeroConsecutivo) {
+        this.listaImagenes = listaImagenes;
+        this.descripcionCorta = descripcionCorta;
+        this.descripcionDetallada = descripcionDetallada;
+        this.categoria = categoria;
+        this.precio = precio;
+        this.numeroConsecutivo = numeroConsecutivo;
+    }
+
+    
+    
     public Producto() {
         listaImagenes=new ArrayList<>(5);
     }
