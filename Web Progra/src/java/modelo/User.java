@@ -15,17 +15,21 @@ public class User {
     private String name;
     private String secondName;
     private String email;
-    private String ubicacion;
+    private String provincia;
+    private String canton;
+    private String distrito;
 
     public User() {
     }
 
-    public User(String id, String name, String secondName, String email, String ubicacion) {
+    public User(String id, String name, String secondName, String email, String provincia, String canton, String distrito) {
         this.id = id;
         this.name = name;
         this.secondName = secondName;
         this.email = email;
-        this.ubicacion = ubicacion;
+        this.provincia = provincia;
+        this.canton = canton;
+        this.distrito = distrito;
     }
 
     public String getId() {
@@ -60,16 +64,32 @@ public class User {
         this.email = email;
     }
 
-    public String getUbicacion() {
-        return ubicacion;
+    public String getProvincia() {
+        return provincia;
     }
 
-    public void setUbicacion(String ubicacion) {
-        this.ubicacion = ubicacion;
+    public void setProvincia(String provincia) {
+        this.provincia = provincia;
+    }
+
+    public String getCanton() {
+        return canton;
+    }
+
+    public void setCanton(String canton) {
+        this.canton = canton;
+    }
+
+    public String getDistrito() {
+        return distrito;
+    }
+
+    public void setDistrito(String distrito) {
+        this.distrito = distrito;
     }
 
     @Override
     public String toString() {
-        return "User{" + "id=" + id + ", name=" + name + ", secondName=" + secondName + ", email=" + email + ", ubicacion=" + ubicacion + '}';
+        return "User{" + "id=" + id + ", name=" + name + ", secondName=" + secondName + ", email=" + email + ", provincia=" + provincia + ", canton=" + canton + ", distrito=" + distrito + '}';
     }
 }

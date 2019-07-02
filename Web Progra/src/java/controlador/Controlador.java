@@ -54,12 +54,14 @@ public class Controlador extends HttpServlet{
             String id = request.getParameter("txtId");
             String apellidos = request.getParameter("txtSecondName");
             String correo = request.getParameter("txtEmail");
-            String ubicación = request.getParameter("txtLocation");
+            String provincia = request.getParameter("txtProvincia");
+            String canton = request.getParameter("txtCanton");
+            String distrito = request.getParameter("txtDistrito");
             user.setId(id);
             user.setEmail(correo);
             user.setName(nombre);
             user.setSecondName(apellidos);
-            user.setUbicacion(ubicación);
+            //user.setUbicacion(ubicación);
             dao.registrarse(user);
             acceso = registrarse;
         }else if(accion.equalsIgnoreCase("ingresar")){
