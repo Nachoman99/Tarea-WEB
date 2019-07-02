@@ -58,6 +58,12 @@ public class ManejoArchivos {
         ArrayList<String> listaImages = new ArrayList<>();
         while ((str = br.readLine()) != null) {
             listaProductos = new ArrayList<>();
+            listaImages = new ArrayList<>();
+            image1 = "";
+            image2 = "";
+            image3 = "";
+            image4 = "";
+            image5 = "";
             parts = str.split(",");
             id = parts[0];
             nombre = parts[1];
@@ -125,17 +131,17 @@ public class ManejoArchivos {
         return list;
     }
 
-    public String imprimirValores( ArrayList<User> list){
-        String usersList="";
-         ArrayList<User> lista = list;
-         Iterator<User> iterator = lista.iterator();
-         while (iterator.hasNext()) {
+    public String imprimirValores(ArrayList<User> list) {
+        String usersList = "";
+        ArrayList<User> lista = list;
+        Iterator<User> iterator = lista.iterator();
+        while (iterator.hasNext()) {
             User next = iterator.next();
-            usersList+=next.toString()+"\n";
+            usersList += next.toString() + "\n";
         }
-         return usersList;
+        return usersList;
     }
-    
+
     public String conversor(User user) {
         String strImages = "";
         String strProducts = "";
@@ -144,7 +150,7 @@ public class ManejoArchivos {
             if (user.getListaProductos().get(i).getListaImagenes() != null) {
                 strImages += user.getListaProductos().get(i).getListaImagenes().toString().replace("[", "").replace("]", "!").replace(",", "#").replace("!", "#");
                 strImages += "!";
-            }else{
+            } else {
                 strImages = "null";
             }
         }
