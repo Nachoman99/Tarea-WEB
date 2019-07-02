@@ -57,6 +57,7 @@ public class Controlador extends HttpServlet{
             String provincia = request.getParameter("txtProvincia");
             String canton = request.getParameter("txtCanton");
             String distrito = request.getParameter("txtDistrito");
+            String password = request.getParameter("txtPassword");
             user.setId(id);
             user.setEmail(correo);
             user.setName(nombre);
@@ -64,10 +65,13 @@ public class Controlador extends HttpServlet{
             user.setCanton(canton);
             user.setDistrito(distrito);
             user.setProvincia(provincia);
+            user.setPassword(password);
             dao.registrarse(user);
             acceso = registrarse;
         }else if(accion.equalsIgnoreCase("ingresar")){
-            System.out.println("Holaa");
+            String correo = request.getParameter("txtCorreo");
+            String password = request.getParameter("txtPassword");
+            //Verificar si el usuario existe
         }
         RequestDispatcher vista = request.getRequestDispatcher(acceso);
         vista.forward(request, response);

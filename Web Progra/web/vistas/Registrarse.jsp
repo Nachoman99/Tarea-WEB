@@ -28,9 +28,11 @@
             <input type="text" canton="txtCanton"><br>
             Distrito:<br>
             <input type="text" distrito="txtDistrito"><br>
+            Contraseña:<br>
+            <input type="password" password="txtPassword"><br>
             <br>
             <input type="submit" location="accion" value="REGISTRARSE">
-            <a href="Controlador?accion=registrarse">Regresar a la página de inicio</a>
+            <a href="Controlador?accion=inicio">Regresar a la página de inicio</a>
         </form>
     </body>
 </html>

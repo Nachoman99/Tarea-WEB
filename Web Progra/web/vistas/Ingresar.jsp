@@ -14,6 +14,13 @@
     <body>
         <h1>Ingresar</h1>
         <form action="Controlador"
-            
+            Correo:<br>
+            <input type="text" correo="txtCorreo"><br>
+            Contraseña:<br>
+            <input type="text" password="txtPassword"><br>
+            <br>
+            <input type="submit" location="accion" value="INGRESAR">
+            <a href="Controlador?accion=inicio">Regresar a la página de inicio</a>
+        </form>
     </body>
 </html>

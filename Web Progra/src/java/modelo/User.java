@@ -18,11 +18,12 @@ public class User {
     private String provincia;
     private String canton;
     private String distrito;
+    private String password;
 
     public User() {
     }
 
-    public User(String id, String name, String secondName, String email, String provincia, String canton, String distrito) {
+    public User(String id, String name, String secondName, String email, String provincia, String canton, String distrito, String password) {
         this.id = id;
         this.name = name;
         this.secondName = secondName;
@@ -30,6 +31,7 @@ public class User {
         this.provincia = provincia;
         this.canton = canton;
         this.distrito = distrito;
+        this.password = password;
     }
 
     public String getId() {
@@ -88,8 +90,16 @@ public class User {
         this.distrito = distrito;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     @Override
     public String toString() {
-        return "User{" + "id=" + id + ", name=" + name + ", secondName=" + secondName + ", email=" + email + ", provincia=" + provincia + ", canton=" + canton + ", distrito=" + distrito + '}';
+        return "User{" + "id=" + id + ", name=" + name + ", secondName=" + secondName + ", email=" + email + ", provincia=" + provincia + ", canton=" + canton + ", distrito=" + distrito + ", password=" + password + '}';
     }
 }
