@@ -38,12 +38,14 @@ public class Main {
         lista.add(pro2);
         User user = new User("123", "Juan", "Trejos", "qwer", "Puntarenas", "Montes", "Union", "123", lista);
         archivos.escribirArchivo("Prueba.txt", user);
-        System.out.println(archivos.leerArchivo("Prueba.txt"));
+//        System.out.println(archivos.leerArchivo("Prueba.txt"));
         ////////////////////////
         ArrayList<Producto> listaProd = new ArrayList<>();
         Producto pr = new Producto(null, "Celular", "Huawei", "Entretenimiento", 2000, 3);
         listaProd.add(pr);
         User user2 = new User("098", "Kevin", "trejos", "kevin.trejos", "Alajuela", "San ramón", "San Ramón", "qwer", listaProd);
         archivos.escribirArchivo("Prueba.txt", user2);
+//        System.out.println(archivos.leerArchivo("Prueba.txt"));
+        System.out.println(archivos.imprimirValores(archivos.leerArchivo("Prueba.txt")));
     }
 }

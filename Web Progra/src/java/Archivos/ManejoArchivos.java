@@ -13,6 +13,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import modelo.Producto;
 import modelo.User;
 
@@ -120,6 +121,17 @@ public class ManejoArchivos {
         return list;
     }
 
+    public String imprimirValores( ArrayList<User> list){
+        String usersList="";
+         ArrayList<User> lista = list;
+         Iterator<User> iterator = lista.iterator();
+         while (iterator.hasNext()) {
+            User next = iterator.next();
+            usersList+=next.toString()+"\n";
+        }
+         return usersList;
+    }
+    
     public String conversor(User user) {
         String strImages = "";
         String strProducts = "";
