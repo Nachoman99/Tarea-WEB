@@ -61,7 +61,9 @@ public class Controlador extends HttpServlet{
             user.setEmail(correo);
             user.setName(nombre);
             user.setSecondName(apellidos);
-            //user.setUbicacion(ubicación);
+            user.setCanton(canton);
+            user.setDistrito(distrito);
+            user.setProvincia(provincia);
             dao.registrarse(user);
             acceso = registrarse;
         }else if(accion.equalsIgnoreCase("ingresar")){
