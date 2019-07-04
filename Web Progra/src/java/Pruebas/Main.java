@@ -56,7 +56,9 @@ public class Main {
             xml.write("files/xmlFile.xml", user);
             xml.write("files/xmlFile.xml", user2);
             xml.closeEncoder();
-            System.out.println(xml.readFirst("files/xmlFile.xml"));
+            //System.out.println(xml.readFirst("files/xmlFile.xml"));
+            ArrayList<User> listaUser = xml.readAll("files/xmlFile.xml");
+            System.out.println(listaUser);
         } catch (FileNotFoundException ex) {
             ex.printStackTrace();
         }

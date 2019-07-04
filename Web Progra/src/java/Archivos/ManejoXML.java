@@ -11,6 +11,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
+import java.util.Iterator;
 import modelo.User;
 
 /**
@@ -30,15 +31,15 @@ public class ManejoXML {
         decoder = new XMLDecoder(new FileInputStream(ruta));
     }
 
-    public void closeEncoder(){
+    public void closeEncoder() {
         encoder.close();
     }
-    
+
     public void write(String ruta, User user) throws FileNotFoundException {
         if (encoder == null) {
             createEncoder(ruta);
             encoder.writeObject(user);
-        } else if(encoder != null){
+        } else if (encoder != null) {
             encoder.writeObject(user);
         }
     }
@@ -49,15 +50,30 @@ public class ManejoXML {
             User user = (User) decoder.readObject();
             decoder.close();
             return user;
-        } else if(decoder != null){
+        } else if (decoder != null) {
             User user = (User) decoder.readObject();
             decoder.close();
             return user;
         }
         return null;
     }
-    
-//    public ArrayList<User> readAll(String ruta){
-//        
-//    }
+
+    public ArrayList<User> readAll(String ruta) throws FileNotFoundException {
+        ArrayList<User> listUser = new ArrayList<>();
+        User user;
+        if (decoder == null) {
+            createDecoder(ruta);
+            while ((user = (User) decoder.readObject()) != null) {
+                listUser.add(user);
+            }
+            decoder.close();
+            return listUser;
+        } else {
+            while ((user = (User) decoder.readObject()) != null) {
+                listUser.add(user);
+            }
+            decoder.close();
+            return listUser;
+        }
+    }
 }
