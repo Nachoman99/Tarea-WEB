@@ -7,9 +7,12 @@ package Pruebas;
 
 import Archivos.ManejoArchivos;
 import Archivos.ManejoXML;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import modelo.Producto;
 import modelo.User;
 
@@ -18,11 +21,11 @@ import modelo.User;
  * @author Kevin Trejos
  */
 public class Main {
- 
-    public static void main(String[] args) throws IOException {
-        
+
+    public static void main(String[] args) {
+
         ManejoXML xml = new ManejoXML();
-       // ManejoArchivos archivos = new ManejoArchivos();
+        // ManejoArchivos archivos = new ManejoArchivos();
         ArrayList<String> listaImages = new ArrayList<>();
         ArrayList<String> listaImages2 = new ArrayList<>();
         String img = "JPG";
@@ -46,11 +49,17 @@ public class Main {
         Producto pr = new Producto(null, "Celular", "Huawei", "Entretenimiento", 2000, 3);
         listaProd.add(pr);
         User user2 = new User("098", "Kevin", "trejos", "kevin.trejos", "Alajuela", "San ramón", "San Ramón", "qwer", listaProd);
-        //archivos.escribirArchivo("Prueba.txt", user2);
+        try {
+            //archivos.escribirArchivo("Prueba.txt", user2);
 //        System.out.println(archivos.leerArchivo("Prueba.txt"));
-       // System.out.println(archivos.imprimirValores(archivos.leerArchivo("Prueba.txt")));
-       xml.write("files/xmlFile.xml", user);
-       xml.write("files/xmlFile.xml", user2);
-        System.out.println(xml.read("files/xmlFile.xml"));
+// System.out.println(archivos.imprimirValores(archivos.leerArchivo("Prueba.txt")));
+            xml.write("files/xmlFile.xml", user);
+            xml.write("files/xmlFile.xml", user2);
+            xml.closeEncoder();
+            System.out.println(xml.readFirst("files/xmlFile.xml"));
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+        }
+
     }
 }

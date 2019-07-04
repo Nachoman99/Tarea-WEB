@@ -84,9 +84,6 @@
    <string>Trejos</string>
   </void>
  </object>
-</java>
-<?xml version="1.0" encoding="UTF-8"?>
-<java version="1.8.0_212" class="java.beans.XMLDecoder">
  <object class="modelo.User">
   <void property="canton">
    <string>San ramón</string>
