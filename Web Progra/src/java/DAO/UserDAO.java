@@ -5,6 +5,7 @@
  */
 package DAO;
  
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import modelo.User;
@@ -17,7 +18,7 @@ public class UserDAO implements UserInterface{
 
     private List<User> users;
 
-    public UserDAO() {
+    public UserDAO() throws IOException {
         users= DatosArray.getInstance().alumnos;
     }
     

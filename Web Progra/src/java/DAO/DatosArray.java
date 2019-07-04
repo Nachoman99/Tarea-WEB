@@ -10,6 +10,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import modelo.Producto;
 import modelo.User;
 
 /**
@@ -17,28 +18,42 @@ import modelo.User;
  * @author Nacho
  */
 public class DatosArray {
-    private static DatosArray instance ;
-    public List <User> alumnos;
+
+    private static DatosArray instance;
+    public List<User> alumnos;
     public ManejoArchivos archivos = new ManejoArchivos();
-    
-    
-    private DatosArray(){
+
+    private DatosArray() throws IOException {
         try {
-           alumnos  =archivos.leerArchivo("Prueba.txt");
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException o){
-            o.printStackTrace();
+            ArrayList<String> listaImages = new ArrayList<>();
+            ArrayList<String> listaImages2 = new ArrayList<>();
+            String img = "JPG";
+            String img2 = "JPG2";
+            listaImages2.add(img);
+            listaImages2.add(img2);
+            String image1 = "Imagen1";
+            String image2 = "Imagen2";
+            listaImages.add(image1);
+            listaImages.add(image2);
+            Producto pro2 = new Producto(listaImages2, "PC", "HP", "Estudio", 1000000, 2);
+            Producto pro1 = new Producto(listaImages, "TELE", "SAMSUMG", "Hogar", 1000, 1);
+            ArrayList<Producto> lista = new ArrayList<>();
+            lista.add(pro1);
+            lista.add(pro2);
+            User user = new User("123", "Juan", "Trejos", "qwer", "Puntarenas", "Montes", "Union", "123", lista);
+            archivos.escribirArchivo("src/Prueba.txt", user);
+            alumnos = archivos.leerArchivo("src/Prueba.txt");
+        }catch(Exception e){
+            
         }
-        
     }
     
-    public static DatosArray getInstance() {
+    public static DatosArray getInstance() throws IOException {
         if (instance == null) {
             instance = new DatosArray();
         }
         return instance;
     }
-    
-    
+
 }
+

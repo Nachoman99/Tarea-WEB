@@ -6,6 +6,7 @@
 package Pruebas;
 
 import Archivos.ManejoArchivos;
+import Archivos.ManejoXML;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -20,7 +21,8 @@ public class Main {
  
     public static void main(String[] args) throws IOException {
         
-        ManejoArchivos archivos = new ManejoArchivos();
+        ManejoXML xml = new ManejoXML();
+       // ManejoArchivos archivos = new ManejoArchivos();
         ArrayList<String> listaImages = new ArrayList<>();
         ArrayList<String> listaImages2 = new ArrayList<>();
         String img = "JPG";
@@ -37,15 +39,18 @@ public class Main {
         lista.add(pro1);
         lista.add(pro2);
         User user = new User("123", "Juan", "Trejos", "qwer", "Puntarenas", "Montes", "Union", "123", lista);
-        archivos.escribirArchivo("Prueba.txt", user);
+        //archivos.escribirArchivo("Prueba.txt", user);
 //        System.out.println(archivos.leerArchivo("Prueba.txt"));
         ////////////////////////
         ArrayList<Producto> listaProd = new ArrayList<>();
         Producto pr = new Producto(null, "Celular", "Huawei", "Entretenimiento", 2000, 3);
         listaProd.add(pr);
         User user2 = new User("098", "Kevin", "trejos", "kevin.trejos", "Alajuela", "San ramón", "San Ramón", "qwer", listaProd);
-        archivos.escribirArchivo("Prueba.txt", user2);
+        //archivos.escribirArchivo("Prueba.txt", user2);
 //        System.out.println(archivos.leerArchivo("Prueba.txt"));
-        System.out.println(archivos.imprimirValores(archivos.leerArchivo("Prueba.txt")));
+       // System.out.println(archivos.imprimirValores(archivos.leerArchivo("Prueba.txt")));
+       xml.write("files/xmlFile.xml", user);
+       xml.write("files/xmlFile.xml", user2);
+        System.out.println(xml.read("files/xmlFile.xml"));
     }
 }

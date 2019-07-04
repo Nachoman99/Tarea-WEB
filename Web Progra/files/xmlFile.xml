@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="1.8.0_212" class="java.beans.XMLDecoder">
+ <object class="modelo.User">
+  <void property="canton">
+   <string>Montes</string>
+  </void>
+  <void property="distrito">
+   <string>Union</string>
+  </void>
+  <void property="email">
+   <string>qwer</string>
+  </void>
+  <void property="id">
+   <string>123</string>
+  </void>
+  <void property="listaProductos">
+   <object class="java.util.ArrayList">
+    <void method="add">
+     <object class="modelo.Producto" id="Producto0">
+      <void property="categoria">
+       <string>Hogar</string>
+      </void>
+      <void property="descripcionCorta">
+       <string>TELE</string>
+      </void>
+      <void property="descripcionDetallada">
+       <string>SAMSUMG</string>
+      </void>
+      <void property="listaImagenes">
+       <void method="add">
+        <string>Imagen1</string>
+       </void>
+       <void method="add">
+        <string>Imagen2</string>
+       </void>
+      </void>
+      <void property="numeroConsecutivo">
+       <int>1</int>
+      </void>
+      <void property="precio">
+       <int>1000</int>
+      </void>
+     </object>
+    </void>
+    <void method="add">
+     <object class="modelo.Producto" id="Producto1">
+      <void property="categoria">
+       <string>Estudio</string>
+      </void>
+      <void property="descripcionCorta">
+       <string>PC</string>
+      </void>
+      <void property="descripcionDetallada">
+       <string>HP</string>
+      </void>
+      <void property="listaImagenes">
+       <void method="add">
+        <string>JPG</string>
+       </void>
+       <void method="add">
+        <string>JPG2</string>
+       </void>
+      </void>
+      <void property="numeroConsecutivo">
+       <int>2</int>
+      </void>
+      <void property="precio">
+       <int>1000000</int>
+      </void>
+     </object>
+    </void>
+   </object>
+  </void>
+  <void property="name">
+   <string>Juan</string>
+  </void>
+  <void property="password">
+   <string>123</string>
+  </void>
+  <void property="provincia">
+   <string>Puntarenas</string>
+  </void>
+  <void property="secondName">
+   <string>Trejos</string>
+  </void>
+ </object>
+</java>
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="1.8.0_212" class="java.beans.XMLDecoder">
+ <object class="modelo.User">
+  <void property="canton">
+   <string>San ramón</string>
+  </void>
+  <void property="distrito">
+   <string>San Ramón</string>
+  </void>
+  <void property="email">
+   <string>kevin.trejos</string>
+  </void>
+  <void property="id">
+   <string>098</string>
+  </void>
+  <void property="listaProductos">
+   <object class="java.util.ArrayList">
+    <void method="add">
+     <object class="modelo.Producto">
+      <void property="categoria">
+       <string>Entretenimiento</string>
+      </void>
+      <void property="descripcionCorta">
+       <string>Celular</string>
+      </void>
+      <void property="descripcionDetallada">
+       <string>Huawei</string>
+      </void>
+      <void property="listaImagenes">
+       <null/>
+      </void>
+      <void property="numeroConsecutivo">
+       <int>3</int>
+      </void>
+      <void property="precio">
+       <int>2000</int>
+      </void>
+     </object>
+    </void>
+   </object>
+  </void>
+  <void property="name">
+   <string>Kevin</string>
+  </void>
+  <void property="password">
+   <string>qwer</string>
+  </void>
+  <void property="provincia">
+   <string>Alajuela</string>
+  </void>
+  <void property="secondName">
+   <string>trejos</string>
+  </void>
+ </object>
+</java>
