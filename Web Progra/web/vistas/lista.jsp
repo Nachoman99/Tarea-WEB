@@ -33,22 +33,26 @@
                List <User> list = dao.listar();
                Iterator<User> i = list.iterator();
                User a = null;
-               int p=-1;
+               
                while (i.hasNext()){
-                   ++p;
+                   
                    a = i.next();
+                   for (int j = 0; j < a.getListaProductos().size(); j++) {
+                           
+                   
             %>
             <tbody>
                 <tr>
-                    <td><%=a.getListaProductos().get(p).getDescripcionCorta() %></td>
-                    <td><%=a.getListaProductos().get(p).getPrecio() %></td>
+                    <td><%=a.getListaProductos().get(j).getDescripcionCorta() %></td>
+                    <td><%=a.getListaProductos().get(j).getPrecio() %></td>
     
                     <td>
                         <a href="Controlador?accion=trueque&id=<%= a.getId()%>">Trueque</a>
                       
                     </td>
                 </tr>
-                <%}%>
+                <%}
+                }%>
             </tbody>
         </table>
         

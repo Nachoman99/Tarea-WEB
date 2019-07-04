@@ -60,20 +60,28 @@ public class ManejoXML {
 
     public ArrayList<User> readAll(String ruta) throws FileNotFoundException {
         ArrayList<User> listUser = new ArrayList<>();
-        User user;
-        if (decoder == null) {
-            createDecoder(ruta);
-            while ((user = (User) decoder.readObject()) != null) {
-                listUser.add(user);
+        User user = null;
+        boolean continuar = true;
+        try {
+            if (decoder == null) {
+                createDecoder(ruta);
+                while (continuar) {
+                    user = (User) decoder.readObject();
+                    listUser.add(user);
+                }
+                decoder.close();
+                return listUser;
+            } else {
+                while (continuar) {
+                    user = (User) decoder.readObject();
+                    listUser.add(user);
+                }
+                decoder.close();
+                return listUser;
             }
-            decoder.close();
-            return listUser;
-        } else {
-            while ((user = (User) decoder.readObject()) != null) {
-                listUser.add(user);
-            }
-            decoder.close();
-            return listUser;
+        } catch (ArrayIndexOutOfBoundsException e) {
+            continuar = false;
         }
+        return listUser;
     }
 }
