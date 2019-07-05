@@ -17,7 +17,7 @@
     </head>
     <body>
         <h1>Lista de Productos</h1>
-        <a href="Controlador?accion=añadir">Agregar un Nuevo Producto</a>
+        <a href="Controlador?accion=anadir">Agregar un Nuevo Producto</a>
         <br>
         <br>
         

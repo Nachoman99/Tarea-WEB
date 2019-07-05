@@ -28,9 +28,10 @@ public class Controlador extends HttpServlet {
     public String registrarse = "vistas/Registrarse.jsp";
     public String ingresar = "vistas/Ingresar.jsp";
     public String añadir = "vistas/añadir.jsp";
-    public String lista = "vistas/añadir.jsp";
+    public String lista = "vistas/lista.jsp";
     public String perfil = "vistas/perfil.jsp";
     public String trueque = "vistas/trueque.jsp";
+    private static boolean emailValid = false;
 
     public User user = new User();
     public UserDAO dao;
@@ -39,9 +40,13 @@ public class Controlador extends HttpServlet {
         this.dao = new UserDAO();
     }
 
+    public static boolean isEmailValid() {
+        return emailValid;
+    }
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
+        try (PrintWriter out = response.getWriter()) { 
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
@@ -69,6 +74,18 @@ public class Controlador extends HttpServlet {
         System.out.println("La accion es: " + accion);
         if (accion.equalsIgnoreCase("registrarse")) {
             acceso = registrarse;
+        } else if (accion.equalsIgnoreCase("ingresar")) {
+            String correo = request.getParameter("txtCorreo");
+            String password = request.getParameter("txtPassword");
+            //Verificar si el usuario existe
+        } else if(accion.equalsIgnoreCase("anadir")){
+            acceso=añadir;
+        }else if(accion.equalsIgnoreCase("introducir")){
+            //metodo de meter la vara saica
+            acceso=lista;
+        }else if(accion.equalsIgnoreCase("listar")){
+            acceso = lista;
+        }else if(accion.equalsIgnoreCase("registrarUsuario")){
             String nombre = request.getParameter("txtName");
             String id = request.getParameter("txtId");
             String apellidos = request.getParameter("txtSecondName");
@@ -77,43 +94,21 @@ public class Controlador extends HttpServlet {
             String canton = request.getParameter("txtCanton");
             String distrito = request.getParameter("txtDistrito");
             String password = request.getParameter("txtPassword");
-            System.out.println("Hola");
             if (nombre != null && id != null && apellidos != null && correo != null && provincia != null && canton != null && distrito != null && password != null) {
                 try {
                     if (verifyEmail(correo)) {
-                        System.out.println("putt");
+                        emailValid = true;
                         user = new User(id, nombre, apellidos, correo, provincia, canton, distrito, password, null);
                         dao.registrarse(user);
                         acceso = lista;
+                    }else{
+                        emailValid = false;
                     }
-                    System.out.println("kkkk");
                 } catch (ExceptionsControler ex) {
                     ex.printStackTrace();
                 }
             }
-//            user.setId(id);
-//            user.setEmail(correo);
-//            user.setName(nombre);
-//            user.setSecondName(apellidos);
-//            user.setCanton(canton);
-//            user.setDistrito(distrito);
-//            user.setProvincia(provincia);
-//            user.setPassword(password);
-//            dao.registrarse(user);
-//            acceso = lista;
-        } else if (accion.equalsIgnoreCase("ingresar")) {
-            String correo = request.getParameter("txtCorreo");
-            String password = request.getParameter("txtPassword");
-            //Verificar si el usuario existe
-        } else if(accion.equalsIgnoreCase("añadir")){
-            acceso=añadir;
-        }else if(accion.equalsIgnoreCase("introducir")){
-            //metodo de meter la vara saica
-            acceso=lista;
-        }else if(accion.equalsIgnoreCase("listar")){
-            acceso = lista;
-       }
-        
+        }        
         
         RequestDispatcher vista = request.getRequestDispatcher(acceso);
         vista.forward(request, response);

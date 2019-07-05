@@ -4,6 +4,7 @@
     Author     : Kevin Trejos
 --%>
 
+<%@page import="controlador.Controlador"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -31,7 +32,17 @@
             Contraseña:<br>
             <input type="password" password="txtPassword"><br>
             <br>
-            <input type="submit" location="accion" value="REGISTRARSE">
+            <a class="btn btn-success btn-lg" href="Controlador?accion=registrarUsuario">REGISTRARSE</a>
+            <%
+                if (!Controlador.isEmailValid()) {
+                    %>
+                    <script>
+                    alert("El email no es válido, por favor corríjalo");
+                    < / script > 
+            <%    }
+            %>
+            <br>
+            <br>
             <a href="Controlador?accion=inicio">Regresar a la página de inicio</a>
         </form>
     </body>
