@@ -10,8 +10,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import modelo.Producto;
 import modelo.User;
 
@@ -106,8 +104,7 @@ public class UserDAO implements UserInterface {
         try {
             users = DatosArray.getInstance().users;
         } catch (IOException e) {
+            e.printStackTrace();
         }
-
     }
-
 }
