@@ -26,7 +26,8 @@ public class DatosArray {
 //    public ManejoArchivos archivos = new ManejoArchivos();
 
     private DatosArray() throws IOException  {
-        alumnos = json.readAll("files/jsonFile.json");
+//        json.write("jsonFile.json", null);
+        alumnos = json.readAll("jsonFile.json");
 //        try {
 //            ArrayList<String> listaImages = new ArrayList<>();
 //            ArrayList<String> listaImages2 = new ArrayList<>();
