@@ -8,6 +8,7 @@ package DAO;
 import Archivos.ManejoJson;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import modelo.User;
 
@@ -49,6 +50,18 @@ public class UserDAO implements UserInterface{
     @Override
     public boolean insertarProducto(User user) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public User signIn(String email, String password) {
+        Iterator<User> iterador = users.iterator();
+        while (iterador.hasNext()) {
+            User next = iterador.next();
+            if (next.getEmail().equals(email) && next.getPassword().equals(password)) {
+                return next;
+            }
+        }
+        return null;
     }
     
 }

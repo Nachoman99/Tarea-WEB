@@ -18,5 +18,5 @@ public interface UserInterface {
     boolean registrarse(User user);
     boolean actualizar(User user);
     boolean insertarProducto(User user);
- 
+    User signIn(String email, String password);
 }

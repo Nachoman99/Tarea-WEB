@@ -75,9 +75,7 @@ public class Controlador extends HttpServlet {
         if (accion.equalsIgnoreCase("registrarse")) {
             acceso = registrarse;
         } else if (accion.equalsIgnoreCase("ingresar")) {
-            String correo = request.getParameter("txtCorreo");
-            String password = request.getParameter("txtPassword");
-            //Verificar si el usuario existe
+            acceso = ingresar;
         } else if (accion.equalsIgnoreCase("anadir")) {
             acceso = añadir;
         } else if (accion.equalsIgnoreCase("introducir")) {
@@ -127,11 +125,18 @@ public class Controlador extends HttpServlet {
                 System.out.println("Menos");
                 acceso = registrarse;
             }
+        }else if(accion.equalsIgnoreCase("INGRESO")){
+            System.out.println("Puuuu");
+            String email = request.getParameter("txtCorreo");
+            String password = request.getParameter("txtPassword");
+            if(dao.signIn(email, password) != null){
+                acceso = lista;
+            }else{
+                acceso = ingresar;
+            }
         }
 
         RequestDispatcher vista = request.getRequestDispatcher(acceso);
-        System.out.println("Request " + request);
-        System.out.println("Response " + response.toString());
         vista.forward(request, response);
         /*
         String acceso ="";
