@@ -8,6 +8,7 @@ package controlador;
 import DAO.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -16,6 +17,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import modelo.Producto;
 import modelo.User;
 
 /**
@@ -80,7 +82,18 @@ public class Controlador extends HttpServlet {
             acceso = añadir;
         } else if (accion.equalsIgnoreCase("introducir")) {
             //metodo de meter la vara saica
+            Producto producto;
+            String corta = request.getParameter("txtId");
+            String detallada = request.getParameter("txtName");
+            int precio = Integer.parseInt(request.getParameter("txtSecondName"));
+            String imagen = request.getParameter("txtEmail");
+            String categoria = request.getParameter("txtEmail");
+            ArrayList<String> imagenes= new ArrayList<>();
+            imagenes.add(imagen);
+            producto=new Producto(imagenes, corta, detallada, categoria, precio, 0);
+            dao.insertarProducto(producto, user.getId());
             acceso = lista;
+     
         } else if (accion.equalsIgnoreCase("listar")) {
             acceso = lista;
         } else if (accion.equalsIgnoreCase("registrar")) {

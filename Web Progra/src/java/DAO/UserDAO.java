@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import modelo.Producto;
 import modelo.User;
 
 /**
@@ -47,10 +48,7 @@ public class UserDAO implements UserInterface{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
-    public boolean insertarProducto(User user) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+   
 
     @Override
     public User signIn(String email, String password) {
@@ -62,6 +60,23 @@ public class UserDAO implements UserInterface{
             }
         }
         return null;
+    }
+
+    @Override
+    public void insertarProducto(Producto producto, String userID) {
+        Iterator<User> iterador = users.iterator();
+        while (iterador.hasNext()) {
+            User next = iterador.next();
+            if (next.getId().equals(userID)) {
+                next.agregarProducto(producto);
+                try {
+                    users = DatosArray.getInstance().users;
+                } catch (IOException e) {
+                }
+                
+            }
+        }
+        
     }
     
 }

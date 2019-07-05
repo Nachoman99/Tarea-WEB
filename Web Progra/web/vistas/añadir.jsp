@@ -33,6 +33,7 @@
                     <option>Ropa</option>
 
                 </select>
+                
             </p>
             <input type="submit" name="accion" value="introducir">
             <a href="Controlador?accion=lista">Regresar a la lista de productos</a>

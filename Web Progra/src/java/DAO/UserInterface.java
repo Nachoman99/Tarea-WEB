@@ -6,6 +6,7 @@
 package DAO;
 
 import java.util.List;
+import modelo.Producto;
 import modelo.User;
 
 /**
@@ -17,6 +18,6 @@ public interface UserInterface {
     List<User> listar();
     boolean registrarse(User user);
     boolean actualizar(User user);
-    boolean insertarProducto(User user);
+    void insertarProducto(Producto producto, String userID);
     User signIn(String email, String password);
 }
