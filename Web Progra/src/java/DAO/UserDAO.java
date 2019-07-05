@@ -19,7 +19,7 @@ public class UserDAO implements UserInterface{
     private List<User> users;
 
     public UserDAO() throws IOException {
-        users= DatosArray.getInstance().alumnos;
+        users = DatosArray.getInstance().alumnos;
     }
     
     

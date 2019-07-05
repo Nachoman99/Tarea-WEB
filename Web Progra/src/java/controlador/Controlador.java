@@ -33,7 +33,11 @@ public class Controlador extends HttpServlet {
     public String trueque = "vistas/trueque.jsp";
 
     public User user = new User();
-    public UserDAO dao = new UserDAO();
+    public UserDAO dao;
+
+    public Controlador() throws IOException {
+        this.dao = new UserDAO();
+    }
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");

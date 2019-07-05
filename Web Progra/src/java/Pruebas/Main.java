@@ -6,6 +6,7 @@
 package Pruebas;
 
 import Archivos.ManejoArchivos;
+import Archivos.ManejoJson;
 import Archivos.ManejoXML;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -21,10 +22,11 @@ import modelo.User;
  * @author Kevin Trejos
  */
 public class Main {
-
+    
     public static void main(String[] args) {
-
-        ManejoXML xml = new ManejoXML();
+        
+        ManejoXML xml = null;
+        xml = new ManejoXML();
         // ManejoArchivos archivos = new ManejoArchivos();
         ArrayList<String> listaImages = new ArrayList<>();
         ArrayList<String> listaImages2 = new ArrayList<>();
@@ -49,18 +51,17 @@ public class Main {
         Producto pr = new Producto(null, "Celular", "Huawei", "Entretenimiento", 2000, 3);
         listaProd.add(pr);
         User user2 = new User("098", "Kevin", "trejos", "kevin.trejos", "Alajuela", "San ramón", "San Ramón", "qwer", listaProd);
+        User user3 = new User("4321", "Fernanda", "Herrera", "Fer12", "Alajuela", "san Ramon", "SAn ramon", "Fer1233", listaProd);
+        ManejoJson json = new ManejoJson();
+        
         try {
-            //archivos.escribirArchivo("Prueba.txt", user2);
-//        System.out.println(archivos.leerArchivo("Prueba.txt"));
-// System.out.println(archivos.imprimirValores(archivos.leerArchivo("Prueba.txt")));
-            xml.write("files/xmlFile.xml", user);
-            xml.write("files/xmlFile.xml", user2);
-            xml.closeEncoder();
-            //System.out.println(xml.readFirst("files/xmlFile.xml"));
-            ArrayList<User> listaUser = xml.readAll("files/xmlFile.xml");
+            json.write("files/jsonFile.json", user);
+            json.write("files/jsonFile.json", user2);
+            json.write("files/jsonFile.json", user3);
+            ArrayList<User> listaUser = json.readAll("files/jsonFile.json");
             System.out.println(listaUser);
-        } catch (FileNotFoundException ex) {
-            ex.printStackTrace();
+        } catch (IOException ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }

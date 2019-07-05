@@ -22,9 +22,19 @@ public class ManejoXML {
 
     XMLEncoder encoder = null;
     XMLDecoder decoder = null;
+    private boolean isPrimeraVez = true;
 
     private void createEncoder(String ruta) throws FileNotFoundException {
-        encoder = new XMLEncoder(new FileOutputStream(ruta, true));
+        if (isPrimeraVez) {
+            encoder = new XMLEncoder(new FileOutputStream(ruta, true));
+            isPrimeraVez = false;
+        }
+        ArrayList<User> list = readAll(ruta);
+        System.out.println("Perro");
+        if (list.size() > 0 && !isPrimeraVez) {
+            //encoder = new XMLEncoder(new FileOutputStream(ruta, true));
+            System.out.println("Gola");
+        }
     }
 
     private void createDecoder(String ruta) throws FileNotFoundException {
@@ -58,7 +68,7 @@ public class ManejoXML {
         return null;
     }
 
-    public ArrayList<User> readAll(String ruta) throws FileNotFoundException {
+    public ArrayList<User> readAll(String ruta) {
         ArrayList<User> listUser = new ArrayList<>();
         User user = null;
         boolean continuar = true;
@@ -81,6 +91,8 @@ public class ManejoXML {
             }
         } catch (ArrayIndexOutOfBoundsException e) {
             continuar = false;
+        }catch( FileNotFoundException o){
+            System.out.println("No se ha creado el archivo con los datos");            
         }
         return listUser;
     }
