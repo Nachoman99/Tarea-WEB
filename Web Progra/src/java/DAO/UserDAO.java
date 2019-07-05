@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package DAO;
- 
+
 import Archivos.ManejoJson;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -17,11 +17,11 @@ import modelo.User;
  *
  * @author Kevin Trejos
  */
-public class UserDAO implements UserInterface{
+public class UserDAO implements UserInterface {
 
     private List<User> users;
     private ManejoJson json = new ManejoJson();
-    
+
     public UserDAO() throws IOException {
         users = DatosArray.getInstance().users;
     }
@@ -45,7 +45,7 @@ public class UserDAO implements UserInterface{
                 ex.printStackTrace();
                 return false;
             }
-        }else{
+        } else {
             return false;
         }
     }
@@ -59,8 +59,6 @@ public class UserDAO implements UserInterface{
     public boolean actualizar(User user) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
-   
 
     @Override
     public User signIn(String email, String password) {
@@ -81,14 +79,36 @@ public class UserDAO implements UserInterface{
             User next = iterador.next();
             if (next.getId().equals(userID)) {
                 next.agregarProducto(producto);
-                try {
-                    users = DatosArray.getInstance().users;
-                } catch (IOException e) {
-                }
-                
+//                try {
+//                    users = DatosArray.getInstance().users;
+//                } catch (IOException e) {
+//                }
+//                
             }
         }
+        List<User> listaAux= new ArrayList<>();
+         Iterator<User> iterador2 = users.iterator();
+         while (iterador2.hasNext()) {
+             User next = iterador2.next();
+             listaAux.add(next);           
+         }
         
+        json.deleteFile();
+        Iterator<User> iterador3 = listaAux.iterator();
+        while (iterador3.hasNext()) {
+            User next = iterador3.next();
+            try {
+                json.write("jsonFile.json", next);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        }
+        try {
+            users = DatosArray.getInstance().users;
+        } catch (IOException e) {
+        }
+
     }
-    
+
 }
