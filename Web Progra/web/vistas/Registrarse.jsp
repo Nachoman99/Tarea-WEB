@@ -16,33 +16,24 @@
         <h1>Registrarse</h1>
         <form action="Controlador">
             Número de cédula:<br>
-            <input type="text" id="txtId"><br>
+            <input type="text" name="txtId"><br>
             Nombre:<br>
             <input type="text" name="txtName"><br>
             Apellidos:<br>
-            <input type="text" secondName="txtSecondName"><br>
+            <input type="text" name="txtSecondName"><br>
             Correo electrónico:<br>
-            <input type="text" email="txtEmail"><br>
+            <input type="text" name="txtEmail"><br>
             Provincia:<br>
-            <input type="text" provincia="txtProvincia"><br>
+            <input type="text" name="txtProvincia"><br>
             Cantón:<br>
-            <input type="text" canton="txtCanton"><br>
+            <input type="text" name="txtCanton"><br>
             Distrito:<br>
-            <input type="text" distrito="txtDistrito"><br>
+            <input type="text" name="txtDistrito"><br>
             Contraseña:<br>
-            <input type="password" password="txtPassword"><br>
-            <br>
-            <a class="btn btn-success btn-lg" href="Controlador?accion=registrarUsuario">REGISTRARSE</a>
-            <%
-                if (!Controlador.isEmailValid()) {
-                    %>
-                    <script>
-                    alert("El email no es válido, por favor corríjalo");
-                    < / script > 
-            <%    }
-            %>
+            <input type="password" name="txtPassword"><br>
             <br>
             <br>
+            <input type="submit" name="accion" value="REGISTRAR">
             <a href="Controlador?accion=inicio">Regresar a la página de inicio</a>
         </form>
     </body>

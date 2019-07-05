@@ -85,28 +85,45 @@ public class Controlador extends HttpServlet {
             acceso=lista;
         }else if(accion.equalsIgnoreCase("listar")){
             acceso = lista;
-        }else if(accion.equalsIgnoreCase("registrarUsuario")){
-            String nombre = request.getParameter("txtName");
+        }else if(accion.equalsIgnoreCase("registrar")){
+            
             String id = request.getParameter("txtId");
+            String nombre = request.getParameter("txtName");
             String apellidos = request.getParameter("txtSecondName");
             String correo = request.getParameter("txtEmail");
             String provincia = request.getParameter("txtProvincia");
             String canton = request.getParameter("txtCanton");
             String distrito = request.getParameter("txtDistrito");
             String password = request.getParameter("txtPassword");
+            
+            System.out.println("id " + id);
+            System.out.println("nombre " + nombre);
+            System.out.println("apellidos " + apellidos);
+            System.out.println("correo " + correo);
+            System.out.println("provincia " + provincia);
+            System.out.println("canton " + canton);
+            System.out.println("distrito " + distrito);
+            System.out.println("password  " + password);
+            
             if (nombre != null && id != null && apellidos != null && correo != null && provincia != null && canton != null && distrito != null && password != null) {
                 try {
                     if (verifyEmail(correo)) {
+                        System.out.println("Hola");
                         emailValid = true;
                         user = new User(id, nombre, apellidos, correo, provincia, canton, distrito, password, null);
                         dao.registrarse(user);
                         acceso = lista;
                     }else{
+                        System.out.println("puto");
                         emailValid = false;
+                        acceso = registrarse;
                     }
                 } catch (ExceptionsControler ex) {
                     ex.printStackTrace();
                 }
+            }else{
+                System.out.println("Menos");
+                acceso = registrarse;
             }
         }        
         
