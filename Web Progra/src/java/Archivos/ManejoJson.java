@@ -10,6 +10,7 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import com.google.gson.Gson;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
@@ -24,9 +25,16 @@ public class ManejoJson {
     BufferedWriter output = null;
     BufferedReader input = null;
     Gson gson = new Gson();
+    File file;
     
     private void createDocument(String ruta) throws IOException{
-        output = new BufferedWriter(new FileWriter(ruta, true));
+        file = new File(ruta);
+        output = new BufferedWriter(new FileWriter(file, true));
+        
+    }
+    
+    public boolean deleteFile(){
+        return file.delete();
     }
     
     private void closeWriter() throws IOException{

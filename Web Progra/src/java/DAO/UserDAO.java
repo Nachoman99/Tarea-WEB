@@ -28,12 +28,24 @@ public class UserDAO implements UserInterface{
 
     @Override
     public boolean registrarse(User user) {
-        try {
-            User userCopy = new User(user.getId(), user.getName(), user.getSecondName(), user.getEmail(), user.getProvincia(), user.getCanton(), user.getDistrito(), user.getPassword(), new ArrayList<>());
-            json.write("jsonFile.json", userCopy);
-            return users.add(userCopy);
-        } catch (IOException ex) {
-            ex.printStackTrace();
+        boolean repeat = false;
+        Iterator<User> iterador = users.iterator();
+        while (iterador.hasNext()) {
+            User next = iterador.next();
+            if (next.getId().equals(user.getId())) {
+                repeat = true;
+            }
+        }
+        if (!repeat) {
+            try {
+                User userCopy = new User(user.getId(), user.getName(), user.getSecondName(), user.getEmail(), user.getProvincia(), user.getCanton(), user.getDistrito(), user.getPassword(), new ArrayList<>());
+                json.write("jsonFile.json", userCopy);
+                return users.add(userCopy);
+            } catch (IOException ex) {
+                ex.printStackTrace();
+                return false;
+            }
+        }else{
             return false;
         }
     }
