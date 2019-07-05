@@ -142,7 +142,9 @@ public class Controlador extends HttpServlet {
             System.out.println("Puuuu");
             String email = request.getParameter("txtCorreo");
             String password = request.getParameter("txtPassword");
-            if(dao.signIn(email, password) != null){
+            User userAux;
+            if((userAux=dao.signIn(email, password)) != null){
+                user.setId(userAux.getId());
                 acceso = lista;
             }else{
                 acceso = ingresar;
