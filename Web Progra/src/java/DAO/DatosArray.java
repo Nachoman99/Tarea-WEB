@@ -21,7 +21,7 @@ import modelo.User;
 public class DatosArray {
 
     private static DatosArray instance;
-    public List<User> alumnos;
+    public List<User> users;
     public ManejoJson json = new ManejoJson();
 //    public ManejoArchivos archivos = new ManejoArchivos();
 
@@ -45,7 +45,7 @@ public class DatosArray {
 //            lista.add(pro2);
 //            User user = new User("123", "Juan", "Trejos", "qwer", "Puntarenas", "Montes", "Union", "123", lista);
 //            json.write("jsonFile.json", user);
-            alumnos = json.readAll("jsonFile.json");
+            users = json.readAll("jsonFile.json");
             
 ////            archivos.escribirArchivo("src/Prueba.txt", user);
 //            alumnos = archivos.leerArchivo("Prueba.txt");

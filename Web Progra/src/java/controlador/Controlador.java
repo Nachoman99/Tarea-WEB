@@ -43,10 +43,10 @@ public class Controlador extends HttpServlet {
     public static boolean isEmailValid() {
         return emailValid;
     }
-    
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) { 
+        try (PrintWriter out = response.getWriter()) {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
@@ -59,11 +59,11 @@ public class Controlador extends HttpServlet {
         }
     }
 
-    private boolean verifyEmail(String email) throws ExceptionsControler {
+    private boolean verifyEmail(String email) {
         if (email.contains("@")) {
             return true;
         } else {
-            throw new ExceptionsControler("Formato de correo inválido");
+            return false;
         }
     }
 
@@ -78,15 +78,15 @@ public class Controlador extends HttpServlet {
             String correo = request.getParameter("txtCorreo");
             String password = request.getParameter("txtPassword");
             //Verificar si el usuario existe
-        } else if(accion.equalsIgnoreCase("anadir")){
-            acceso=añadir;
-        }else if(accion.equalsIgnoreCase("introducir")){
+        } else if (accion.equalsIgnoreCase("anadir")) {
+            acceso = añadir;
+        } else if (accion.equalsIgnoreCase("introducir")) {
             //metodo de meter la vara saica
-            acceso=lista;
-        }else if(accion.equalsIgnoreCase("listar")){
             acceso = lista;
-        }else if(accion.equalsIgnoreCase("registrar")){
-            
+        } else if (accion.equalsIgnoreCase("listar")) {
+            acceso = lista;
+        } else if (accion.equalsIgnoreCase("registrar")) {
+
             String id = request.getParameter("txtId");
             String nombre = request.getParameter("txtName");
             String apellidos = request.getParameter("txtSecondName");
@@ -95,7 +95,7 @@ public class Controlador extends HttpServlet {
             String canton = request.getParameter("txtCanton");
             String distrito = request.getParameter("txtDistrito");
             String password = request.getParameter("txtPassword");
-            
+
             System.out.println("id " + id);
             System.out.println("nombre " + nombre);
             System.out.println("apellidos " + apellidos);
@@ -104,30 +104,34 @@ public class Controlador extends HttpServlet {
             System.out.println("canton " + canton);
             System.out.println("distrito " + distrito);
             System.out.println("password  " + password);
-            
-            if (nombre != null && id != null && apellidos != null && correo != null && provincia != null && canton != null && distrito != null && password != null) {
-                try {
-                    if (verifyEmail(correo)) {
-                        System.out.println("Hola");
-                        emailValid = true;
-                        user = new User(id, nombre, apellidos, correo, provincia, canton, distrito, password, null);
-                        dao.registrarse(user);
-                        acceso = lista;
-                    }else{
-                        System.out.println("puto");
-                        emailValid = false;
-                        acceso = registrarse;
-                    }
-                } catch (ExceptionsControler ex) {
-                    ex.printStackTrace();
+
+            if (!nombre.equals("") && !id.equals("") && !apellidos.equals("") && !correo.equals("") && !provincia.equals("") && !canton.equals("") && !distrito.equals("") && !password.equals("")) {
+                if (verifyEmail(correo)) {
+                    System.out.println("Hola");
+                    emailValid = true;
+                    user.setCanton(canton);
+                    user.setDistrito(distrito);
+                    user.setEmail(correo);
+                    user.setId(id);
+                    user.setName(nombre);
+                    user.setPassword(password);
+                    user.setProvincia(provincia);
+                    user.setSecondName(apellidos);
+                    dao.registrarse(user);
+                    acceso = lista;
+                } else {
+                    System.out.println("puto");
+                    acceso = registrarse;
                 }
-            }else{
+            } else {
                 System.out.println("Menos");
                 acceso = registrarse;
             }
-        }        
-        
+        }
+
         RequestDispatcher vista = request.getRequestDispatcher(acceso);
+        System.out.println("Request " + request);
+        System.out.println("Response " + response.toString());
         vista.forward(request, response);
         /*
         String acceso ="";

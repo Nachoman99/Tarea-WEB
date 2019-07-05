@@ -15,7 +15,7 @@ import modelo.User;
 public interface UserInterface {
     
     List<User> listar();
-    void registrarse(User user);
+    boolean registrarse(User user);
     boolean actualizar(User user);
     boolean insertarProducto(User user);
  

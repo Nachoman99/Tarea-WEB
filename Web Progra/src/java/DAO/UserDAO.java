@@ -19,14 +19,13 @@ public class UserDAO implements UserInterface{
     private List<User> users;
 
     public UserDAO() throws IOException {
-        users = DatosArray.getInstance().alumnos;
+        users = DatosArray.getInstance().users;
     }
-    
-    
-    
+
     @Override
-    public void registrarse(User user) {
-        users.add(user);
+    public boolean registrarse(User user) {
+        User userCopy = new User(user.getId(), user.getName(), user.getSecondName(), user.getEmail(), user.getProvincia(), user.getCanton(), user.getDistrito(), user.getPassword(), new ArrayList<>());
+        return users.add(userCopy);
     }
 
     @Override
