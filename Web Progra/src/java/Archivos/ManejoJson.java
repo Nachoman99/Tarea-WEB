@@ -47,10 +47,17 @@ public class ManejoJson {
         closeWriter();
     }
     
-    public ArrayList<User> readAll(String ruta) throws FileNotFoundException, IOException{
+    public ArrayList<User> readAll(String ruta) throws IOException{
         ArrayList<User> list = new ArrayList<>();
         User user;
-        input = new BufferedReader(new FileReader(ruta));
+        try {
+           input = new BufferedReader(new FileReader(ruta)); 
+        } catch (FileNotFoundException e) {
+            createDocument(ruta);
+            return list;
+        }
+        
+        
         while ((user = gson.fromJson(input.readLine(), User.class)) != null) {            
             list.add(user);
         }

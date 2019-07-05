@@ -28,6 +28,7 @@
                     <th>Precio</th>
                 </tr>
             </thead>
+            
             <%
                UserDAO dao = new UserDAO();
                List <User> list = dao.listar();
@@ -47,7 +48,7 @@
                     <td><%=a.getListaProductos().get(j).getPrecio() %></td>
     
                     <td>
-                        <a href="Controlador?accion=trueque&id=<%= a.getId()%>">Trueque</a>
+                        <a href="Controlador?accion=trueque&id=<%=a.getListaProductos().get(j).getNumeroConsecutivo() %>">Trueque</a>
                       
                     </td>
                 </tr>

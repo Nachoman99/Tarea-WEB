@@ -26,8 +26,7 @@ public class DatosArray {
 //    public ManejoArchivos archivos = new ManejoArchivos();
 
     private DatosArray() throws IOException  {
-//        json.write("jsonFile.json", null);
-        alumnos = json.readAll("jsonFile.json");
+        
 //        try {
 //            ArrayList<String> listaImages = new ArrayList<>();
 //            ArrayList<String> listaImages2 = new ArrayList<>();
@@ -45,8 +44,11 @@ public class DatosArray {
 //            lista.add(pro1);
 //            lista.add(pro2);
 //            User user = new User("123", "Juan", "Trejos", "qwer", "Puntarenas", "Montes", "Union", "123", lista);
-//            archivos.escribirArchivo("src/Prueba.txt", user);
-//            alumnos = archivos.leerArchivo("src/Prueba.txt");
+//            json.write("jsonFile.json", user);
+            alumnos = json.readAll("jsonFile.json");
+            
+////            archivos.escribirArchivo("src/Prueba.txt", user);
+//            alumnos = archivos.leerArchivo("Prueba.txt");
 //        }catch(Exception e){
 //            
 //        }

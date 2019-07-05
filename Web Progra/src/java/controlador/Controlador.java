@@ -110,7 +110,9 @@ public class Controlador extends HttpServlet {
         }else if(accion.equalsIgnoreCase("introducir")){
             //metodo de meter la vara saica
             acceso=lista;
-        }
+        }else if(accion.equalsIgnoreCase("listar")){
+            acceso = lista;
+       }
         
         
         RequestDispatcher vista = request.getRequestDispatcher(acceso);
