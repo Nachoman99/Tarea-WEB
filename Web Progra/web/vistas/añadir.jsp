@@ -21,7 +21,7 @@
             Precio<br>
             <input type="text" name="txtPrecio"><br>  
             Imagenes<br>
-            <input type="file" imagen="txtImagen" data-classButton="btn btn-primary" data-input="false" data-classIcon="icon-plus" data-buttonText="Insertar imagen"><br>
+            <input type="file" name="txtImagen" data-classButton="btn btn-primary" data-input="false" data-classIcon="icon-plus" data-buttonText="Insertar imagen"><br>
             <p>
                 Pick a car:<br>
                 <select name="categoria">
