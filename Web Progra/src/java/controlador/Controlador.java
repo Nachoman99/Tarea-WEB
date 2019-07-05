@@ -83,11 +83,11 @@ public class Controlador extends HttpServlet {
         } else if (accion.equalsIgnoreCase("introducir")) {
             //metodo de meter la vara saica
             Producto producto;
-            String corta = request.getParameter("txtId");
-            String detallada = request.getParameter("txtName");
-            int precio = Integer.parseInt(request.getParameter("txtSecondName"));
-            String imagen = request.getParameter("txtEmail");
-            String categoria = request.getParameter("txtEmail");
+            String corta = request.getParameter("txtDescripcionCorta");
+            String detallada = request.getParameter("txtDescripcionDetallada");
+            int precio = Integer.parseInt(request.getParameter("txtPrecio"));
+            String imagen = request.getParameter("txtImagen");
+            String categoria = request.getParameter("categoria");
             ArrayList<String> imagenes= new ArrayList<>();
             imagenes.add(imagen);
             producto=new Producto(imagenes, corta, detallada, categoria, precio, 0);
