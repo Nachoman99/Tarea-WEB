@@ -33,8 +33,10 @@ public class ManejoJson {
         
     }
     
-    public boolean deleteFile(){
-        return file.delete();
+    public void deleteFile(String ruta) throws IOException{
+        output = new BufferedWriter(new FileWriter(ruta));
+        output.write("");
+        closeWriter();
     }
     
     private void closeWriter() throws IOException{

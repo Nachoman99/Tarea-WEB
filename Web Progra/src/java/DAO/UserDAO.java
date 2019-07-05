@@ -10,6 +10,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import modelo.Producto;
 import modelo.User;
 
@@ -79,21 +81,19 @@ public class UserDAO implements UserInterface {
             User next = iterador.next();
             if (next.getId().equals(userID)) {
                 next.agregarProducto(producto);
-//                try {
-//                    users = DatosArray.getInstance().users;
-//                } catch (IOException e) {
-//                }
-//                
             }
         }
-        List<User> listaAux= new ArrayList<>();
-         Iterator<User> iterador2 = users.iterator();
-         while (iterador2.hasNext()) {
-             User next = iterador2.next();
-             listaAux.add(next);           
-         }
-        
-        json.deleteFile();
+        List<User> listaAux = new ArrayList<>();
+        Iterator<User> iterador2 = users.iterator();
+        while (iterador2.hasNext()) {
+            User next = iterador2.next();
+            listaAux.add(next);
+        }
+        try {
+            json.deleteFile("jsonFile.json");
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
         Iterator<User> iterador3 = listaAux.iterator();
         while (iterador3.hasNext()) {
             User next = iterador3.next();
@@ -102,7 +102,6 @@ public class UserDAO implements UserInterface {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
         }
         try {
             users = DatosArray.getInstance().users;
