@@ -30,12 +30,12 @@
                 if (id != null) {
                     user = dao.search(id);
                 }
-                for (int i = 0; i < user.getPendientesTrueque().size(); i++) {
+                for (int i = 0; i < user.getProductoIntercambiar().size(); i++) {
 
             %>
             <tbody>
-            <td><a href="Controlador?accion=caracteristicas&consecutivoSegundo=<%=user.getPendientesTrueque().get(i).getNumeroConsecutivo()%>"><%=user.getPendientesTrueque().get(i).getDescripcionCorta()%></a></td>
-            <td><%=user.getPendientesTrueque().get(i).getPrecio()%></td>
+            <td><a href="Controlador?accion=caracteristicas&consecutivoSegundo=<%=user.getProductoIntercambiar().get(i).getNumeroConsecutivo()%>"><%=user.getProductoIntercambiar().get(i).getDescripcionCorta()%></a></td>
+            <td><%=user.getProductoIntercambiar().get(i).getPrecio()%></td>
         </tr>
         <%}
         %>
