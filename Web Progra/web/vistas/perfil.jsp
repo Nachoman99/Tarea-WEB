@@ -26,25 +26,25 @@
             if (id != null) {
                 user = dao.search(id);
             }
-            
         %>
         <h1>Mi perfil</h1>
         <p>Nombre: <%=user.getName()%><p>
-            
-        <p>Apellidos: <%=user.getSecondName()%><p>
-            
-        <p>Cédula: <%=user.getId()%><p>
-            
-        <p>Correo: <%=user.getEmail()%><p>
-            
-        <p>Provincia: <%=user.getProvincia()%><p>
-        
-        <p>Cantón: <%=user.getCanton()%><p>
-            
-        <p>Distrito: <%=user.getDistrito()%><p>
-            
-        <p>Contraseña: <%=user.getPassword()%><p>
-        </p>
 
-</body>
+        <p>Apellidos: <%=user.getSecondName()%><p>
+
+        <p>Cédula: <%=user.getId()%><p>
+
+        <p>Correo: <%=user.getEmail()%><p>
+
+        <p>Provincia: <%=user.getProvincia()%><p>
+
+        <p>Cantón: <%=user.getCanton()%><p>
+
+        <p>Distrito: <%=user.getDistrito()%><p>
+
+        <p>Contraseña: <%=user.getPassword()%><p>
+        
+        </p>
+        <a href="Controlador?accion=inicio">Regresar al menu</a>
+    </body>
 </html>
