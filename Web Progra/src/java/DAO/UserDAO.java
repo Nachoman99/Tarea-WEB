@@ -148,4 +148,74 @@ public class UserDAO implements UserInterface {
             e.printStackTrace();
         }
     }
+//
+//    0=normal
+//1=pendienteTrueque
+//2=aceptado
+//3=rechazado
+    
+    @Override
+    public void insertarSolicitud(Producto productoUsuario, Producto solicitado, String userID) {
+        productoUsuario.setEstadoTrueque(2);
+        solicitado.setEstadoTrueque(1);
+        
+        Iterator<User> iterador = users.iterator();
+        while (iterador.hasNext()) {
+            User next = iterador.next();
+            if (next.getId().equals(userID)) {
+                next.getProductosSolicitados().add(solicitado);
+                next.getProductoIntercambiar().add(productoUsuario);
+            }
+            
+        }
+        
+        String userIDSolicitado="";
+        Iterator<User> itera= users.iterator();
+        while (itera.hasNext()) {
+            User next = itera.next();
+            for (int i = 0; i < 10; i++) {
+                if(solicitado.getNumeroConsecutivo()==next.getListaProductos().get(i).getNumeroConsecutivo()){
+                    userIDSolicitado=next.getId();
+                }
+            }       
+        }
+        
+        Iterator<User> itera2 = users.iterator();
+        while (itera2.hasNext()) {
+            User next = itera2.next();
+            if (next.getId().equals(userIDSolicitado)) {
+                next.getProductosSolicitados().add(productoUsuario);
+                next.getProductoIntercambiar().add(solicitado);
+            }
+            
+        }
+        
+        
+        List<User> listaAux = new ArrayList<>();
+        Iterator<User> iterador2 = users.iterator();
+        while (iterador2.hasNext()) {
+            User next = iterador2.next();
+            listaAux.add(next);
+        }
+        try {
+            json.deleteFile("jsonFile.json");
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        Iterator<User> iterador3 = listaAux.iterator();
+        while (iterador3.hasNext()) {
+            User next = iterador3.next();
+            try {
+                json.write("jsonFile.json", next);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        try {
+            users = DatosArray.getInstance().users;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        
+    }
 }

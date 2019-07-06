@@ -24,7 +24,7 @@ public class User {
     private String password; 
     private ArrayList<Producto> listaProductos;
     private ArrayList<Producto> productosSolicitados;
-    private ArrayList<Producto> pendientesTrueque;
+    private ArrayList<Producto> productoIntercambiar;
     
     public User() {
     }
@@ -40,7 +40,7 @@ public class User {
         this.password = password;
         this.listaProductos = listaProductos;
         this.productosSolicitados = new ArrayList<>();
-        this.pendientesTrueque = new ArrayList<>();
+        this.productoIntercambiar = new ArrayList<>();
     }
 
     public String getId() {
@@ -123,12 +123,12 @@ public class User {
         this.productosSolicitados = productosSolicitados;
     }
 
-    public ArrayList<Producto> getPendientesTrueque() {
-        return pendientesTrueque;
+    public ArrayList<Producto> getProductoIntercambiar() {
+        return productoIntercambiar;
     }
 
-    public void setPendientesTrueque(ArrayList<Producto> pendientesTrueque) {
-        this.pendientesTrueque = pendientesTrueque;
+    public void setProductoIntercambiar(ArrayList<Producto> productoIntercambiar) {
+        this.productoIntercambiar = productoIntercambiar;
     }
     
     public void agregarProducto(Producto producto){
@@ -141,6 +141,6 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" + "id=" + id + ", name=" + name + ", secondName=" + secondName + ", email=" + email + ", provincia=" + provincia + ", canton=" + canton + ", distrito=" + distrito + ", password=" + password + ", listaProductos=" + listaProductos + ", productosSolicitados=" + productosSolicitados + ", pendientesTrueque=" + pendientesTrueque + '}';
+        return "User{" + "id=" + id + ", name=" + name + ", secondName=" + secondName + ", email=" + email + ", provincia=" + provincia + ", canton=" + canton + ", distrito=" + distrito + ", password=" + password + ", listaProductos=" + listaProductos + ", productosSolicitados=" + productosSolicitados + ", pendientesTrueque=" + productoIntercambiar + '}';
     }
 }

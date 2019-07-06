@@ -19,5 +19,6 @@ public interface UserInterface {
     boolean registrarse(User user);
     boolean actualizar(User user);
     void insertarProducto(Producto producto, String userID);
+    void insertarSolicitud(Producto productoUsuario, Producto solicitado,String userID);
     User signIn(String email, String password);
 }
