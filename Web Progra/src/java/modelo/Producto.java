@@ -86,11 +86,16 @@ public class Producto {
         this.numeroConsecutivo = numeroConsecutivo;
     }
 
+    public int getEstadoTrueque() {
+        return estadoTrueque;
+    }
+
+    public void setEstadoTrueque(int estadoTrueque) {
+        this.estadoTrueque = estadoTrueque;
+    }
+
     @Override
     public String toString() {
-        return "Producto{" + "listaImagenes=" + listaImagenes + ", descripcionCorta=" + descripcionCorta + ", descripcionDetallada=" + descripcionDetallada + ", categoria=" + categoria + ", precio=" + precio + ", numeroConsecutivo=" + numeroConsecutivo + '}';
+        return "Producto{" + "listaImagenes=" + listaImagenes + ", descripcionCorta=" + descripcionCorta + ", descripcionDetallada=" + descripcionDetallada + ", categoria=" + categoria + ", precio=" + precio + ", numeroConsecutivo=" + numeroConsecutivo + ", estadoTrueque=" + estadoTrueque + '}';
     }
-    
-    
-    
 }
