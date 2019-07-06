@@ -6,6 +6,15 @@
 package modelo;
 
 import java.util.ArrayList;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
 
 /**
  *
@@ -22,6 +31,8 @@ public class User {
     private String distrito;
     private String password; 
     private ArrayList<Producto> listaProductos;
+    private ArrayList<Producto> productosSolicitados;
+    private ArrayList<Producto> pendientesTrueque;
     
     public User() {
     }
@@ -36,6 +47,8 @@ public class User {
         this.distrito = distrito;
         this.password = password;
         this.listaProductos = listaProductos;
+        this.productosSolicitados = new ArrayList<>();
+        this.pendientesTrueque = new ArrayList<>();
     }
 
     public String getId() {
@@ -109,6 +122,22 @@ public class User {
     public void setListaProductos(ArrayList<Producto> listaProductos) {
         this.listaProductos = listaProductos;
     }
+
+    public ArrayList<Producto> getProductosSolicitados() {
+        return productosSolicitados;
+    }
+
+    public void setProductosSolicitados(ArrayList<Producto> productosSolicitados) {
+        this.productosSolicitados = productosSolicitados;
+    }
+
+    public ArrayList<Producto> getPendientesTrueque() {
+        return pendientesTrueque;
+    }
+
+    public void setPendientesTrueque(ArrayList<Producto> pendientesTrueque) {
+        this.pendientesTrueque = pendientesTrueque;
+    }
     
     public void agregarProducto(Producto producto){
         listaProductos.add(producto);
@@ -117,9 +146,9 @@ public class User {
     public boolean eliminarProducto(Producto producto){
         return listaProductos.remove(producto);
     }
-    
+
     @Override
     public String toString() {
-        return "User{" + "id=" + id + ", name=" + name + ", secondName=" + secondName + ", email=" + email + ", provincia=" + provincia + ", canton=" + canton + ", distrito=" + distrito + ", password=" + password + ", listaProductos=" + listaProductos + '}';
+        return "User{" + "id=" + id + ", name=" + name + ", secondName=" + secondName + ", email=" + email + ", provincia=" + provincia + ", canton=" + canton + ", distrito=" + distrito + ", password=" + password + ", listaProductos=" + listaProductos + ", productosSolicitados=" + productosSolicitados + ", pendientesTrueque=" + pendientesTrueque + '}';
     }
 }
