@@ -33,6 +33,8 @@ public class Controlador extends HttpServlet {
     public String lista = "vistas/lista.jsp";
     public String perfil = "vistas/perfil.jsp";
     public String trueque = "vistas/trueque.jsp";
+    public String menu = "vistas/Menu.jsp";
+    public String inicio = "index.jsp";
     private static boolean emailValid = false;
 
     public User user = new User();
@@ -106,16 +108,6 @@ public class Controlador extends HttpServlet {
             String canton = request.getParameter("txtCanton");
             String distrito = request.getParameter("txtDistrito");
             String password = request.getParameter("txtPassword");
-
-            System.out.println("id " + id);
-            System.out.println("nombre " + nombre);
-            System.out.println("apellidos " + apellidos);
-            System.out.println("correo " + correo);
-            System.out.println("provincia " + provincia);
-            System.out.println("canton " + canton);
-            System.out.println("distrito " + distrito);
-            System.out.println("password  " + password);
-
             if (!nombre.equals("") && !id.equals("") && !apellidos.equals("") && !correo.equals("") && !provincia.equals("") && !canton.equals("") && !distrito.equals("") && !password.equals("")) {
                 if (verifyEmail(correo)) {
                     System.out.println("Hola");
@@ -129,13 +121,11 @@ public class Controlador extends HttpServlet {
                     user.setProvincia(provincia);
                     user.setSecondName(apellidos);
                     dao.registrarse(user);
-                    acceso = lista;
+                    acceso = menu;
                 } else {
-                    System.out.println("puto");
                     acceso = registrarse;
                 }
             } else {
-                System.out.println("Menos");
                 acceso = registrarse;
             }
         }else if(accion.equalsIgnoreCase("INGRESO")){
@@ -145,50 +135,18 @@ public class Controlador extends HttpServlet {
             User userAux;
             if((userAux=dao.signIn(email, password)) != null){
                 user.setId(userAux.getId());
-                acceso = lista;
+                acceso = menu;
             }else{
                 acceso = ingresar;
             }
+        }else if(accion.equalsIgnoreCase("perfil")){
+            acceso = perfil;
+        }else if(accion.equalsIgnoreCase("inicio")){
+            acceso = inicio;
         }
 
         RequestDispatcher vista = request.getRequestDispatcher(acceso);
         vista.forward(request, response);
-        /*
-        String acceso ="";
-       String accion = request.getParameter("accion");
-       if (accion.equalsIgnoreCase("listar")){
-            acceso = listar;
-       }else if(accion.equalsIgnoreCase("agregar")){
-            acceso=agregar;
-        }else if(accion.equalsIgnoreCase("insertar")){
-            String nombre = request.getParameter("txtNombre");
-            String apellidos = request.getParameter("txtApellidos");
-            a.setNombre(nombre);
-            a.setApellidos(apellidos);
-            dao.insertar(a);
-            acceso=listar;
-        }else if(accion.equalsIgnoreCase("editar")){
-            request.setAttribute("id_alumno", request.getParameter("id"));
-            acceso=editar;
-        }else if(accion.equalsIgnoreCase("actualizar")){
-            int id = Integer.parseInt(request.getParameter("txtId"));
-            String nombre = request.getParameter("txtNombre");
-            String apellidos = request.getParameter("txtApellido");
-            a.setId(id);
-            a.setNombre(nombre);
-            a.setApellidos(apellidos);
-            dao.actualizar(a);
-           acceso=listar; 
-        }else if(accion.equalsIgnoreCase("eliminar")){
-            int id = Integer.parseInt(request.getParameter("id"));
-            a.setId(id);
-            dao.eliminar(a);
-            acceso = listar;
-        }
-       
-        RequestDispatcher vista = request.getRequestDispatcher(acceso);
-        vista.forward(request, response);
-         */
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
