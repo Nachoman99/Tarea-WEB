@@ -32,23 +32,25 @@
                 List<User> list = dao.listar();
                 Iterator<User> iterador = list.iterator();
                 User user = null;
+                int id = Integer.parseInt((String) request.getAttribute("productoPrimero"));
                 while (iterador.hasNext()) {
                     User next = iterador.next();
                     user = next;
                     for (int i = 0; i < user.getListaProductos().size(); i++) {
-
+                        if (user.getListaProductos().get(i).getNumeroConsecutivo()!=id) {
 
             %>
             <tbody>
                 <tr>
-                    <td><a href="Controlador?accion=caracteristicas&consecutivo=<%=user.getListaProductos().get(i).getNumeroConsecutivo()%>"><%=user.getListaProductos().get(i).getDescripcionCorta()%></a></td>
+                    <td><a href="Controlador?accion=caracteristicas&consecutivoSegundo=<%=user.getListaProductos().get(i).getNumeroConsecutivo()%>"><%=user.getListaProductos().get(i).getDescripcionCorta()%></a></td>
                     <td><%=user.getListaProductos().get(i).getPrecio()%></td>
 
                     <td>
-                        <a href="Controlador?accion=validarTrueque">Intercambiar este artículo</a>
+                        <a href="Controlador?accion=validarTrueque&consecutivoPrimero=<%=id%>&consecutivoSegundo=<%=user.getListaProductos().get(i).getNumeroConsecutivo()%>">Intercambiar este artículo</a>
                     </td>
                 </tr>
                 <%    }
+                        }
                     }
                 %>
                 </body>

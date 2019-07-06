@@ -149,13 +149,15 @@ public class Controlador extends HttpServlet {
             acceso = inicio;
         }else if(accion.equalsIgnoreCase("trueque")){
             //datos
-            request.setAttribute("productoID", request.getParameter("consecutivo"));
+            request.setAttribute("productoPrimero", request.getParameter("consecutivoPrimero"));
             acceso=trueque;
         }else if(accion.equalsIgnoreCase("caracteristicas")){
             //datos
             request.setAttribute("productoID", request.getParameter("consecutivo"));
             acceso=caracteristicas;
         }else if (accion.equalsIgnoreCase("validarTrueque")) {
+            request.setAttribute("productoPrimero", request.getParameter("consecutivoPrimero"));
+            request.setAttribute("productoSegundo", request.getParameter("consecutivoSegundo"));
             acceso = validarTrueque;
         }
 

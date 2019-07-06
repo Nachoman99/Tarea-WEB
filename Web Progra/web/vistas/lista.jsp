@@ -48,7 +48,7 @@
                     <td><%=a.getListaProductos().get(j).getPrecio() %></td>
     
                     <td>
-                        <a href="Controlador?accion=trueque&consecutivo=<%=a.getListaProductos().get(j).getNumeroConsecutivo() %>">Trueque</a>
+                        <a href="Controlador?accion=trueque&consecutivoPrimero=<%=a.getListaProductos().get(j).getNumeroConsecutivo() %>">Trueque</a>
                         <a href="Controlador?accion=caracteristicas&consecutivo=<%=a.getListaProductos().get(j).getNumeroConsecutivo() %>">Caracteristicas</a>
                     </td>
                 </tr>
