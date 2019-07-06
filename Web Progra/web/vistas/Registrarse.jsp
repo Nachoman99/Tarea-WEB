@@ -4,6 +4,7 @@
     Author     : Kevin Trejos
 --%>
 
+<%@page import="javax.swing.JOptionPane"%>
 <%@page import="controlador.Controlador"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -13,6 +14,13 @@
         <title>Registrarse</title>
     </head>
     <body>
+         <%
+                String mensaje = (String) request.getAttribute("mensaje");
+              // System.out.println("El mensaje es: " +mensaje);
+            %>
+            <script>
+                alert("Hola");
+            </script> 
         <h1>Registrarse</h1>
         <form action="Controlador">
             Número de cédula:<br>
