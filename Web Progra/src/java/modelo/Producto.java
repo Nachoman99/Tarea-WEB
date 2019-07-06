@@ -19,7 +19,8 @@ public class Producto {
     private String categoria;
     private int precio;
     private int numeroConsecutivo;
-
+    private int estadoTrueque;
+    
     public Producto(ArrayList<String> listaImagenes, String descripcionCorta, String descripcionDetallada, String categoria, int precio, int numeroConsecutivo) {
         this.listaImagenes = listaImagenes;
         this.descripcionCorta = descripcionCorta;
@@ -27,12 +28,14 @@ public class Producto {
         this.categoria = categoria;
         this.precio = precio;
         this.numeroConsecutivo = numeroConsecutivo;
+        this.estadoTrueque=0;
     }
 
     
     
     public Producto() {
         listaImagenes=new ArrayList<>(5);
+        this.estadoTrueque=0;
     }
 
     public ArrayList<String> getListaImagenes() {
