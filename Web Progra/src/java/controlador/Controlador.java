@@ -140,6 +140,9 @@ public class Controlador extends HttpServlet {
                 acceso = ingresar;
             }
         }else if(accion.equalsIgnoreCase("perfil")){
+            // request.setAttribute("id_alumno", request.getParameter("id"));
+            request.setAttribute("id", user.getId());
+            System.out.println("USER " + user.getId());
             acceso = perfil;
         }else if(accion.equalsIgnoreCase("inicio")){
             acceso = inicio;

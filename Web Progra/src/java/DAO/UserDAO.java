@@ -21,11 +21,24 @@ public class UserDAO implements UserInterface {
 
     private List<User> users;
     private ManejoJson json = new ManejoJson();
-
+    
     public UserDAO() throws IOException {
         users = DatosArray.getInstance().users;
     }
-
+    
+    public User search(String id){
+        Iterator<User> iterator = users.iterator();
+        while (iterator.hasNext()) {
+            User next = iterator.next();
+            if (next.getId().equals(id)) {
+                System.out.println("User " + next);
+                return next;
+            }
+        }
+        System.out.println("Perra");
+        return null;
+    }
+    
     @Override
     public boolean registrarse(User user) {
         boolean repeat = false;
