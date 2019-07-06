@@ -29,15 +29,22 @@
             
         %>
         <h1>Mi perfil</h1>
-        <p>Nombre: <%=user.getName() + "\n"%>
-           Apellidos: <%=user.getSecondName() + "\n"%>
-           Cédula: <%=user.getId() + "\n"%>
-           Correo: <%=user.getEmail() + "\n"%>
-           Provincia: <%=user.getProvincia() + "\n"%>
-           Cantón: <%=user.getCanton() + "\n"%>
-           Distrito: <%=user.getDistrito() + "\n"%>
-           Contraseña: <%=user.getPassword()%>
-        <p>
+        <p>Nombre: <%=user.getName()%><p>
+            
+        <p>Apellidos: <%=user.getSecondName()%><p>
+            
+        <p>Cédula: <%=user.getId()%><p>
+            
+        <p>Correo: <%=user.getEmail()%><p>
+            
+        <p>Provincia: <%=user.getProvincia()%><p>
+        
+        <p>Cantón: <%=user.getCanton()%><p>
+            
+        <p>Distrito: <%=user.getDistrito()%><p>
+            
+        <p>Contraseña: <%=user.getPassword()%><p>
+        </p>
 
 </body>
 </html>
