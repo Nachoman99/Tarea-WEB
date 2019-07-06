@@ -74,6 +74,34 @@ public class UserDAO implements UserInterface {
 
     @Override
     public void insertarProducto(Producto producto, String userID) {
+//         Alumno a = alumnos.get(alumnos.size()-1);
+//        Alumno alumnoCopy = new Alumno(a.getId()+1, alumno.getNombre(), alumno.getApellidos());
+//        return alumnos.add(alumnoCopy);
+//        ArrayList<Producto> producto1 = users.get(users.size()-1).getListaProductos();
+//        if(producto1.isEmpty()&&users.size()==1){
+//             producto.setNumeroConsecutivo(1);
+//        }else{      
+//             Producto productoNumero = producto1.get(producto1.size()-1);
+//             producto.setNumeroConsecutivo(productoNumero.getNumeroConsecutivo()+1);
+//        }
+//      
+        int cantidad=0;
+        Iterator<User> iteradorN = users.iterator();
+        while (iteradorN.hasNext()) {
+            User next = iteradorN.next();
+            cantidad += next.getListaProductos().size();
+            
+        }
+        if(cantidad==0){
+            producto.setNumeroConsecutivo(1);
+        }else{
+            producto.setNumeroConsecutivo(cantidad+1);
+        }
+      
+           
+        
+        
+        
         Iterator<User> iterador = users.iterator();
         while (iterador.hasNext()) {
             User next = iterador.next();
