@@ -36,6 +36,7 @@ public class Controlador extends HttpServlet {
     public String menu = "vistas/Menu.jsp";
     public String inicio = "index.jsp";
     public String caracteristicas = "vistas/productoCaracteristicas.jsp";
+    public String validarTrueque = "vistas/hacerTrueque.jsp";
     private static boolean emailValid = false;
 
     public User user = new User();
@@ -63,7 +64,7 @@ public class Controlador extends HttpServlet {
             out.println("</html>");
         }
     }
-
+    
     private boolean verifyEmail(String email) {
         if (email.contains("@")) {
             return true;
@@ -141,7 +142,6 @@ public class Controlador extends HttpServlet {
                 acceso = ingresar;
             }
         }else if(accion.equalsIgnoreCase("perfil")){
-            // request.setAttribute("id_alumno", request.getParameter("id"));
             request.setAttribute("id", user.getId());
             System.out.println("USER " + user.getId());
             acceso = perfil;
@@ -155,6 +155,8 @@ public class Controlador extends HttpServlet {
             //datos
             request.setAttribute("productoID", request.getParameter("consecutivo"));
             acceso=caracteristicas;
+        }else if (accion.equalsIgnoreCase("validarTrueque")) {
+            acceso = validarTrueque;
         }
 
         RequestDispatcher vista = request.getRequestDispatcher(acceso);
