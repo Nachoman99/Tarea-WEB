@@ -37,6 +37,7 @@ public class Controlador extends HttpServlet {
     public String inicio = "index.jsp";
     public String caracteristicas = "vistas/productoCaracteristicas.jsp";
     public String validarTrueque = "vistas/hacerTrueque.jsp";
+    public String notificaciones = "vistas/Notifications.jsp";
     private static boolean emailValid = false;
 
     public User user = new User();
@@ -134,13 +135,16 @@ public class Controlador extends HttpServlet {
                 acceso = registrarse;
             }
         }else if(accion.equalsIgnoreCase("INGRESO")){
-            System.out.println("Puuuu");
             String email = request.getParameter("txtCorreo");
             String password = request.getParameter("txtPassword");
             User userAux;
             if((userAux=dao.signIn(email, password)) != null){
                 user.setId(userAux.getId());
-                acceso = menu;
+                if (userAux.getPendientesTrueque().size() > 0) {
+                    acceso = notificaciones;
+                } else {
+                    acceso = menu;
+                }
             }else{
                 acceso = ingresar;
             }
@@ -162,6 +166,11 @@ public class Controlador extends HttpServlet {
             request.setAttribute("productoPrimero", request.getParameter("consecutivoPrimero"));
             request.setAttribute("productoSegundo", request.getParameter("consecutivoSegundo"));
             acceso = validarTrueque;
+        }else if(accion.equalsIgnoreCase("notification")){
+            request.setAttribute("id", user.getId());
+            acceso = notificaciones;
+        }else if(accion.equalsIgnoreCase("menu")){
+            acceso = menu;
         }
 
         RequestDispatcher vista = request.getRequestDispatcher(acceso);
