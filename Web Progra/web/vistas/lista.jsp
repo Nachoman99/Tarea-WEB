@@ -41,7 +41,7 @@
                     if (!a.getId().equals(id)) {
 
                         for (int j = 0; j < a.getListaProductos().size(); j++) {
-
+                            if (a.getListaProductos().get(j).getEstadoTrueque()==0) {
 
             %>
             <tbody>
@@ -55,6 +55,7 @@
                     </td>
                 </tr>
                 <%}
+                            }
                         }
                     }%>
             </tbody>

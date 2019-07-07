@@ -37,11 +37,10 @@
                 while (iterador.hasNext()) {
                     User next = iterador.next();
                     user = next;
-                    if(user.getId().equals(idUsuario)){
-                        
-                    
-                    for (int i = 0; i < user.getListaProductos().size(); i++) {
-                        
+                    if (user.getId().equals(idUsuario)) {
+
+                        for (int i = 0; i < user.getListaProductos().size(); i++) {
+                            if (user.getListaProductos().get(i).getEstadoTrueque()==0) {
 
             %>
             <tbody>
@@ -54,6 +53,7 @@
                     </td>
                 </tr>
                 <%    }
+                            }
                         }
                     }
                 %>

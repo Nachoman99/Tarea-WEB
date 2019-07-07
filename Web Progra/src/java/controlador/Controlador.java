@@ -142,7 +142,7 @@ public class Controlador extends HttpServlet {
             if((userAux=dao.signIn(email, password)) != null){
                 user.setId(userAux.getId());
                 if (userAux.getProductoIntercambiar().size() > 0) {
-                    acceso = notificaciones;
+                    acceso = menu;
                 } else {
                     acceso = menu;
                 }
