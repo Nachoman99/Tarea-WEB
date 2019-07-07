@@ -54,7 +54,7 @@
          <p>Descripcion Corta Del Segundo Producto: <%=producto2.getDescripcionCorta() %><p>
          <p>Precio Del Segundo Precio: <%=producto2.getPrecio()%><p>     
           
-        <a href="Controlador?accion=inicio">Aceptar</a>  
+        <a href="Controlador?accion=aceptacion&producto1=<%=producto1%>&producto2<%=producto2%>">Aceptar</a>  
         <br>
         <a href="Controlador?accion=inicio">Regresar al menu y cancelar trueque</a>
     </body>

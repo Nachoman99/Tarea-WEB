@@ -100,9 +100,10 @@ public class Controlador extends HttpServlet {
             imagenes.add(imagen);
             producto=new Producto(imagenes, corta, detallada, categoria, precio, 0);
             dao.insertarProducto(producto, user.getId());
-            acceso = lista;
+            acceso = menu;
      
         } else if (accion.equalsIgnoreCase("listar")) {
+            request.setAttribute("id", user.getId());
             acceso = lista;
         } else if (accion.equalsIgnoreCase("registrar")) {
 
@@ -157,6 +158,7 @@ public class Controlador extends HttpServlet {
         }else if(accion.equalsIgnoreCase("trueque")){
             //datos
             request.setAttribute("productoPrimero", request.getParameter("consecutivoPrimero"));
+            request.setAttribute("id", user.getId());
             acceso=trueque;
         }else if(accion.equalsIgnoreCase("caracteristicas")){
             //datos
@@ -171,6 +173,25 @@ public class Controlador extends HttpServlet {
             acceso = notificaciones;
         }else if(accion.equalsIgnoreCase("menu")){
             acceso = menu;
+
+        }else if(accion.equalsIgnoreCase("aceptacion")){
+            Producto producto1 = (Producto)request.getAttribute("producto1");
+            Producto producto2 = (Producto)request.getAttribute("producto2");
+            if(producto1.getPrecio()>=producto2.getPrecio()){
+                if((producto1.getPrecio()-producto2.getPrecio())>1000){
+                    //no se puede hacer
+                }else{
+                    //si se puede hacer
+                    dao.insertarSolicitud(producto2, producto1, user.getId());
+                }
+            }else if (producto1.getPrecio()<producto2.getPrecio()){
+                if((producto2.getPrecio()-producto1.getPrecio())>1000){
+                    //no se puede hacer
+                }else{
+                    //si se puede hacer
+                      dao.insertarSolicitud(producto2, producto1, user.getId());
+                }
+            }
         }
 
         RequestDispatcher vista = request.getRequestDispatcher(acceso);

@@ -20,7 +20,7 @@
         <a href="Controlador?accion=anadir">Agregar un Nuevo Producto</a>
         <br>
         <br>
-        
+
         <table border="1">
             <thead>
                 <tr>
@@ -28,39 +28,42 @@
                     <th>Precio</th>
                 </tr>
             </thead>
-            
+
             <%
-               UserDAO dao = new UserDAO();
-               List <User> list = dao.listar();
-               Iterator<User> i = list.iterator();
-               User a = null;
-               
-               while (i.hasNext()){
-                   
-                   a = i.next();
-                   for (int j = 0; j < a.getListaProductos().size(); j++) {
-                           
-                   
+                UserDAO dao = new UserDAO();
+                List<User> list = dao.listar();
+                Iterator<User> i = list.iterator();
+                User a = null;
+                String id = (String) request.getAttribute("id");
+                while (i.hasNext()) {
+
+                    a = i.next();
+                    if (!a.getId().equals(id)) {
+
+                        for (int j = 0; j < a.getListaProductos().size(); j++) {
+
+
             %>
             <tbody>
                 <tr>
-                    <td><%=a.getListaProductos().get(j).getDescripcionCorta() %></td>
-                    <td><%=a.getListaProductos().get(j).getPrecio() %></td>
-    
+                    <td><%=a.getListaProductos().get(j).getDescripcionCorta()%></td>
+                    <td><%=a.getListaProductos().get(j).getPrecio()%></td>
+
                     <td>
-                        <a href="Controlador?accion=trueque&consecutivoPrimero=<%=a.getListaProductos().get(j).getNumeroConsecutivo() %>">Trueque</a>
-                        <a href="Controlador?accion=caracteristicas&consecutivo=<%=a.getListaProductos().get(j).getNumeroConsecutivo() %>">Caracteristicas</a>
+                        <a href="Controlador?accion=trueque&consecutivoPrimero=<%=a.getListaProductos().get(j).getNumeroConsecutivo()%>">Trueque</a>
+                        <a href="Controlador?accion=caracteristicas&consecutivo=<%=a.getListaProductos().get(j).getNumeroConsecutivo()%>">Caracteristicas</a>
                     </td>
                 </tr>
                 <%}
-                }%>
+                        }
+                    }%>
             </tbody>
         </table>
-        
-        
-        
-        
-        
-        
+
+
+
+
+
+
     </body>
 </html>

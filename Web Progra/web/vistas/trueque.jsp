@@ -33,11 +33,15 @@
                 Iterator<User> iterador = list.iterator();
                 User user = null;
                 int id = Integer.parseInt((String) request.getAttribute("productoPrimero"));
+                String idUsuario = (String) request.getAttribute("id");
                 while (iterador.hasNext()) {
                     User next = iterador.next();
                     user = next;
+                    if(user.getId().equals(idUsuario)){
+                        
+                    
                     for (int i = 0; i < user.getListaProductos().size(); i++) {
-                        if (user.getListaProductos().get(i).getNumeroConsecutivo()!=id) {
+                        
 
             %>
             <tbody>
