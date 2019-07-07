@@ -45,6 +45,6 @@
         <p>Contraseña: <%=user.getPassword()%><p>
         
         </p>
-        <a href="Controlador?accion=inicio">Regresar al menu</a>
+        <a href="Controlador?accion=menu">Regresar al menu</a>
     </body>
 </html>

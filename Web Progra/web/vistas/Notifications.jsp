@@ -4,6 +4,7 @@
     Author     : Kevin Trejos
 --%>
 
+<%@page import="modelo.Producto"%>
 <%@page import="modelo.User"%>
 <%@page import="java.util.List"%>
 <%@page import="DAO.UserDAO"%>
@@ -18,6 +19,7 @@
         <h1>Notificaciones</h1>
         <table border="1">
             <thead>
+       
                 <tr>
                     <th>PRODUCTO</th>
                     <th>PRECIO</th>
@@ -36,6 +38,8 @@
             <tbody>
             <td><a href="Controlador?accion=caracteristicas&consecutivoSegundo=<%=user.getProductoIntercambiar().get(i).getNumeroConsecutivo()%>"><%=user.getProductoIntercambiar().get(i).getDescripcionCorta()%></a></td>
             <td><%=user.getProductoIntercambiar().get(i).getPrecio()%></td>
+            <td><a href="Controlador?accion=aceptarTrueque">ACEPTAR TRUEQUE</a></td>
+            <td><a href="Controlador?accion=rechazarTrueque">RECHAZAR TRUEQUE</a></td>
         </tr>
         <%}
         %>
