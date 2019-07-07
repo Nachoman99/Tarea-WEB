@@ -142,7 +142,7 @@ public class Controlador extends HttpServlet {
             User userAux;
             if ((userAux = dao.signIn(email, password)) != null) {
                 user.setId(userAux.getId());
-                ArrayList<Producto> list = user.getProductoIntercambiar();
+                ArrayList<Producto> list = userAux.getProductoIntercambiar();
                 if (list != null) {
                     Iterator<Producto> it = list.iterator();
                     boolean notify = false;
@@ -153,7 +153,7 @@ public class Controlador extends HttpServlet {
                         }
                     }
                     if (userAux.getProductoIntercambiar().size() > 0 && notify) {
-                        request.setAttribute("id", user.getId());
+                        request.setAttribute("id", userAux.getId());
                         acceso = notificaciones;
                     } else {
                         acceso = menu;
@@ -216,6 +216,10 @@ public class Controlador extends HttpServlet {
                     acceso = menu;
                 }
             }
+        }else if(accion.equalsIgnoreCase("aceptarTrueque")){
+            
+        }else if(accion.equalsIgnoreCase("rechazarTrueque")){
+
         }
 
         RequestDispatcher vista = request.getRequestDispatcher(acceso);
