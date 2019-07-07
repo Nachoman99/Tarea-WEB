@@ -23,4 +23,5 @@ public interface UserInterface {
     User signIn(String email, String password);
     void rechazar(Producto productoBorrar, String userID);
     void aceptarTrueque(Producto solicitado, Producto enviado, String userRecibe);
+    void accept(Producto productoAceptar, String userID);
 }

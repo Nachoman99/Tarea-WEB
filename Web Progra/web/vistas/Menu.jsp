@@ -25,6 +25,10 @@
         <a href="Controlador?accion=anadir">AÑADIR UN NUEVO PRODUCTO</a>
         <br>
         <br>
+        <br>
         <a href="Controlador?accion=notification">NOTIFICACIONES</a>
+        <br>
+        <br>
+        <a href="Controlador?accion=inicio">VOLVER A INICIO</a>
     </body>
 </html>

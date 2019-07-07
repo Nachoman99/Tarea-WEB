@@ -230,6 +230,115 @@ public class UserDAO implements UserInterface {
 
     }
 
+    public void accept(Producto productoAceptar, String userID) {
+        int consecProduct = 0;
+        int consecProductUser = 0;
+
+        Producto productoCambiar1 = null;
+        Producto productoCambiar2 = null;
+        Iterator<User> iterador4 = users.iterator();
+        while (iterador4.hasNext()) {
+            User next = iterador4.next();
+            for (int i = 0; i < next.getProductoIntercambiar().size(); i++) {
+                if (productoAceptar.getNumeroConsecutivo() == next.getListaProductos().get(i).getNumeroConsecutivo()) {
+                    productoCambiar1 = next.getListaProductos().remove(i);
+                }
+            }
+            for (int i = 0; i < next.getProductosSolicitados().size(); i++) {
+                if (productoAceptar.getNumeroConsecutivo() == next.getProductosSolicitados().get(i).getNumeroConsecutivo()) {
+                    productoCambiar2 = next.getListaProductos().remove(i);
+                }
+            }
+            while (iterador4.hasNext()) {
+                User next1 = iterador4.next();
+                for (int i = 0; i < next.getProductosSolicitados().size(); i++) {
+                    if (productoAceptar.getNumeroConsecutivo() == next1.getProductoIntercambiar().get(i).getNumeroConsecutivo()) {
+                        next1.getListaProductos().add(productoCambiar1);
+                    }
+                    if (productoAceptar.getNumeroConsecutivo() == next1.getProductosSolicitados().get(i).getNumeroConsecutivo()) {
+                        next1.getListaProductos().add(productoCambiar2);
+                    }
+                }
+            }
+        }
+
+        Iterator<User> iterador = users.iterator();
+        while (iterador.hasNext()) {
+            User next = iterador.next();
+            if (next.getId().equals(userID)) {
+                for (int i = 0; i < next.getProductosSolicitados().size(); i++) {
+                    if (productoAceptar.getNumeroConsecutivo() == next.getProductosSolicitados().get(i).getNumeroConsecutivo()) {
+                        consecProduct = next.getProductosSolicitados().get(i).getNumeroConsecutivo();
+                        consecProductUser = next.getProductoIntercambiar().get(i).getNumeroConsecutivo();
+                        next.getProductoIntercambiar().remove(i);
+                        next.getProductosSolicitados().remove(i);
+                    }
+                }
+                for (int i = 0; i < next.getListaProductos().size(); i++) {
+                    if (consecProductUser == next.getListaProductos().get(i).getNumeroConsecutivo()) {
+                        next.getListaProductos().get(i).setEstadoTrueque(2);
+                    }
+                }
+            }
+        }
+
+        Iterator<User> iterador2 = users.iterator();
+        while (iterador2.hasNext()) {
+            User next = iterador2.next();
+            for (int i = 0; i < next.getProductosSolicitados().size(); i++) {
+                if (consecProduct == next.getProductoIntercambiar().get(i).getNumeroConsecutivo()) {
+                    next.getProductoIntercambiar().remove(i);
+                    next.getProductosSolicitados().remove(i);
+                }
+                for (int j = 0; j < next.getListaProductos().size(); j++) {
+                    if (next.getListaProductos().get(j) != null) {
+                        if (consecProduct == next.getListaProductos().get(j).getNumeroConsecutivo()) {
+                            next.getListaProductos().get(i).setEstadoTrueque(2);
+                        }
+                    }
+                }
+            }
+        }
+
+        Iterator<User> iterador3 = users.iterator();
+        while (iterador3.hasNext()) {
+            User next = iterador3.next();
+            for (int i = 0; i < next.getProductosSolicitados().size(); i++) {
+                if (consecProduct == next.getProductosSolicitados().get(i).getNumeroConsecutivo()) {
+                    next.getProductoIntercambiar().remove(i);
+                    next.getProductosSolicitados().remove(i);
+                }
+            }
+        }
+
+        List<User> listaAux = new ArrayList<>();
+        Iterator<User> iteradorUser = users.iterator();
+        while (iteradorUser.hasNext()) {
+            User next = iteradorUser.next();
+            listaAux.add(next);
+        }
+        try {
+            json.deleteFile("jsonFile.json");
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+
+        Iterator<User> iteradorList = listaAux.iterator();
+        while (iteradorList.hasNext()) {
+            User next = iteradorList.next();
+            try {
+                json.write("jsonFile.json", next);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        try {
+            users = DatosArray.getInstance().users;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     @Override
     public void rechazar(Producto productoBorrar, String userID) {
         int posicion = 0;
