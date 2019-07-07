@@ -190,6 +190,7 @@ public class Controlador extends HttpServlet {
                 }else{
                     //si se puede hacer
                     dao.insertarSolicitud(producto2, producto1, user.getId());
+                     acceso = menu;
                 }
             }else if (producto1.getPrecio()<producto2.getPrecio()){
                 if((producto2.getPrecio()-producto1.getPrecio())>1000){

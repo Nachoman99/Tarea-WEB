@@ -189,7 +189,7 @@ public class UserDAO implements UserInterface {
         Iterator<User> itera= users.iterator();
         while (itera.hasNext()) {
             User next = itera.next();
-            for (int i = 0; i < 10; i++) {
+            for (int i = 0; i < next.getListaProductos().size(); i++) {
                 if(solicitado.getNumeroConsecutivo()==next.getListaProductos().get(i).getNumeroConsecutivo()){
                     userIDSolicitado=next.getId();
                 }

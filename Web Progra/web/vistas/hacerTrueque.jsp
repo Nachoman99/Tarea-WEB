@@ -53,7 +53,7 @@
         <p>Descripcion Corta Del Segundo Producto: <%=dao.searchProduct(producto2).getDescripcionCorta()%><p>
         <p>Precio Del Segundo Precio: <%=dao.searchProduct(producto2).getPrecio()%><p>     
           
-        <a href="Controlador?accion=aceptacion&producto1=<%=id2%>&producto2<%=id1%>">Aceptar</a>  
+        <a href="Controlador?accion=aceptacion&producto1=<%=id2%>&producto2=<%=id1%>">Aceptar</a>  
         <br>
         <a href="Controlador?accion=inicio">Regresar al menu y cancelar trueque</a>
     </body>
