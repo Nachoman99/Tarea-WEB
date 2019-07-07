@@ -38,10 +38,10 @@
                     if (user.getProductoIntercambiar().get(i).getEstadoTrueque() == 1) {
 
             %>
-            <tbody>
-            <td><a href="Controlador?accion=caracteristicas&consecutivoSegundo=<%=user.getProductosSolicitados().get(i).getNumeroConsecutivo()%>"><%=user.getProductosSolicitados().get(i).getDescripcionCorta()%></a></td>
+            <tbody>  
+            <td><a href="Controlador?accion=caracteristicas&consecutivo=<%=user.getProductosSolicitados().get(i).getNumeroConsecutivo()%>"><%=user.getProductosSolicitados().get(i).getDescripcionCorta()%></a></td>
             <td><%=user.getProductosSolicitados().get(i).getPrecio()%></td>
-            <td><a href="Controlador?accion=caracteristicas&consecutivoSegundo=<%=user.getProductoIntercambiar().get(i).getNumeroConsecutivo()%>"><%=user.getProductoIntercambiar().get(i).getDescripcionCorta()%></a></td>
+            <td><a href="Controlador?accion=caracteristicas&consecutivo=<%=user.getProductoIntercambiar().get(i).getNumeroConsecutivo()%>"><%=user.getProductoIntercambiar().get(i).getDescripcionCorta()%></a></td>
             <td><%=user.getProductoIntercambiar().get(i).getPrecio()%></td>
             <td><a href="Controlador?accion=aceptarTrueque&prodIntercambiar=<%=user.getProductosSolicitados().get(i).getNumeroConsecutivo()%>">ACEPTAR TRUEQUE</a></td>
             <td><a href="Controlador?accion=rechazarTrueque&consecutivoBorrar=<%=user.getProductosSolicitados().get(i).getNumeroConsecutivo()%>">RECHAZAR TRUEQUE</a></td>

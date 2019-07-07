@@ -36,7 +36,7 @@
                        if(a.getListaProductos().get(j).getNumeroConsecutivo()==id){
                            producto=a.getListaProductos().get(j);
                            imagen=a.getListaProductos().get(j).getListaImagenes().get(0);
-                           
+                           System.out.println("Imagennnnnnnnnnnnnnnn= "+imagen);
                        }
                       
                   
@@ -60,6 +60,6 @@
          <img src=<%=imagen%>>
   
              
-          <a href="Controlador?accion=inicio">Regresar al menu</a>
+          <a href="Controlador?accion=menu">Regresar al menu</a>
     </body>
 </html>
