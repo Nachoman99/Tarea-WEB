@@ -158,7 +158,7 @@ public class Controlador extends HttpServlet {
                     } else {
                         acceso = menu;
                     }
-                }else{
+                } else {
                     acceso = menu;
                 }
             } else {
@@ -216,21 +216,13 @@ public class Controlador extends HttpServlet {
                     acceso = menu;
                 }
             }
-        }else if(accion.equalsIgnoreCase("aceptarTrueque")){
-            //String userAceptarID = request.getParameter("userAceptar");
-//            int prodIntercambio = Integer.parseInt(request.getParameter("prodIntercambiar"));
-//            int prodSolicitar = Integer.parseInt(request.getParameter("prodSolicitado"));
-//            Producto solicitado = dao.searchProduct(prodSolicitar);
-//            Producto enviado = dao.searchProduct(prodIntercambio);
-//           // User envia = dao.search(userAceptarID);
-//            dao.aceptarTrueque(solicitado, enviado, userAceptarID);
-//            System.out.println("HIZO EL ACEPTAR");
-                int product = Integer.parseInt(request.getParameter("prodIntercambiar"));
-                Producto producto1 = dao.searchProduct(product);
-                System.out.println("EL PRODUCTO ES: " + producto1);
-                dao.accept(producto1, user.getId());
-            acceso = menu;  
-        }else if(accion.equalsIgnoreCase("rechazarTrueque")){
+        } else if (accion.equalsIgnoreCase("aceptarTrueque")) {
+            int product = Integer.parseInt(request.getParameter("prodIntercambiar"));
+            Producto producto1 = dao.searchProduct(product);
+            System.out.println("EL PRODUCTO ES: " + producto1);
+            dao.accept(producto1, user.getId());
+            acceso = menu;
+        } else if (accion.equalsIgnoreCase("rechazarTrueque")) {
             int intProduct1 = Integer.parseInt(request.getParameter("consecutivoBorrar"));
             Producto producto1 = dao.searchProduct(intProduct1);
             dao.rechazar(producto1, user.getId());
