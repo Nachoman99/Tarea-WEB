@@ -219,7 +219,10 @@ public class Controlador extends HttpServlet {
         }else if(accion.equalsIgnoreCase("aceptarTrueque")){
             
         }else if(accion.equalsIgnoreCase("rechazarTrueque")){
-
+            int intProduct1 = Integer.parseInt(request.getParameter("consecutivoBorrar"));
+            Producto producto1 = dao.searchProduct(intProduct1);
+            dao.rechazar(producto1, user.getId());
+            acceso = menu;
         }
 
         RequestDispatcher vista = request.getRequestDispatcher(acceso);

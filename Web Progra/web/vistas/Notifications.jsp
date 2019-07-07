@@ -40,7 +40,7 @@
             <td><a href="Controlador?accion=caracteristicas&consecutivoSegundo=<%=user.getProductosSolicitados().get(i).getNumeroConsecutivo()%>"><%=user.getProductosSolicitados().get(i).getDescripcionCorta()%></a></td>
             <td><%=user.getProductosSolicitados().get(i).getPrecio()%></td>
             <td><a href="Controlador?accion=aceptarTrueque">ACEPTAR TRUEQUE</a></td>
-            <td><a href="Controlador?accion=rechazarTrueque">RECHAZAR TRUEQUE</a></td>
+            <td><a href="Controlador?accion=rechazarTrueque&consecutivoBorrar=<%=user.getProductosSolicitados().get(i).getNumeroConsecutivo()%>">RECHAZAR TRUEQUE</a></td>
         </tr>
         <% }
             }

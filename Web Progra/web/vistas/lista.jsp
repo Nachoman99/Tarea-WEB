@@ -16,8 +16,8 @@
         <title>Lista</title>
     </head>
     <body>
-        <h1>Lista de Productos</h1>
-        <a href="Controlador?accion=anadir">Agregar un Nuevo Producto</a>
+        <h1>Lista de Productos De Otros Usuarios</h1>
+        
         <br>
         <br>
 
@@ -41,7 +41,7 @@
                     if (!a.getId().equals(id)) {
 
                         for (int j = 0; j < a.getListaProductos().size(); j++) {
-                            if (a.getListaProductos().get(j).getEstadoTrueque()==0) {
+                            if (a.getListaProductos().get(j).getEstadoTrueque() == 0) {
 
             %>
             <tbody>
@@ -62,7 +62,7 @@
         </table>
 
 
-
+        <a href="Controlador?accion=menu">Ir al menu</a>
 
 
 

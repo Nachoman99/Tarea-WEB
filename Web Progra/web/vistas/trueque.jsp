@@ -16,7 +16,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>TRUEQUE</h1>
+        <h1>Su Lista De Productos para Intercambiar</h1>
         <br>
         <br>
         <table border="1">
