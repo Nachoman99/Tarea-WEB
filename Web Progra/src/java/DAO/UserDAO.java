@@ -26,6 +26,22 @@ public class UserDAO implements UserInterface {
         users = DatosArray.getInstance().users;
     }
     
+    public Producto searchProduct(int consecutive){
+        Iterator<User> iterator = users.iterator();
+        while (iterator.hasNext()) {
+            User next = iterator.next();
+            ArrayList<Producto> list = next.getListaProductos();
+            Iterator<Producto> it = list.iterator();
+            while (it.hasNext()) {
+                Producto next1 = it.next();
+                if (consecutive == next1.getNumeroConsecutivo()) {
+                    return next1;
+                }
+            }
+        }
+        return null;
+    }
+    
     public User search(String id){
         Iterator<User> iterator = users.iterator();
         while (iterator.hasNext()) {

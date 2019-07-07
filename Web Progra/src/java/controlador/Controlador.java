@@ -169,14 +169,21 @@ public class Controlador extends HttpServlet {
             request.setAttribute("productoSegundo", request.getParameter("consecutivoSegundo"));
             acceso = validarTrueque;
         }else if(accion.equalsIgnoreCase("notification")){
+            System.out.println("Holaaa");
             request.setAttribute("id", user.getId());
             acceso = notificaciones;
         }else if(accion.equalsIgnoreCase("menu")){
             acceso = menu;
 
         }else if(accion.equalsIgnoreCase("aceptacion")){
-            Producto producto1 = (Producto)request.getAttribute("producto1");
-            Producto producto2 = (Producto)request.getAttribute("producto2");
+            int intProduct1 = Integer.parseInt(request.getParameter("producto1"));
+            System.out.println("PRODUCTO1 " + intProduct1);
+            int intProduct2 = Integer.parseInt(request.getParameter("producto2"));
+            System.out.println("PRODUCT2 " + intProduct2);
+           Producto producto1 = dao.searchProduct(intProduct1);
+           Producto producto2 = dao.searchProduct(intProduct2);
+            System.out.println("Producto " +  producto1);
+            System.out.println("Producto2 " + producto2);
             if(producto1.getPrecio()>=producto2.getPrecio()){
                 if((producto1.getPrecio()-producto2.getPrecio())>1000){
                     //no se puede hacer
@@ -190,6 +197,7 @@ public class Controlador extends HttpServlet {
                 }else{
                     //si se puede hacer
                       dao.insertarSolicitud(producto2, producto1, user.getId());
+                      acceso = menu;
                 }
             }
         }
