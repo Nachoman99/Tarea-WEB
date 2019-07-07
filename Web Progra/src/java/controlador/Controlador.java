@@ -227,6 +227,7 @@ public class Controlador extends HttpServlet {
 //            System.out.println("HIZO EL ACEPTAR");
                 int product = Integer.parseInt(request.getParameter("prodIntercambiar"));
                 Producto producto1 = dao.searchProduct(product);
+                System.out.println("EL PRODUCTO ES: " + producto1);
                 dao.accept(producto1, user.getId());
             acceso = menu;  
         }else if(accion.equalsIgnoreCase("rechazarTrueque")){

@@ -241,26 +241,30 @@ public class UserDAO implements UserInterface {
             User next = iterador4.next();
             for (int i = 0; i < next.getProductoIntercambiar().size(); i++) {
                 if (productoAceptar.getNumeroConsecutivo() == next.getListaProductos().get(i).getNumeroConsecutivo()) {
-                    productoCambiar1 = next.getListaProductos().remove(i);
+                    productoCambiar1 = next.getListaProductos().remove(i); //ProductoCambiar1 == celular
+                    System.out.println("Producto1 " +productoCambiar1);
                 }
             }
             for (int i = 0; i < next.getProductosSolicitados().size(); i++) {
                 if (productoAceptar.getNumeroConsecutivo() == next.getProductosSolicitados().get(i).getNumeroConsecutivo()) {
-                    productoCambiar2 = next.getListaProductos().remove(i);
-                }
-            }
-            while (iterador4.hasNext()) {
-                User next1 = iterador4.next();
-                for (int i = 0; i < next.getProductosSolicitados().size(); i++) {
-                    if (productoAceptar.getNumeroConsecutivo() == next1.getProductoIntercambiar().get(i).getNumeroConsecutivo()) {
-                        next1.getListaProductos().add(productoCambiar1);
-                    }
-                    if (productoAceptar.getNumeroConsecutivo() == next1.getProductosSolicitados().get(i).getNumeroConsecutivo()) {
-                        next1.getListaProductos().add(productoCambiar2);
-                    }
+                    productoCambiar2 = next.getListaProductos().remove(i);  //Producto cambiar2 == tele 
+                    System.out.println("Producto2 " + productoCambiar2);
                 }
             }
         }
+        
+        Iterator<User> iterador5 = users.iterator();
+        while (iterador5.hasNext()) {
+                User next = iterador5.next();
+                for (int i = 0; i < next.getProductosSolicitados().size(); i++) {
+                    if (productoAceptar.getNumeroConsecutivo() == next.getProductoIntercambiar().get(i).getNumeroConsecutivo()) {
+                        next.getListaProductos().add(productoCambiar2);
+                    }
+                    if (productoAceptar.getNumeroConsecutivo() == next.getProductosSolicitados().get(i).getNumeroConsecutivo()) {
+                        next.getListaProductos().add(productoCambiar1);
+                    }
+                }
+            }
 
         Iterator<User> iterador = users.iterator();
         while (iterador.hasNext()) {
