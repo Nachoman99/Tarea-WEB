@@ -9,6 +9,7 @@ import DAO.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -65,7 +66,7 @@ public class Controlador extends HttpServlet {
             out.println("</html>");
         }
     }
-    
+
     private boolean verifyEmail(String email) {
         if (email.contains("@")) {
             return true;
@@ -83,7 +84,7 @@ public class Controlador extends HttpServlet {
             String msg = "Hola";
             request.setAttribute("mensaje", msg);
             acceso = registrarse;
-            
+
         } else if (accion.equalsIgnoreCase("ingresar")) {
             acceso = ingresar;
         } else if (accion.equalsIgnoreCase("anadir")) {
@@ -96,12 +97,12 @@ public class Controlador extends HttpServlet {
             int precio = Integer.parseInt(request.getParameter("txtPrecio"));
             String imagen = request.getParameter("txtImagen");
             String categoria = request.getParameter("categoria");
-            ArrayList<String> imagenes= new ArrayList<>();
+            ArrayList<String> imagenes = new ArrayList<>();
             imagenes.add(imagen);
-            producto=new Producto(imagenes, corta, detallada, categoria, precio, 0);
+            producto = new Producto(imagenes, corta, detallada, categoria, precio, 0);
             dao.insertarProducto(producto, user.getId());
             acceso = menu;
-     
+
         } else if (accion.equalsIgnoreCase("listar")) {
             request.setAttribute("id", user.getId());
             acceso = lista;
@@ -135,71 +136,84 @@ public class Controlador extends HttpServlet {
             } else {
                 acceso = registrarse;
             }
-        }else if(accion.equalsIgnoreCase("INGRESO")){
+        } else if (accion.equalsIgnoreCase("INGRESO")) {
             String email = request.getParameter("txtCorreo");
             String password = request.getParameter("txtPassword");
             User userAux;
-            if((userAux=dao.signIn(email, password)) != null){
+            if ((userAux = dao.signIn(email, password)) != null) {
                 user.setId(userAux.getId());
-                if (userAux.getProductoIntercambiar().size() > 0) {
-                    request.setAttribute("id", user.getId());
-                    acceso = notificaciones;
-                } else {
+                ArrayList<Producto> list = user.getProductoIntercambiar();
+                if (list != null) {
+                    Iterator<Producto> it = list.iterator();
+                    boolean notify = false;
+                    while (it.hasNext()) {
+                        Producto next = it.next();
+                        if (next.getEstadoTrueque() == 1) {
+                            notify = true;
+                        }
+                    }
+                    if (userAux.getProductoIntercambiar().size() > 0 && notify) {
+                        request.setAttribute("id", user.getId());
+                        acceso = notificaciones;
+                    } else {
+                        acceso = menu;
+                    }
+                }else{
                     acceso = menu;
                 }
-            }else{
+            } else {
                 acceso = ingresar;
             }
-        }else if(accion.equalsIgnoreCase("perfil")){
+        } else if (accion.equalsIgnoreCase("perfil")) {
             request.setAttribute("id", user.getId());
             System.out.println("USER " + user.getId());
             acceso = perfil;
-        }else if(accion.equalsIgnoreCase("inicio")){
+        } else if (accion.equalsIgnoreCase("inicio")) {
             acceso = inicio;
-        }else if(accion.equalsIgnoreCase("trueque")){
+        } else if (accion.equalsIgnoreCase("trueque")) {
             //datos
             request.setAttribute("productoPrimero", request.getParameter("consecutivoPrimero"));
             request.setAttribute("id", user.getId());
-            acceso=trueque;
-        }else if(accion.equalsIgnoreCase("caracteristicas")){
+            acceso = trueque;
+        } else if (accion.equalsIgnoreCase("caracteristicas")) {
             //datos
             request.setAttribute("productoID", request.getParameter("consecutivo"));
-            acceso=caracteristicas;
-        }else if (accion.equalsIgnoreCase("validarTrueque")) {
+            acceso = caracteristicas;
+        } else if (accion.equalsIgnoreCase("validarTrueque")) {
             request.setAttribute("productoPrimero", request.getParameter("consecutivoPrimero"));
             request.setAttribute("productoSegundo", request.getParameter("consecutivoSegundo"));
             acceso = validarTrueque;
-        }else if(accion.equalsIgnoreCase("notification")){
+        } else if (accion.equalsIgnoreCase("notification")) {
             System.out.println("Holaaa");
             request.setAttribute("id", user.getId());
             acceso = notificaciones;
-        }else if(accion.equalsIgnoreCase("menu")){
+        } else if (accion.equalsIgnoreCase("menu")) {
             acceso = menu;
 
-        }else if(accion.equalsIgnoreCase("aceptacion")){
+        } else if (accion.equalsIgnoreCase("aceptacion")) {
             int intProduct1 = Integer.parseInt(request.getParameter("producto1"));
             System.out.println("PRODUCTO1 " + intProduct1);
             int intProduct2 = Integer.parseInt(request.getParameter("producto2"));
             System.out.println("PRODUCT2 " + intProduct2);
-           Producto producto1 = dao.searchProduct(intProduct1);
-           Producto producto2 = dao.searchProduct(intProduct2);
-            System.out.println("Producto " +  producto1);
+            Producto producto1 = dao.searchProduct(intProduct1);
+            Producto producto2 = dao.searchProduct(intProduct2);
+            System.out.println("Producto " + producto1);
             System.out.println("Producto2 " + producto2);
-            if(producto1.getPrecio()>=producto2.getPrecio()){
-                if((producto1.getPrecio()-producto2.getPrecio())>1000){
+            if (producto1.getPrecio() >= producto2.getPrecio()) {
+                if ((producto1.getPrecio() - producto2.getPrecio()) > 1000) {
                     //no se puede hacer
-                }else{
+                } else {
                     //si se puede hacer
                     dao.insertarSolicitud(producto2, producto1, user.getId());
-                     acceso = menu;
+                    acceso = menu;
                 }
-            }else if (producto1.getPrecio()<producto2.getPrecio()){
-                if((producto2.getPrecio()-producto1.getPrecio())>1000){
+            } else if (producto1.getPrecio() < producto2.getPrecio()) {
+                if ((producto2.getPrecio() - producto1.getPrecio()) > 1000) {
                     //no se puede hacer
-                }else{
+                } else {
                     //si se puede hacer
-                      dao.insertarSolicitud(producto2, producto1, user.getId());
-                      acceso = menu;
+                    dao.insertarSolicitud(producto2, producto1, user.getId());
+                    acceso = menu;
                 }
             }
         }

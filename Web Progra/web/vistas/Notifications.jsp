@@ -19,7 +19,7 @@
         <h1>Notificaciones</h1>
         <table border="1">
             <thead>
-       
+
                 <tr>
                     <th>PRODUCTO</th>
                     <th>PRECIO</th>
@@ -33,6 +33,7 @@
                     user = dao.search(id);
                 }
                 for (int i = 0; i < user.getProductosSolicitados().size(); i++) {
+                    if (user.getProductoIntercambiar().get(i).getEstadoTrueque() == 1) {
 
             %>
             <tbody>
@@ -41,7 +42,8 @@
             <td><a href="Controlador?accion=aceptarTrueque">ACEPTAR TRUEQUE</a></td>
             <td><a href="Controlador?accion=rechazarTrueque">RECHAZAR TRUEQUE</a></td>
         </tr>
-        <%}
+        <% }
+            }
         %>
     </table>
     <br>
