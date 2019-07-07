@@ -21,7 +21,9 @@
             <thead>
 
                 <tr>
-                    <th>PRODUCTO</th>
+                    <th>PRODUCTO A INTERCAMBIAR</th>
+                    <th>PRECIO</th>
+                    <th>MIS PRODUCTOS</th>
                     <th>PRECIO</th>
                 </tr>
             </thead>
@@ -39,8 +41,10 @@
             <tbody>
             <td><a href="Controlador?accion=caracteristicas&consecutivoSegundo=<%=user.getProductosSolicitados().get(i).getNumeroConsecutivo()%>"><%=user.getProductosSolicitados().get(i).getDescripcionCorta()%></a></td>
             <td><%=user.getProductosSolicitados().get(i).getPrecio()%></td>
-            <td><a href="Controlador?accion=aceptarTrueque">ACEPTAR TRUEQUE</a></td>
-            <td><a href="Controlador?accion=rechazarTrueque&consecutivoBorrar=<%=user.getProductosSolicitados().get(i).getNumeroConsecutivo()%>">RECHAZAR TRUEQUE</a></td>
+            <td><a href="Controlador?accion=caracteristicas&consecutivoSegundo=<%=user.getProductoIntercambiar().get(i).getNumeroConsecutivo()%>"><%=user.getProductoIntercambiar().get(i).getDescripcionCorta()%></a></td>
+            <td><%=user.getProductoIntercambiar().get(i).getPrecio()%></td>
+            <td><a href="Controlador?accion=aceptarTrueque&userAceptar=<%=id%>&prodIntercambiar=<%=user.getProductoIntercambiar().get(i).getNumeroConsecutivo()%>&prodSolicitado=<%=user.getProductosSolicitados().get(i).getNumeroConsecutivo()%>">ACEPTAR TRUEQUE</a></td>
+            <td><a href="Controlador?accion=rechazarTrueque">RECHAZAR TRUEQUE</a></td>
         </tr>
         <% }
             }

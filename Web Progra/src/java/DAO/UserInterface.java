@@ -21,5 +21,6 @@ public interface UserInterface {
     void insertarProducto(Producto producto, String userID);
     void insertarSolicitud(Producto productoUsuario, Producto solicitado,String userID);
     User signIn(String email, String password);
-    void rechazar(Producto productoBorrar,String userID);
+    void rechazar(Producto productoBorrar, String userID);
+    void aceptarTrueque(Producto solicitado, Producto enviado, String userRecibe);
 }

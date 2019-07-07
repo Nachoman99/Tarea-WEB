@@ -234,7 +234,7 @@ public class UserDAO implements UserInterface {
     public void rechazar(Producto productoBorrar, String userID) {
         int posicion = 0;
         int idOtroProducto = 0;
-        int idProductoUsuario=0;
+        int idProductoUsuario = 0;
         Iterator<User> iterador = users.iterator();
         while (iterador.hasNext()) {
             User next = iterador.next();
@@ -242,9 +242,9 @@ public class UserDAO implements UserInterface {
                 for (int i = 0; i < next.getProductosSolicitados().size(); i++) {
                     if (productoBorrar.getNumeroConsecutivo() == next.getProductosSolicitados().get(i).getNumeroConsecutivo()) {
                         idOtroProducto = next.getProductosSolicitados().get(i).getNumeroConsecutivo();
-                        idProductoUsuario=next.getProductoIntercambiar().get(i).getNumeroConsecutivo();
-                        posicion=i;
-                    
+                        idProductoUsuario = next.getProductoIntercambiar().get(i).getNumeroConsecutivo();
+                        posicion = i;
+
                     }
                 }
 
@@ -252,7 +252,7 @@ public class UserDAO implements UserInterface {
                 next.getProductosSolicitados().remove(posicion);
 
                 for (int i = 0; i < next.getListaProductos().size(); i++) {
-                    if (idProductoUsuario== next.getListaProductos().get(i).getNumeroConsecutivo()) {
+                    if (idProductoUsuario == next.getListaProductos().get(i).getNumeroConsecutivo()) {
                         next.getListaProductos().get(i).setEstadoTrueque(0);
                     }
                 }
@@ -290,8 +290,6 @@ public class UserDAO implements UserInterface {
             }
         }
 
-        
-        
         List<User> listaAux = new ArrayList<>();
         Iterator<User> iterador2 = users.iterator();
         while (iterador2.hasNext()) {
@@ -306,6 +304,137 @@ public class UserDAO implements UserInterface {
         Iterator<User> iterador3 = listaAux.iterator();
         while (iterador3.hasNext()) {
             User next = iterador3.next();
+            try {
+                json.write("jsonFile.json", next);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        try {
+            users = DatosArray.getInstance().users;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void aceptarTrueque(Producto solicitado, Producto enviado, String userRecibe) {
+        solicitado.setEstadoTrueque(2);
+        enviado.setEstadoTrueque(2);
+
+        List<User> listaAux = new ArrayList<>();
+        Iterator<User> iterador2 = users.iterator();
+        while (iterador2.hasNext()) {
+            User next = iterador2.next();
+            listaAux.add(next);
+        }
+        String userEnvia = "";
+        int consecutive = 0;
+        Iterator<User> iterador10 = listaAux.iterator();
+        while (iterador10.hasNext()) {
+            User next = iterador10.next();
+            if (userRecibe.equals(next.getId())) {
+                for (int i = 0; i < next.getProductoIntercambiar().size(); i++) {
+                    if (next.getProductoIntercambiar().get(i).getEstadoTrueque() == 1) {
+                        consecutive = next.getProductoIntercambiar().get(i).getNumeroConsecutivo();
+                    }
+                }
+            }
+            for (int i = 0; i < next.getListaProductos().size(); i++) {
+                if (next.getListaProductos().get(i).getNumeroConsecutivo() == consecutive) {
+                    userEnvia = next.getId();
+                }
+            }
+        }
+
+        Iterator<User> iterador3 = listaAux.iterator();
+        while (iterador3.hasNext()) {
+            User next = iterador3.next();
+            if (userEnvia.equals(next.getId())) {
+                for (int i = 0; i < next.getProductoIntercambiar().size(); i++) {
+                    if (solicitado.getNumeroConsecutivo() == next.getProductoIntercambiar().get(i).getNumeroConsecutivo()) {
+                        next.getProductoIntercambiar().remove(solicitado);
+                    }
+                    if (enviado.getNumeroConsecutivo() == next.getProductoIntercambiar().get(i).getNumeroConsecutivo()) {
+                        next.getProductoIntercambiar().remove(enviado);
+                    }
+                    if (next.getProductosSolicitados().get(i).getNumeroConsecutivo() == solicitado.getNumeroConsecutivo()) {
+                        next.getProductosSolicitados().remove(solicitado);
+                    }
+                    if (enviado.getNumeroConsecutivo() == next.getProductosSolicitados().get(i).getNumeroConsecutivo()) {
+                        next.getProductosSolicitados().remove(enviado);
+                    }
+                }
+            }
+            if (userRecibe.equals(next.getId())) {
+                for (int i = 0; i < next.getProductoIntercambiar().size(); i++) {
+                    if (solicitado.getNumeroConsecutivo() == next.getProductoIntercambiar().get(i).getNumeroConsecutivo()) {
+                        next.getProductoIntercambiar().remove(solicitado);
+                    }
+                    if (enviado.getNumeroConsecutivo() == next.getProductoIntercambiar().get(i).getNumeroConsecutivo()) {
+                        next.getProductoIntercambiar().remove(enviado);
+                    }
+                    if (next.getProductosSolicitados().get(i).getNumeroConsecutivo() == solicitado.getNumeroConsecutivo()) {
+                        next.getProductosSolicitados().remove(solicitado);
+                    }
+                    if (enviado.getNumeroConsecutivo() == next.getProductosSolicitados().get(i).getNumeroConsecutivo()) {
+                        next.getProductosSolicitados().remove(enviado);
+                    }
+                }
+            }
+        }
+
+        //Producto productoEnviadoENV = null;
+        Producto productoSolicitadoENV = null;
+        //Producto productoEnviadoREC;
+        Producto productoSolicitadoREC = null;
+        Iterator<User> iterador5 = listaAux.iterator();
+        while (iterador5.hasNext()) {
+            User next = iterador5.next();
+            if (userEnvia.equals(next.getId())) {
+                for (int i = 0; i < next.getListaProductos().size(); i++) {
+                    System.out.println("Hola");
+                    if (enviado.getNumeroConsecutivo() == next.getListaProductos().get(i).getNumeroConsecutivo()) {
+                        next.getListaProductos().remove(i);
+                    }
+                    if (solicitado.getNumeroConsecutivo() == next.getListaProductos().get(i).getNumeroConsecutivo()) {
+                        productoSolicitadoENV = next.getListaProductos().remove(i);
+                    }
+                    System.out.println("PUto");
+                }
+            }
+            if (userRecibe.equals(next.getId())) {
+                for (int i = 0; i < next.getListaProductos().size(); i++) {
+                    if (enviado.getNumeroConsecutivo() == next.getListaProductos().get(i).getNumeroConsecutivo()) {
+                        next.getListaProductos().remove(i);
+                    }
+                    if (solicitado.getNumeroConsecutivo() == next.getListaProductos().get(i).getNumeroConsecutivo()) {
+                        productoSolicitadoREC = next.getListaProductos().remove(i);
+                    }
+                }
+            }
+        }
+
+        Iterator<User> iterador6 = listaAux.iterator();
+        while (iterador6.hasNext()) {
+            User next = iterador6.next();
+            if (userEnvia.equals(next.getId())) {
+                next.getListaProductos().add(productoSolicitadoREC);
+            }
+            if (userRecibe.equals(next.getId())) {
+                next.getListaProductos().add(productoSolicitadoENV);
+            }
+        }
+
+        try {
+            json.deleteFile("jsonFile.json");
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        //Escribe todo actualizado
+        Iterator<User> iterador4 = listaAux.iterator();
+        while (iterador4.hasNext()) {
+            User next = iterador4.next();
             try {
                 json.write("jsonFile.json", next);
             } catch (IOException e) {

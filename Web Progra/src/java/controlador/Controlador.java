@@ -217,7 +217,15 @@ public class Controlador extends HttpServlet {
                 }
             }
         }else if(accion.equalsIgnoreCase("aceptarTrueque")){
-            
+            String userAceptarID = request.getParameter("userAceptar");
+            int prodIntercambio = Integer.parseInt(request.getParameter("prodIntercambiar"));
+            int prodSolicitar = Integer.parseInt(request.getParameter("prodSolicitado"));
+            Producto solicitado = dao.searchProduct(prodSolicitar);
+            Producto enviado = dao.searchProduct(prodIntercambio);
+           // User envia = dao.search(userAceptarID);
+            dao.aceptarTrueque(solicitado, enviado, userAceptarID);
+            System.out.println("HIZO EL ACEPTAR");
+            acceso = menu;  
         }else if(accion.equalsIgnoreCase("rechazarTrueque")){
             int intProduct1 = Integer.parseInt(request.getParameter("consecutivoBorrar"));
             Producto producto1 = dao.searchProduct(intProduct1);
