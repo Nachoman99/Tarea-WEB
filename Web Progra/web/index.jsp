@@ -9,10 +9,12 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Bienvenidos al Mercado JOOSKE</title>
     </head>
     <body>
+        
         <br>
+        <p>Bienvenidos al Mercado JOOSKE<p>
         <br>
         <br>
         <div class ="container">
@@ -24,5 +26,7 @@
             <br>
             <a class="btn btn-success btn-lg" href="Controlador?accion=listar">Listar(quitarlo despues)</a>
         </div>
+        
+         <img src="Web Progra/imagenes/mercado.jpg">
     </body>
 </html>
