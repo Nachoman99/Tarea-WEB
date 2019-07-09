@@ -55,6 +55,6 @@
           
         <a href="Controlador?accion=aceptacion&producto1=<%=id1%>&producto2=<%=id2%>">Aceptar</a>  
         <br>
-        <a href="Controlador?accion=inicio">Regresar al menu y cancelar trueque</a>
+        <a href="Controlador?accion=menu">Regresar al menu y cancelar trueque</a>
     </body>
 </html>

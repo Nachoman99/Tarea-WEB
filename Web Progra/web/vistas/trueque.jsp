@@ -57,5 +57,6 @@
                         }
                     }
                 %>
+                <a href="Controlador?accion=menu">Regresar al menu y cancelar trueque</a>
                 </body>
                 </html>

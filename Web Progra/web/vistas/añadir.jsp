@@ -36,7 +36,7 @@
                 
             </p>
             <input type="submit" name="accion" value="introducir">
-            <a href="Controlador?accion=lista">Regresar a la lista de productos</a>
+            <a href="Controlador?accion=menu">Regresar a la menu</a>
             
         </form>
     </body>

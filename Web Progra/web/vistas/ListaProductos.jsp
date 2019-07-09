@@ -46,5 +46,6 @@
         <%
             }
         %>
+        <a href="Controlador?accion=menu">Regresar al menu</a>
     </body>
 </html>
