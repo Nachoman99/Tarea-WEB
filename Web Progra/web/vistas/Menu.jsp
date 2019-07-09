@@ -18,7 +18,7 @@
         <br>
         <br>
         <br>
-        <a href="Controlador?accion=listar">IR A LA LISTA DE PRODUCTOS</a>
+        <a href="Controlador?accion=listar">LISTA DE PRODUCTOS DISPONIBLES PARA TRUEQUE</a>
         <br>
         <br>
         <br>
@@ -27,6 +27,11 @@
         <br>
         <br>
         <a href="Controlador?accion=notification">NOTIFICACIONES</a>
+        <br>
+        <br>
+        <br>
+        <a href="Controlador?accion=listaProductos">MI LISTA DE PRODUCTOS</a>
+        <br>
         <br>
         <br>
         <a href="Controlador?accion=inicio">VOLVER A INICIO</a>

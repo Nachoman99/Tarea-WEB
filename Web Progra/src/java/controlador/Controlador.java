@@ -39,6 +39,8 @@ public class Controlador extends HttpServlet {
     public String caracteristicas = "vistas/productoCaracteristicas.jsp";
     public String validarTrueque = "vistas/hacerTrueque.jsp";
     public String notificaciones = "vistas/Notifications.jsp";
+    public String listaProductos = "vistas/ListaProductos.jsp";
+    
     private static boolean emailValid = false;
 
     public User user = new User();
@@ -227,6 +229,9 @@ public class Controlador extends HttpServlet {
             Producto producto1 = dao.searchProduct(intProduct1);
             dao.rechazar(producto1, user.getId());
             acceso = menu;
+        }else if(accion.equalsIgnoreCase("listaProductos")){
+            request.setAttribute("id", user.getId());
+            acceso = listaProductos;
         }
 
         RequestDispatcher vista = request.getRequestDispatcher(acceso);

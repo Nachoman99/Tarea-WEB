@@ -16,7 +16,7 @@
         <title>Lista</title>
     </head>
     <body>
-        <h1>Lista de Productos De Otros Usuarios</h1>
+        <h1>Lista de Productos para trueque</h1>
         
         <br>
         <br>
