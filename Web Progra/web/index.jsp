@@ -18,6 +18,9 @@
         <br>
         <br>
         <div class ="container">
+            <%
+                String ruta = (String)request.getAttribute("img");
+            %>
             <a class="btn btn-success btn-lg" href="Controlador?accion=registrarse">REGISTRARSE</a>
             <br>
             <br>
@@ -26,7 +29,6 @@
             <br>
             <a class="btn btn-success btn-lg" href="Controlador?accion=listar">Listar(quitarlo despues)</a>
         </div>
-        
-         <img src="Web Progra/imagenes/mercado.jpg">
+        <image src="images/mercado.jpg">  
     </body>
 </html>

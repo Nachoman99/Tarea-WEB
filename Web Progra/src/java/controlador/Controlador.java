@@ -171,6 +171,7 @@ public class Controlador extends HttpServlet {
             System.out.println("USER " + user.getId());
             acceso = perfil;
         } else if (accion.equalsIgnoreCase("inicio")) {
+            request.setAttribute("img", "mercado");
             acceso = inicio;
         } else if (accion.equalsIgnoreCase("trueque")) {
             //datos
