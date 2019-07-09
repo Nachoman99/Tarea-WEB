@@ -187,7 +187,7 @@ public class Controlador extends HttpServlet {
             request.setAttribute("productoSegundo", request.getParameter("consecutivoSegundo"));
             acceso = validarTrueque;
         } else if (accion.equalsIgnoreCase("notification")) {
-            System.out.println("Holaaa");
+//            System.out.println("Holaaa");
             request.setAttribute("id", user.getId());
             acceso = notificaciones;
         } else if (accion.equalsIgnoreCase("menu")) {

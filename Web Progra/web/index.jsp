@@ -29,6 +29,6 @@
             <br>
             <a class="btn btn-success btn-lg" href="Controlador?accion=listar">Listar(quitarlo despues)</a>
         </div>
-        <image src="images/mercado.jpg">  
+        <image src="images/mercado.jpg"width="400" height="400">  
     </body>
 </html>

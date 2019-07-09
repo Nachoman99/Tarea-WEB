@@ -36,7 +36,7 @@
                        if(a.getListaProductos().get(j).getNumeroConsecutivo()==id){
                            producto=a.getListaProductos().get(j);
                            imagen=a.getListaProductos().get(j).getListaImagenes().get(0);
-                           System.out.println("Imagennnnnnnnnnnnnnnn= "+imagen);
+                           //System.out.println("Imagennnnnnnnnnnnnnnn= "+imagen);
                        }
                       
                   
