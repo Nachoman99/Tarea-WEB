@@ -18,23 +18,23 @@
     </head>
     <body>
         <%
-            String email1 = (String)request.getAttribute("email");
-            String vacio1 =  (String)request.getAttribute("vacio");
+            String email1 = (String) request.getAttribute("email");
+            String vacio1 = (String) request.getAttribute("vacio");
             System.out.println("email " + email1);
             System.out.println("vacio " + vacio1);
 
-            boolean email=false;
-            boolean vacio=false;
-            if(email1.equalsIgnoreCase("false")&&vacio1.equalsIgnoreCase("false")){
-                email=false;
-                vacio=false;
-            }else if(email1.equalsIgnoreCase("true")&&vacio1.equalsIgnoreCase("true")){
-                email=true;
-                vacio=true;
-            }else if(email1.equalsIgnoreCase("true")){
-                email=true;
-            }else if(vacio1.equalsIgnoreCase("true")){
-                vacio=true;
+            boolean email = false;
+            boolean vacio = false;
+            if (email1.equalsIgnoreCase("false") && vacio1.equalsIgnoreCase("false")) {
+                email = false;
+                vacio = false;
+            } else if (email1.equalsIgnoreCase("true") && vacio1.equalsIgnoreCase("true")) {
+                email = true;
+                vacio = true;
+            } else if (email1.equalsIgnoreCase("true")) {
+                email = true;
+            } else if (vacio1.equalsIgnoreCase("true")) {
+                vacio = true;
             }
             System.out.println("email " + email1);
             System.out.println("vacio " + vacio1);
@@ -42,12 +42,17 @@
 
         <%
             if (!email && !vacio) {
-               
+
         %>
 
-        
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $("#correoMalo").modal('show');
+            });
+
+        </script>
         <!-- Modal -->
-        <div id="correoMalo" class="modal fade" role="dialog">
+        <div id="correoMalo" class="modal fade" role="dialog" >
             <div class="modal-dialog">
 
                 <!-- Modal content-->
@@ -66,10 +71,15 @@
 
             </div>
         </div>
-        <%
-        } else if (vacio) {
+        <%        } else if (vacio) {
         %>
-        
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $("#vaciosMalo").modal('show');
+            });
+
+        </script>
         <!-- Modal -->
         
         <div id="vaciosMalo" class="modal fade" role="dialog">
