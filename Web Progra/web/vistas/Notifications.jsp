@@ -13,6 +13,9 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link href="./css/bootstrap.css" rel="stylesheet" type="text/css"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
         <title>JSP Page</title>
     </head>
     <body>
@@ -31,8 +34,14 @@
                 UserDAO dao = new UserDAO();
                 String id = (String) request.getAttribute("id");
                 User user = null;
+                String descripcionCorta="";
                 if (id != null) {
                     user = dao.search(id);
+                }
+                for (int i = 0; i < user.getListaProductos().size(); i++) {
+                     if(user.getListaProductos().get(i).isAceptadoPrimeraVez()){
+                         descripcionCorta=user.getListaProductos().get(i).getDescripcionCorta();
+                     }
                 }
                 for (int i = 0; i < user.getProductosSolicitados().size(); i++) {
                     if (user.getProductoIntercambiar().get(i).getEstadoTrueque() == 1) {
@@ -49,6 +58,48 @@
         <% }
             }
         %>
+
+        <%
+            String productoAceptado = (String) request.getAttribute("aceptado");
+            boolean aceptacion = true;
+            if (productoAceptado.equalsIgnoreCase("true")) {
+                aceptacion = true;
+            } else {
+                aceptacion = false;
+            }
+            if (aceptacion) {
+
+        %>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $("#aceptacion").modal('show');
+            });
+
+        </script>
+        <!-- Modal -->
+        <div id="aceptacion" class="modal fade" role="dialog" >
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">BUENAS NOTICIAS</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>SU PRODUCTO DE NOMBRE: <%=descripcionCorta%> SOLICITADO HA SIDO ACEPTADO</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <%            }
+        %>
+
+
     </table>
     <br>
     <a href="Controlador?accion=menu">Ir al menu</a>
