@@ -34,14 +34,14 @@
                 UserDAO dao = new UserDAO();
                 String id = (String) request.getAttribute("id");
                 User user = null;
-                String descripcionCorta="";
+                String descripcionCorta = "";
                 if (id != null) {
                     user = dao.search(id);
                 }
                 for (int i = 0; i < user.getListaProductos().size(); i++) {
-                     if(user.getListaProductos().get(i).isAceptadoPrimeraVez()){
-                         descripcionCorta=user.getListaProductos().get(i).getDescripcionCorta();
-                     }
+                    if (user.getListaProductos().get(i).isAceptadoPrimeraVez()) {
+                        descripcionCorta = user.getListaProductos().get(i).getDescripcionCorta();
+                    }
                 }
                 for (int i = 0; i < user.getProductosSolicitados().size(); i++) {
                     if (user.getProductoIntercambiar().get(i).getEstadoTrueque() == 1) {
@@ -73,33 +73,34 @@
         <script type="text/javascript">
             $(document).ready(function () {
                 $("#aceptacion").modal('show');
+                
             });
+            
 
         </script>
         <!-- Modal -->
-        <div id="aceptacion" class="modal fade" role="dialog" >
+        <div id="aceptacion" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
             <div class="modal-dialog">
 
                 <!-- Modal content-->
                 <div class="modal-content">
                     <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" href="Controlador?accion=aceptadoPrimera&id= <%=id%>">&times;</button>
                         <h4 class="modal-title">BUENAS NOTICIAS</h4>
                     </div>
                     <div class="modal-body">
                         <p>SU PRODUCTO <%=descripcionCorta%> HA SIDO ACEPTADO</p>
-                        <p>TRUEQUE REALIZADO CIN EXITO</p>
+                        <p>TRUEQUE REALIZADO CON EXITO</p>
                     </div>
                     <div class="modal-footer">
-                     <%--   <button type="button" class="btn btn-default" data-dismiss="modal" href="Controlador?accion=aceptadoPrimera&id= <%=id%>">Close</button> --%>
+                        <%--   <button type="button" class="btn btn-default" data-dismiss="modal" href="Controlador?accion=aceptadoPrimera&id= <%=id%>">Close</button> --%>
                         <a href="Controlador?accion=aceptadoPrimera&id= <%=id%>">Close</a>
                     </div>
                 </div>
 
             </div>
         </div>
-        <%            
-        }
+        <%
+            }
         %>
 
 
