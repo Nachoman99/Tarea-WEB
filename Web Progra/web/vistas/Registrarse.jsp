@@ -17,7 +17,65 @@
         <title>Registrarse</title>
     </head>
     <body>
-        <
+        <%
+            boolean email = (boolean) request.getAttribute("email");
+            boolean vacio = (boolean) request.getAttribute("vacio");
+            System.out.println("email " + email);
+            System.out.println("vacio " + vacio);
+        %>
+
+        <%
+            if (!email && !vacio) {
+        %>
+
+        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+        <!-- Modal -->
+        <div id="myModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Error de Registro</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>El correo es inválido</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <%
+        } else if (vacio) {
+        %>
+        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+        <!-- Modal -->
+        <div id="myModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Error de Registro</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Por favor complete todos los espacios</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <%
+            }
+        %> 
         <h1>Registrarse</h1>
         <form action="Controlador">
             Número de cédula:<br>
@@ -42,69 +100,5 @@
             <a href="Controlador?accion=inicio">Regresar a la página de inicio</a>
         </form>
     </body>
-   <%-- <%
-            boolean seguir = false;
-            
-            while (!(seguir = (boolean)request.getAttribute("seguir"))) {                    
-                    System.out.println("Seguir " + seguir);
-            }
-            boolean email = (boolean) request.getAttribute("email");
-            boolean vacio = (boolean) request.getAttribute("vacio");
-            System.out.println("email "+ email );
-            System.out.println("vacio " + vacio);
-        %>
-        
-        <%
-            if (!email && !vacio) {
-        %>
-        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
 
-        <!-- Modal -->
-        <div id="myModal" class="modal fade" role="dialog">
-            <div class="modal-dialog">
-
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Error de Registro</h4>
-                    </div>
-                    <div class="modal-body">
-                        <p>El correo es inválido</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-        <%
-        }else if(vacio){    
-        %>
-        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
-
-        <!-- Modal -->
-        <div id="myModal" class="modal fade" role="dialog">
-            <div class="modal-dialog">
-
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Error de Registro</h4>
-                    </div>
-                    <div class="modal-body">
-                        <p>Por favor complete todos los espacios</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-        <%
-            }
-        %> --%>
 </html>

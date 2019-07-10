@@ -6,6 +6,7 @@
 package controlador;
 
 import DAO.UserDAO;
+import com.sun.faces.application.WebPrintWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -38,7 +39,7 @@ public class Controlador extends HttpServlet {
     public String validarTrueque = "vistas/hacerTrueque.jsp";
     public String notificaciones = "vistas/Notifications.jsp";
     public String listaProductos = "vistas/ListaProductos.jsp";
-    
+
     public boolean seguir = false;
     private static boolean emailValid = false;
 
@@ -82,12 +83,8 @@ public class Controlador extends HttpServlet {
         String accion = request.getParameter("accion");
         System.out.println("La accion es: " + accion);
         if (accion.equalsIgnoreCase("registrarse")) {
-            String msg = "Hola";
-//            request.setAttribute("mensaje", msg);
-//            request.setAttribute("email", false);
-//            request.setAttribute("vacio", false);
-//            seguir = false;
-//            request.setAttribute("seguir", seguir);
+            request.setAttribute("email", false);
+            request.setAttribute("vacio", false);
             acceso = registrarse;
 
         } else if (accion.equalsIgnoreCase("ingresar")) {
@@ -123,7 +120,6 @@ public class Controlador extends HttpServlet {
             String password = request.getParameter("txtPassword");
             boolean isEmpty = true;
             boolean emailVerify = false;
-           // request.setAttribute("seguir", seguir);
             if (!nombre.equals("") && !id.equals("") && !apellidos.equals("") && !correo.equals("") && !provincia.equals("") && !canton.equals("") && !distrito.equals("") && !password.equals("")) {
                 isEmpty = false;
                 if (verifyEmail(correo)) {
@@ -138,19 +134,19 @@ public class Controlador extends HttpServlet {
                     user.setProvincia(provincia);
                     user.setSecondName(apellidos);
                     dao.registrarse(user);
-//                    request.setAttribute("email", emailVerify);
-//                    request.setAttribute("vacio", isEmpty);
+                    request.setAttribute("email", emailVerify);
+                    request.setAttribute("vacio", isEmpty);
                     acceso = menu;
                 } else {
                     emailVerify = false;
-//                    request.setAttribute("email", emailVerify);
-//                    request.setAttribute("vacio", isEmpty);
+                    request.setAttribute("email", emailVerify);
+                    request.setAttribute("vacio", isEmpty);
                     acceso = registrarse;
                 }
             } else {
                 isEmpty = true;
-//                request.setAttribute("email", emailVerify);
-//                request.setAttribute("vacio", isEmpty);
+                request.setAttribute("email", emailVerify);
+                request.setAttribute("vacio", isEmpty);
                 acceso = registrarse;
             }
         } else if (accion.equalsIgnoreCase("INGRESO")) {
@@ -173,12 +169,27 @@ public class Controlador extends HttpServlet {
                         request.setAttribute("id", userAux.getId());
                         acceso = notificaciones;
                     } else {
+                        String someMessage = "Error !";
+                        PrintWriter out = response.getWriter();
+                        out.print("<html><head>");
+                        out.print("<script type=\"text/javascript\">alert(" + someMessage + ");</script>");
+                        out.print("</head><body></body></html>");
                         acceso = menu;
                     }
                 } else {
+                    String someMessage = "Error !";
+                    PrintWriter out = response.getWriter();
+                    out.print("<html><head>");
+                    out.print("<script type=\"text/javascript\">alert(" + someMessage + ");</script>");
+                    out.print("</head><body></body></html>");
                     acceso = menu;
                 }
             } else {
+                String someMessage = "Error !";
+                PrintWriter out = response.getWriter();
+                out.print("<html><head>");
+                out.print("<script type=\"text/javascript\">alert(" + someMessage + ");</script>");
+                out.print("</head><body></body></html>");
                 acceso = ingresar;
             }
         } else if (accion.equalsIgnoreCase("perfil")) {
