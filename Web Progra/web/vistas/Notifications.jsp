@@ -61,7 +61,7 @@
 
         <%
             String productoAceptado = (String) request.getAttribute("aceptado");
-            boolean aceptacion = true;
+            boolean aceptacion = false;
             if (productoAceptado.equalsIgnoreCase("true")) {
                 aceptacion = true;
             } else {
@@ -96,7 +96,8 @@
 
             </div>
         </div>
-        <%            }
+        <%            
+        }
         %>
 
 

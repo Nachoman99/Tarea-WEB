@@ -176,13 +176,19 @@ public class Controlador extends HttpServlet {
                                 primeraVez = true;
                             }
                         }
-                    }else{
+                    } else {
                         acceso = menu;
                     }
                     if (userAux.getProductoIntercambiar().size() > 0 && notify || primeraVez) {
-                        request.setAttribute("id", userAux.getId());
-                        request.setAttribute("aceptado", "true");
-                        acceso = notificaciones;
+                        if (primeraVez) {
+                            request.setAttribute("id", userAux.getId());
+                            request.setAttribute("aceptado", "true");
+                            acceso = notificaciones;
+                        }else{
+                            request.setAttribute("id", userAux.getId());
+                            request.setAttribute("aceptado", "false");
+                            acceso = notificaciones;
+                        }
                     } else {
                         acceso = menu;
                     }
