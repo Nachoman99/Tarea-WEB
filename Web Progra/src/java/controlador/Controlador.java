@@ -215,17 +215,20 @@ public class Controlador extends HttpServlet {
             System.out.println("Producto2 " + producto2);
             if (producto1.getPrecio() >= producto2.getPrecio()) {
                 if ((producto1.getPrecio() - producto2.getPrecio()) > 1000) {
-                    //no se puede hacer
+                    request.setAttribute("precioIncorrecto", "true");
                 } else {
                     //si se puede hacer
+                    request.setAttribute("precioIncorrecto", "false");
                     dao.insertarSolicitud(producto2, producto1, user.getId());
                     acceso = menu;
                 }
             } else if (producto1.getPrecio() < producto2.getPrecio()) {
                 if ((producto2.getPrecio() - producto1.getPrecio()) > 1000) {
                     //no se puede hacer
+                    request.setAttribute("precioIncorrecto", "true");
                 } else {
                     //si se puede hacer
+                    request.setAttribute("precioIncorrecto", "false");
                     dao.insertarSolicitud(producto2, producto1, user.getId());
                     acceso = menu;
                 }
