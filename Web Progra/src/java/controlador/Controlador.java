@@ -284,6 +284,10 @@ public class Controlador extends HttpServlet {
         } else if (accion.equalsIgnoreCase("listaProductos")) {
             request.setAttribute("id", user.getId());
             acceso = listaProductos;
+        }else if(accion.equalsIgnoreCase("aceptadoPrimera")){
+            System.out.println("entre aquiiiiiiiiiiii entonces muestro que cambie en false");
+            String id = request.getParameter("id");
+            dao.cambiarAceptadoVerdadero(id);
         }
 
         RequestDispatcher vista = request.getRequestDispatcher(acceso);

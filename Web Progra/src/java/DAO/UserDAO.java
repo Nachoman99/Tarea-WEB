@@ -430,4 +430,47 @@ public class UserDAO implements UserInterface {
             e.printStackTrace();
         }
     }
+    
+    
+    public void cambiarAceptadoVerdadero(String userID){
+        
+        Iterator<User> iterador1 = users.iterator();
+        while (iterador1.hasNext()) {
+            User next = iterador1.next();
+            for (int i = 0; i < next.getListaProductos().size(); i++) {
+                if(next.getListaProductos().get(i).isAceptadoPrimeraVez()){
+                    next.getListaProductos().get(i).setAceptadoPrimeraVez(false);
+                }
+                
+            }
+            
+        }
+     
+         List<User> listaAux = new ArrayList<>();
+        Iterator<User> iterador2 = users.iterator();
+        while (iterador2.hasNext()) {
+            User next = iterador2.next();
+            listaAux.add(next);
+        }
+        try {
+            json.deleteFile("jsonFile.json");
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        Iterator<User> iterador3 = listaAux.iterator();
+        while (iterador3.hasNext()) {
+            User next = iterador3.next();
+            try {
+                json.write("jsonFile.json", next);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        try {
+            users = DatosArray.getInstance().users;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
 }
