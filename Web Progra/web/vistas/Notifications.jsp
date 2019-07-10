@@ -87,10 +87,12 @@
                         <h4 class="modal-title">BUENAS NOTICIAS</h4>
                     </div>
                     <div class="modal-body">
-                        <p>SU PRODUCTO DE NOMBRE: <%=descripcionCorta%> SOLICITADO HA SIDO ACEPTADO</p>
+                        <p>SU PRODUCTO <%=descripcionCorta%> HA SIDO ACEPTADO</p>
+                        <p>TRUEQUE REALIZADO CIN EXITO</p>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal" href="Controlador?accion=aceptadoPrimera&id= <%=id%>">Close</button>
+                     <%--   <button type="button" class="btn btn-default" data-dismiss="modal" href="Controlador?accion=aceptadoPrimera&id= <%=id%>">Close</button> --%>
+                        <a href="Controlador?accion=aceptadoPrimera&id= <%=id%>">Close</a>
                     </div>
                 </div>
 

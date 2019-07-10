@@ -288,6 +288,7 @@ public class Controlador extends HttpServlet {
             System.out.println("entre aquiiiiiiiiiiii entonces muestro que cambie en false");
             String id = request.getParameter("id");
             dao.cambiarAceptadoVerdadero(id);
+            acceso = menu;
         }
 
         RequestDispatcher vista = request.getRequestDispatcher(acceso);
