@@ -289,7 +289,7 @@ public class Controlador extends HttpServlet {
             acceso = listaProductos;
         }else if(accion.equalsIgnoreCase("aceptadoPrimera")){
             String id = request.getParameter("id");
-            dao.cambiarAceptadoVerdadero(id);
+            dao.cambiarAceptadoFalso(id);
             acceso = menu;
         }else if(accion.equalsIgnoreCase("rechazoPrimero")){
             System.out.println("Entra a rechazo");
