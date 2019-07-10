@@ -14,6 +14,9 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link href="./css/bootstrap.css" rel="stylesheet" type="text/css"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
         <title>JSP Page</title>
     </head>
     <body>
@@ -26,6 +29,7 @@
             User user = null;
             int id1 = Integer.parseInt((String) request.getAttribute("productoPrimero"));
             int id2 = Integer.parseInt((String) request.getAttribute("productoSegundo"));
+            String precio = (String) request.getAttribute("precioIncorrecto");
             int producto1 = 0;
             int producto2 = 0;
             while (iterador.hasNext()) {
@@ -46,7 +50,7 @@
         <%                }
             }
 
-            String precio = (String) request.getAttribute("precioIncorrecto");
+           
             boolean ingresa = true;
             if (precio.equalsIgnoreCase("true")) {
                 ingresa = true;
@@ -89,9 +93,9 @@
 
 
         <p>Descripcion Corta Del Primer Producto: <%=dao.searchProduct(producto1).getDescripcionCorta()%><p>
-        <p>Precio Del Primer Precio: <%=dao.searchProduct(producto1).getPrecio()%><p> 
+        <p>Precio Del Primer Producto <%=dao.searchProduct(producto1).getPrecio()%><p> 
         <p>Descripcion Corta Del Segundo Producto: <%=dao.searchProduct(producto2).getDescripcionCorta()%><p>
-        <p>Precio Del Segundo Precio: <%=dao.searchProduct(producto2).getPrecio()%><p>     
+        <p>Precio Del Segundo Producto <%=dao.searchProduct(producto2).getPrecio()%><p>     
 
             <br>
         <p> Recuerde que la diferencia de precios no debe de ser mas o menos 1000<p>
