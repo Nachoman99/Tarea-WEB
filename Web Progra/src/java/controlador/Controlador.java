@@ -161,6 +161,7 @@ public class Controlador extends HttpServlet {
                     Iterator<Producto> it = list.iterator();
                     boolean notify = false;
                     boolean primeraVez = false;
+                    boolean rechazado = false;
                     while (it.hasNext()) {
                         Producto next = it.next();
                         if (next.getEstadoTrueque() == 1) {
@@ -175,20 +176,23 @@ public class Controlador extends HttpServlet {
                             if (next.isAceptadoPrimeraVez()) {
                                 primeraVez = true;
                             }
+                            if (next.isRechazado()) {
+                                rechazado = true;
+                            }
                         }
                     } else {
                         acceso = menu;
                     }
-                    if (userAux.getProductoIntercambiar().size() > 0 && notify || primeraVez) {
-                        if (primeraVez) {
+                    if (userAux.getProductoIntercambiar().size() > 0 && notify || primeraVez || rechazado) {
+                        if (primeraVez && !rechazado) {
                             request.setAttribute("id", userAux.getId());
                             request.setAttribute("aceptado", "true");
                             request.setAttribute("rechazado", "false");
                             acceso = notificaciones;
-                        }else{
+                        }else if(!primeraVez && rechazado){
                             request.setAttribute("id", userAux.getId());
                             request.setAttribute("aceptado", "false");
-                            request.setAttribute("rechazado", "false");
+                            request.setAttribute("rechazado", "true");
                             acceso = notificaciones;
                         }
                     } else {
@@ -293,7 +297,8 @@ public class Controlador extends HttpServlet {
             acceso = menu;
         }else if(accion.equalsIgnoreCase("rechazoPrimero")){
             System.out.println("Entra a rechazo");
-            
+            dao.cambiarRechazadoFalso("id");
+            acceso = menu;
         }
 
         RequestDispatcher vista = request.getRequestDispatcher(acceso);
