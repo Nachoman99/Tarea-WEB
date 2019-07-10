@@ -10,8 +10,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -41,6 +39,7 @@ public class Controlador extends HttpServlet {
     public String notificaciones = "vistas/Notifications.jsp";
     public String listaProductos = "vistas/ListaProductos.jsp";
     
+    public boolean seguir = false;
     private static boolean emailValid = false;
 
     public User user = new User();
@@ -84,7 +83,11 @@ public class Controlador extends HttpServlet {
         System.out.println("La accion es: " + accion);
         if (accion.equalsIgnoreCase("registrarse")) {
             String msg = "Hola";
-            request.setAttribute("mensaje", msg);
+//            request.setAttribute("mensaje", msg);
+//            request.setAttribute("email", false);
+//            request.setAttribute("vacio", false);
+//            seguir = false;
+//            request.setAttribute("seguir", seguir);
             acceso = registrarse;
 
         } else if (accion.equalsIgnoreCase("ingresar")) {
@@ -109,7 +112,7 @@ public class Controlador extends HttpServlet {
             request.setAttribute("id", user.getId());
             acceso = lista;
         } else if (accion.equalsIgnoreCase("registrar")) {
-
+            seguir = true;
             String id = request.getParameter("txtId");
             String nombre = request.getParameter("txtName");
             String apellidos = request.getParameter("txtSecondName");
@@ -118,10 +121,14 @@ public class Controlador extends HttpServlet {
             String canton = request.getParameter("txtCanton");
             String distrito = request.getParameter("txtDistrito");
             String password = request.getParameter("txtPassword");
+            boolean isEmpty = true;
+            boolean emailVerify = false;
+           // request.setAttribute("seguir", seguir);
             if (!nombre.equals("") && !id.equals("") && !apellidos.equals("") && !correo.equals("") && !provincia.equals("") && !canton.equals("") && !distrito.equals("") && !password.equals("")) {
+                isEmpty = false;
                 if (verifyEmail(correo)) {
                     System.out.println("Hola");
-                    emailValid = true;
+                    emailVerify = true;
                     user.setCanton(canton);
                     user.setDistrito(distrito);
                     user.setEmail(correo);
@@ -131,11 +138,19 @@ public class Controlador extends HttpServlet {
                     user.setProvincia(provincia);
                     user.setSecondName(apellidos);
                     dao.registrarse(user);
+//                    request.setAttribute("email", emailVerify);
+//                    request.setAttribute("vacio", isEmpty);
                     acceso = menu;
                 } else {
+                    emailVerify = false;
+//                    request.setAttribute("email", emailVerify);
+//                    request.setAttribute("vacio", isEmpty);
                     acceso = registrarse;
                 }
             } else {
+                isEmpty = true;
+//                request.setAttribute("email", emailVerify);
+//                request.setAttribute("vacio", isEmpty);
                 acceso = registrarse;
             }
         } else if (accion.equalsIgnoreCase("INGRESO")) {
@@ -171,7 +186,6 @@ public class Controlador extends HttpServlet {
             System.out.println("USER " + user.getId());
             acceso = perfil;
         } else if (accion.equalsIgnoreCase("inicio")) {
-            request.setAttribute("img", "mercado");
             acceso = inicio;
         } else if (accion.equalsIgnoreCase("trueque")) {
             //datos
@@ -230,7 +244,7 @@ public class Controlador extends HttpServlet {
             Producto producto1 = dao.searchProduct(intProduct1);
             dao.rechazar(producto1, user.getId());
             acceso = menu;
-        }else if(accion.equalsIgnoreCase("listaProductos")){
+        } else if (accion.equalsIgnoreCase("listaProductos")) {
             request.setAttribute("id", user.getId());
             acceso = listaProductos;
         }
