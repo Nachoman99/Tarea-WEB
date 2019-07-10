@@ -20,6 +20,8 @@ public class Producto {
     private int precio;
     private int numeroConsecutivo;
     private int estadoTrueque;
+    private boolean aceptadoPrimeraVez;
+    private boolean rechazado;
     
     public Producto(ArrayList<String> listaImagenes, String descripcionCorta, String descripcionDetallada, String categoria, int precio, int numeroConsecutivo) {
         this.listaImagenes = listaImagenes;
@@ -29,6 +31,7 @@ public class Producto {
         this.precio = precio;
         this.numeroConsecutivo = numeroConsecutivo;
         this.estadoTrueque=0;
+        aceptadoPrimeraVez = rechazado = false;
     }
 
     
@@ -94,8 +97,24 @@ public class Producto {
         this.estadoTrueque = estadoTrueque;
     }
 
+    public boolean isAceptadoPrimeraVez() {
+        return aceptadoPrimeraVez;
+    }
+
+    public void setAceptadoPrimeraVez(boolean aceptadoPrimeraVez) {
+        this.aceptadoPrimeraVez = aceptadoPrimeraVez;
+    }
+
+    public boolean isRechazado() {
+        return rechazado;
+    }
+
+    public void setRechazado(boolean rechazado) {
+        this.rechazado = rechazado;
+    }
+
     @Override
     public String toString() {
-        return "Producto{" + "listaImagenes=" + listaImagenes + ", descripcionCorta=" + descripcionCorta + ", descripcionDetallada=" + descripcionDetallada + ", categoria=" + categoria + ", precio=" + precio + ", numeroConsecutivo=" + numeroConsecutivo + ", estadoTrueque=" + estadoTrueque + '}';
+        return "Producto{" + "listaImagenes=" + listaImagenes + ", descripcionCorta=" + descripcionCorta + ", descripcionDetallada=" + descripcionDetallada + ", categoria=" + categoria + ", precio=" + precio + ", numeroConsecutivo=" + numeroConsecutivo + ", estadoTrueque=" + estadoTrueque + ", aceptadoPrimeraVez=" + aceptadoPrimeraVez + ", rechazado=" + rechazado + '}';
     }
 }
