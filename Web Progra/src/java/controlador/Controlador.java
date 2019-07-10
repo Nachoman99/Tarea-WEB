@@ -88,6 +88,7 @@ public class Controlador extends HttpServlet {
             acceso = registrarse;
 
         } else if (accion.equalsIgnoreCase("ingresar")) {
+            request.setAttribute("ingreso", "true");
             acceso = ingresar;
         } else if (accion.equalsIgnoreCase("anadir")) {
             acceso = añadir;
@@ -152,6 +153,7 @@ public class Controlador extends HttpServlet {
             String password = request.getParameter("txtPassword");
             User userAux;
             if ((userAux = dao.signIn(email, password)) != null) {
+                request.setAttribute("ingreso", "true");
                 user.setId(userAux.getId());
                 ArrayList<Producto> list = userAux.getProductoIntercambiar();
                 if (list != null) {
@@ -167,27 +169,13 @@ public class Controlador extends HttpServlet {
                         request.setAttribute("id", userAux.getId());
                         acceso = notificaciones;
                     } else {
-                        String someMessage = "Error !";
-                        PrintWriter out = response.getWriter();
-                        out.print("<html><head>");
-                        out.print("<script type=\"text/javascript\">alert(" + someMessage + ");</script>");
-                        out.print("</head><body></body></html>");
                         acceso = menu;
                     }
                 } else {
-                    String someMessage = "Error !";
-                    PrintWriter out = response.getWriter();
-                    out.print("<html><head>");
-                    out.print("<script type=\"text/javascript\">alert(" + someMessage + ");</script>");
-                    out.print("</head><body></body></html>");
                     acceso = menu;
                 }
             } else {
-                String someMessage = "Error !";
-                PrintWriter out = response.getWriter();
-                out.print("<html><head>");
-                out.print("<script type=\"text/javascript\">alert(" + someMessage + ");</script>");
-                out.print("</head><body></body></html>");
+                request.setAttribute("ingreso", "false");
                 acceso = ingresar;
             }
         } else if (accion.equalsIgnoreCase("perfil")) {
