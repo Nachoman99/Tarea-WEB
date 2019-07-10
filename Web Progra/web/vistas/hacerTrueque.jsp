@@ -32,29 +32,72 @@
                 User next = iterador.next();
                 user = next;
                 for (int i = 0; i < user.getListaProductos().size(); i++) {
-                    if (user.getListaProductos().get(i).getNumeroConsecutivo()==id1) {
-                        producto1= user.getListaProductos().get(i).getNumeroConsecutivo();
+                    if (user.getListaProductos().get(i).getNumeroConsecutivo() == id1) {
+                        producto1 = user.getListaProductos().get(i).getNumeroConsecutivo();
                     }
-                    if(user.getListaProductos().get(i).getNumeroConsecutivo()==id2){
-                         producto2= user.getListaProductos().get(i).getNumeroConsecutivo();
+                    if (user.getListaProductos().get(i).getNumeroConsecutivo() == id2) {
+                        producto2 = user.getListaProductos().get(i).getNumeroConsecutivo();
                     }
-                            
+
         %>
 
 
 
-        <%    
-                }
+        <%                }
+            }
+
+            String precio = (String) request.getAttribute("precioIncorrecto");
+            boolean ingresa = true;
+            if (precio.equalsIgnoreCase("true")) {
+                ingresa = true;
+            } else {
+                ingresa = false;
+            }
+            if (ingresa) {
+
+        %>
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $("#precioMalo").modal('show');
+            });
+
+        </script>
+        <!-- Modal -->
+        <div id="precioMalo" class="modal fade" role="dialog" >
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">ERROR DE PRECIOS</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>La diferencia de precios es muy grande...</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <%
             }
         %>
+
 
         <p>Descripcion Corta Del Primer Producto: <%=dao.searchProduct(producto1).getDescripcionCorta()%><p>
         <p>Precio Del Primer Precio: <%=dao.searchProduct(producto1).getPrecio()%><p> 
         <p>Descripcion Corta Del Segundo Producto: <%=dao.searchProduct(producto2).getDescripcionCorta()%><p>
         <p>Precio Del Segundo Precio: <%=dao.searchProduct(producto2).getPrecio()%><p>     
-          
-        <a href="Controlador?accion=aceptacion&producto1=<%=id1%>&producto2=<%=id2%>">Aceptar</a>  
-        <br>
-        <a href="Controlador?accion=menu">Regresar al menu y cancelar trueque</a>
+
+            <br>
+        <p> Recuerde que la diferencia de precios no debe de ser mas o menos 1000<p>
+
+            <a href="Controlador?accion=aceptacion&producto1=<%=id1%>&producto2=<%=id2%>">Aceptar</a>  
+            <br>
+            <a href="Controlador?accion=menu">Regresar al menu y cancelar trueque</a>
     </body>
 </html>
