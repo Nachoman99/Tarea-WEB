@@ -83,8 +83,8 @@ public class Controlador extends HttpServlet {
         String accion = request.getParameter("accion");
         System.out.println("La accion es: " + accion);
         if (accion.equalsIgnoreCase("registrarse")) {
-            request.setAttribute("email", false);
-            request.setAttribute("vacio", false);
+            request.setAttribute("email", "false");
+            request.setAttribute("vacio", "false");
             acceso = registrarse;
 
         } else if (accion.equalsIgnoreCase("ingresar")) {
@@ -133,20 +133,18 @@ public class Controlador extends HttpServlet {
                     user.setPassword(password);
                     user.setProvincia(provincia);
                     user.setSecondName(apellidos);
-                    dao.registrarse(user);
-                    request.setAttribute("email", emailVerify);
-                    request.setAttribute("vacio", isEmpty);
+                    dao.registrarse(user);                  
                     acceso = menu;
                 } else {
                     emailVerify = false;
-                    request.setAttribute("email", emailVerify);
-                    request.setAttribute("vacio", isEmpty);
+                    request.setAttribute("email", "false");
+                    request.setAttribute("vacio", "false");
                     acceso = registrarse;
                 }
             } else {
                 isEmpty = true;
-                request.setAttribute("email", emailVerify);
-                request.setAttribute("vacio", isEmpty);
+                request.setAttribute("email",  "false");
+                request.setAttribute("vacio",  "true");
                 acceso = registrarse;
             }
         } else if (accion.equalsIgnoreCase("INGRESO")) {

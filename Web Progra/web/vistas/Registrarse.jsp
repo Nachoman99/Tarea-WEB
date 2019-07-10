@@ -18,19 +18,36 @@
     </head>
     <body>
         <%
-            boolean email = (boolean) request.getAttribute("email");
-            boolean vacio = (boolean) request.getAttribute("vacio");
-            System.out.println("email " + email);
-            System.out.println("vacio " + vacio);
+            String email1 = (String)request.getAttribute("email");
+            String vacio1 =  (String)request.getAttribute("vacio");
+            System.out.println("email " + email1);
+            System.out.println("vacio " + vacio1);
+
+            boolean email=false;
+            boolean vacio=false;
+            if(email1.equalsIgnoreCase("false")&&vacio1.equalsIgnoreCase("false")){
+                email=false;
+                vacio=false;
+            }else if(email1.equalsIgnoreCase("true")&&vacio1.equalsIgnoreCase("true")){
+                email=true;
+                vacio=true;
+            }else if(email1.equalsIgnoreCase("true")){
+                email=true;
+            }else if(vacio1.equalsIgnoreCase("true")){
+                vacio=true;
+            }
+            System.out.println("email " + email1);
+            System.out.println("vacio " + vacio1);
         %>
 
         <%
             if (!email && !vacio) {
+               
         %>
 
-        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+        
         <!-- Modal -->
-        <div id="myModal" class="modal fade" role="dialog">
+        <div id="correoMalo" class="modal fade" role="dialog">
             <div class="modal-dialog">
 
                 <!-- Modal content-->
@@ -52,9 +69,10 @@
         <%
         } else if (vacio) {
         %>
-        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+        
         <!-- Modal -->
-        <div id="myModal" class="modal fade" role="dialog">
+        
+        <div id="vaciosMalo" class="modal fade" role="dialog">
             <div class="modal-dialog">
 
                 <!-- Modal content-->
