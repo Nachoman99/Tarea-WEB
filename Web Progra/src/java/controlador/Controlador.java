@@ -184,15 +184,26 @@ public class Controlador extends HttpServlet {
                         acceso = menu;
                     }
                     if (userAux.getProductoIntercambiar().size() > 0 && notify || primeraVez || rechazado) {
-                        if (primeraVez && !rechazado) {
+                        if (primeraVez) {
                             request.setAttribute("id", userAux.getId());
                             request.setAttribute("aceptado", "true");
                             request.setAttribute("rechazado", "false");
                             acceso = notificaciones;
-                        }else if(!primeraVez && rechazado){
+                        }else{
+                            request.setAttribute("id", userAux.getId());
+                            request.setAttribute("aceptado", "false");
+                            request.setAttribute("rechazado", "false");
+                            acceso = notificaciones;
+                        }
+                        if (rechazado) {
                             request.setAttribute("id", userAux.getId());
                             request.setAttribute("aceptado", "false");
                             request.setAttribute("rechazado", "true");
+                            acceso = notificaciones;
+                        }else{
+                            request.setAttribute("id", userAux.getId());
+                            request.setAttribute("aceptado", "false");
+                            request.setAttribute("rechazado", "false");
                             acceso = notificaciones;
                         }
                     } else {
