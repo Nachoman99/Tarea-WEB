@@ -81,6 +81,8 @@ public class Controlador extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String acceso = "";
         String accion = request.getParameter("accion");
+        String producto1S = null;
+        String producto2S = null;
         System.out.println("La accion es: " + accion);
         if (accion.equalsIgnoreCase("registrarse")) {
             request.setAttribute("email", "true");
@@ -134,7 +136,7 @@ public class Controlador extends HttpServlet {
                     user.setPassword(password);
                     user.setProvincia(provincia);
                     user.setSecondName(apellidos);
-                    dao.registrarse(user);                  
+                    dao.registrarse(user);
                     acceso = menu;
                 } else {
                     emailVerify = false;
@@ -144,8 +146,8 @@ public class Controlador extends HttpServlet {
                 }
             } else {
                 isEmpty = true;
-                request.setAttribute("email",  "false");
-                request.setAttribute("vacio",  "true");
+                request.setAttribute("email", "false");
+                request.setAttribute("vacio", "true");
                 acceso = registrarse;
             }
         } else if (accion.equalsIgnoreCase("INGRESO")) {
@@ -194,8 +196,11 @@ public class Controlador extends HttpServlet {
             request.setAttribute("productoID", request.getParameter("consecutivo"));
             acceso = caracteristicas;
         } else if (accion.equalsIgnoreCase("validarTrueque")) {
-            request.setAttribute("productoPrimero", request.getParameter("consecutivoPrimero"));
-            request.setAttribute("productoSegundo", request.getParameter("consecutivoSegundo"));
+            producto1S = request.getParameter("consecutivoPrimero");
+            producto2S = request.getParameter("consecutivoSegundo");
+            request.setAttribute("productoPrimero", producto1S);
+            request.setAttribute("productoSegundo", producto2S);
+            request.setAttribute("precioIncorrecto", "false");
             acceso = validarTrueque;
         } else if (accion.equalsIgnoreCase("notification")) {
 //            System.out.println("Holaaa");
@@ -213,11 +218,18 @@ public class Controlador extends HttpServlet {
             Producto producto2 = dao.searchProduct(intProduct2);
             System.out.println("Producto " + producto1);
             System.out.println("Producto2 " + producto2);
+            System.out.println("Producto1 " + producto1S);
+            System.out.println("Producto2 " + producto2S);
             if (producto1.getPrecio() >= producto2.getPrecio()) {
                 if ((producto1.getPrecio() - producto2.getPrecio()) > 1000) {
+                    request.setAttribute("productoPrimero", producto1S);
+                    request.setAttribute("productoSegundo", producto2S);
                     request.setAttribute("precioIncorrecto", "true");
+                    acceso = validarTrueque;
                 } else {
                     //si se puede hacer
+                    request.setAttribute("productoPrimero", producto1S);
+                    request.setAttribute("productoSegundo", producto2S);
                     request.setAttribute("precioIncorrecto", "false");
                     dao.insertarSolicitud(producto2, producto1, user.getId());
                     acceso = menu;
@@ -225,9 +237,14 @@ public class Controlador extends HttpServlet {
             } else if (producto1.getPrecio() < producto2.getPrecio()) {
                 if ((producto2.getPrecio() - producto1.getPrecio()) > 1000) {
                     //no se puede hacer
+                    request.setAttribute("productoPrimero", producto1S);
+                    request.setAttribute("productoSegundo", producto2S);
                     request.setAttribute("precioIncorrecto", "true");
+                    acceso = validarTrueque;
                 } else {
                     //si se puede hacer
+                    request.setAttribute("productoPrimero", producto1S);
+                    request.setAttribute("productoSegundo", producto2S);
                     request.setAttribute("precioIncorrecto", "false");
                     dao.insertarSolicitud(producto2, producto1, user.getId());
                     acceso = menu;
