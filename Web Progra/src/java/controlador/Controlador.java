@@ -183,10 +183,12 @@ public class Controlador extends HttpServlet {
                         if (primeraVez) {
                             request.setAttribute("id", userAux.getId());
                             request.setAttribute("aceptado", "true");
+                            request.setAttribute("rechazado", "false");
                             acceso = notificaciones;
                         }else{
                             request.setAttribute("id", userAux.getId());
                             request.setAttribute("aceptado", "false");
+                            request.setAttribute("rechazado", "false");
                             acceso = notificaciones;
                         }
                     } else {
@@ -225,6 +227,7 @@ public class Controlador extends HttpServlet {
 //            System.out.println("Holaaa");
             request.setAttribute("id", user.getId());
             request.setAttribute("aceptado", "false");
+            request.setAttribute("rechazado", "false");
             acceso = notificaciones;
         } else if (accion.equalsIgnoreCase("menu")) {
             acceso = menu;
@@ -285,10 +288,12 @@ public class Controlador extends HttpServlet {
             request.setAttribute("id", user.getId());
             acceso = listaProductos;
         }else if(accion.equalsIgnoreCase("aceptadoPrimera")){
-            System.out.println("entre aquiiiiiiiiiiii entonces muestro que cambie en false");
             String id = request.getParameter("id");
             dao.cambiarAceptadoVerdadero(id);
             acceso = menu;
+        }else if(accion.equalsIgnoreCase("rechazoPrimero")){
+            System.out.println("Entra a rechazo");
+            
         }
 
         RequestDispatcher vista = request.getRequestDispatcher(acceso);

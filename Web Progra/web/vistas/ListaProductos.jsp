@@ -42,10 +42,10 @@
                     <td><%=next.getPrecio()%></td>
                 </tr>
             </tbody>
-        </table>
-        <%
+            <%
             }
-        %>
+            %>
+        </table>
         <a href="Controlador?accion=menu">Regresar al menu</a>
     </body>
 </html>

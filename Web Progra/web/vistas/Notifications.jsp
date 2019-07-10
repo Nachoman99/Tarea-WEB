@@ -73,9 +73,9 @@
         <script type="text/javascript">
             $(document).ready(function () {
                 $("#aceptacion").modal('show');
-                
+
             });
-            
+
 
         </script>
         <!-- Modal -->
@@ -101,9 +101,48 @@
         </div>
         <%
             }
+            String productoRechazado = (String) request.getAttribute("rechazado");
+            boolean rechazado = false;
+            if (productoRechazado.equals("true")) {
+                rechazado = true;
+            } else {
+                rechazado = false;
+            }
+            if (rechazado) {
+
         %>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $("#rechazado").modal('show');
+
+            });
 
 
+        </script>
+        <!-- Modal -->
+        <div id="rechazado" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">MALAS NOTICIAS</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>SU PRODUCTO <%=descripcionCorta%> HA SIDO RECHAZADO</p>
+                        <p>FALLO AL REALIZAR TRUEQUE</p>
+                    </div>
+                    <div class="modal-footer">
+                        <%--   <button type="button" class="btn btn-default" data-dismiss="modal" href="Controlador?accion=aceptadoPrimera&id= <%=id%>">Close</button> --%>
+                        <a href="Controlador?accion=rechazoPrimero&id= <%=id%>">Close</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <%
+            }
+        %>
     </table>
     <br>
     <a href="Controlador?accion=menu">Ir al menu</a>
