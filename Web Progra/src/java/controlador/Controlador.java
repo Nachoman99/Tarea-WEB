@@ -42,7 +42,8 @@ public class Controlador extends HttpServlet {
 
     public boolean seguir = false;
     private static boolean emailValid = false;
-
+    String producto1S = null;
+    String producto2S = null;
     public User user = new User();
     public UserDAO dao;
 
@@ -81,8 +82,6 @@ public class Controlador extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String acceso = "";
         String accion = request.getParameter("accion");
-        String producto1S = null;
-        String producto2S = null;
         System.out.println("La accion es: " + accion);
         if (accion.equalsIgnoreCase("registrarse")) {
             request.setAttribute("email", "true");
