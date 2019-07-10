@@ -259,6 +259,7 @@ public class UserDAO implements UserInterface {
             for (int i = 0; i < next.getProductosSolicitados().size(); i++) {
                 if (productoAceptar.getNumeroConsecutivo() == next.getProductoIntercambiar().get(i).getNumeroConsecutivo()) {
                     productoCambiar2.setEstadoTrueque(2);
+                    productoCambiar2.setAceptadoPrimeraVez(true);
                     next.getListaProductos().add(productoCambiar2);
                 }
                 if (productoAceptar.getNumeroConsecutivo() == next.getProductosSolicitados().get(i).getNumeroConsecutivo()) {
@@ -371,9 +372,7 @@ public class UserDAO implements UserInterface {
                         next.getListaProductos().get(i).setEstadoTrueque(0);
                     }
                 }
-
             }
-
         }
 
         Iterator<User> itera = users.iterator();

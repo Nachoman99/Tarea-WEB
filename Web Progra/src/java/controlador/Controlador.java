@@ -160,14 +160,28 @@ public class Controlador extends HttpServlet {
                 if (list != null) {
                     Iterator<Producto> it = list.iterator();
                     boolean notify = false;
+                    boolean primeraVez = false;
                     while (it.hasNext()) {
                         Producto next = it.next();
                         if (next.getEstadoTrueque() == 1) {
                             notify = true;
                         }
                     }
-                    if (userAux.getProductoIntercambiar().size() > 0 && notify) {
+                    ArrayList<Producto> listProducts = userAux.getListaProductos();
+                    if (listProducts != null) {
+                        Iterator<Producto> iterador = listProducts.iterator();
+                        while (iterador.hasNext()) {
+                            Producto next = iterador.next();
+                            if (next.isAceptadoPrimeraVez()) {
+                                primeraVez = true;
+                            }
+                        }
+                    }else{
+                        acceso = menu;
+                    }
+                    if (userAux.getProductoIntercambiar().size() > 0 && notify || primeraVez) {
                         request.setAttribute("id", userAux.getId());
+                        request.setAttribute("aceptado", "true");
                         acceso = notificaciones;
                     } else {
                         acceso = menu;
@@ -204,6 +218,7 @@ public class Controlador extends HttpServlet {
         } else if (accion.equalsIgnoreCase("notification")) {
 //            System.out.println("Holaaa");
             request.setAttribute("id", user.getId());
+            request.setAttribute("aceptado", "false");
             acceso = notificaciones;
         } else if (accion.equalsIgnoreCase("menu")) {
             acceso = menu;
