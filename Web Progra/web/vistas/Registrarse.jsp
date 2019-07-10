@@ -36,8 +36,7 @@
             } else if (vacio1.equalsIgnoreCase("true")) {
                 vacio = true;
             }
-            System.out.println("email " + email1);
-            System.out.println("vacio " + vacio1);
+            
         %>
 
         <%

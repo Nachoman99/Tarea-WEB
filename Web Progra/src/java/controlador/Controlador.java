@@ -83,7 +83,7 @@ public class Controlador extends HttpServlet {
         String accion = request.getParameter("accion");
         System.out.println("La accion es: " + accion);
         if (accion.equalsIgnoreCase("registrarse")) {
-            request.setAttribute("email", "false");
+            request.setAttribute("email", "true");
             request.setAttribute("vacio", "false");
             acceso = registrarse;
 
