@@ -189,13 +189,7 @@ public class Controlador extends HttpServlet {
                             request.setAttribute("aceptado", "true");
                             request.setAttribute("rechazado", "false");
                             acceso = notificaciones;
-                        }else{
-                            request.setAttribute("id", userAux.getId());
-                            request.setAttribute("aceptado", "false");
-                            request.setAttribute("rechazado", "false");
-                            acceso = notificaciones;
-                        }
-                        if (rechazado) {
+                        }else if(rechazado){
                             request.setAttribute("id", userAux.getId());
                             request.setAttribute("aceptado", "false");
                             request.setAttribute("rechazado", "true");
@@ -308,7 +302,8 @@ public class Controlador extends HttpServlet {
             acceso = menu;
         }else if(accion.equalsIgnoreCase("rechazoPrimero")){
             System.out.println("Entra a rechazo");
-            dao.cambiarRechazadoFalso("id");
+            String id = request.getParameter("id");
+            dao.cambiarRechazadoFalso(id);
             acceso = menu;
         }
 

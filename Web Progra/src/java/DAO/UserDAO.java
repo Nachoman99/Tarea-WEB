@@ -431,23 +431,20 @@ public class UserDAO implements UserInterface {
             e.printStackTrace();
         }
     }
-    
-    
-    public void cambiarAceptadoFalso(String userID){
-        
+
+    public void cambiarAceptadoFalso(String userID) {
+
         Iterator<User> iterador1 = users.iterator();
         while (iterador1.hasNext()) {
             User next = iterador1.next();
             for (int i = 0; i < next.getListaProductos().size(); i++) {
-                if(next.getListaProductos().get(i).isAceptadoPrimeraVez()){
+                if (next.getListaProductos().get(i).isAceptadoPrimeraVez()) {
                     next.getListaProductos().get(i).setAceptadoPrimeraVez(false);
                 }
-                
             }
-            
         }
-     
-         List<User> listaAux = new ArrayList<>();
+
+        List<User> listaAux = new ArrayList<>();
         Iterator<User> iterador2 = users.iterator();
         while (iterador2.hasNext()) {
             User next = iterador2.next();
@@ -473,23 +470,21 @@ public class UserDAO implements UserInterface {
             e.printStackTrace();
         }
     }
-    
-    public void cambiarRechazadoFalso(String userID){
-        
+
+    public void cambiarRechazadoFalso(String userID) {
+
         Iterator<User> iterador1 = users.iterator();
         while (iterador1.hasNext()) {
             User next = iterador1.next();
             for (int i = 0; i < next.getListaProductos().size(); i++) {
-                if(next.getListaProductos().get(i).isRechazado()){
-                    next.getListaProductos().get(i).setAceptadoPrimeraVez(false);
+                if (next.getListaProductos().get(i).isRechazado()) {
+                    next.getListaProductos().get(i).setRechazado(false);
                     next.getListaProductos().get(i).setEstadoTrueque(0);
                 }
-                
             }
-            
         }
-     
-         List<User> listaAux = new ArrayList<>();
+
+        List<User> listaAux = new ArrayList<>();
         Iterator<User> iterador2 = users.iterator();
         while (iterador2.hasNext()) {
             User next = iterador2.next();
@@ -515,6 +510,5 @@ public class UserDAO implements UserInterface {
             e.printStackTrace();
         }
     }
-    
-    
+
 }
