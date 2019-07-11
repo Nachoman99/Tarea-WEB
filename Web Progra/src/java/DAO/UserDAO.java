@@ -1,11 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package DAO;
 
-import Archivos.ManejoJson;
+import Archivos.FileManagement;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -14,18 +9,30 @@ import modelo.Producto;
 import modelo.User;
 
 /**
+ * Class that handles all User methods to modify within the file
  *
  * @author Kevin Trejos
  */
 public class UserDAO implements UserInterface {
 
     private List<User> users;
-    private ManejoJson json = new ManejoJson();
+    private FileManagement json = new FileManagement();
 
+    /**
+     * Constructor that matches a User list by the DataArray instance
+     *
+     * @throws IOException
+     */
     public UserDAO() throws IOException {
         users = DatosArray.getInstance().users;
     }
 
+    /**
+     * Search for a product by its id
+     *
+     * @param consecutive the consecutive number of the product to search
+     * @return he product found, null if you can not find it
+     */
     public Producto searchProduct(int consecutive) {
         Iterator<User> iterator = users.iterator();
         while (iterator.hasNext()) {
@@ -42,7 +49,13 @@ public class UserDAO implements UserInterface {
         return null;
     }
 
-    public User search(String id) {
+    /**
+     * Search for a User
+     *
+     * @param id id of the user to search
+     * @return The user found, null if you can not find it
+     */
+    public User searchUser(String id) {
         Iterator<User> iterator = users.iterator();
         while (iterator.hasNext()) {
             User next = iterator.next();
@@ -51,10 +64,15 @@ public class UserDAO implements UserInterface {
                 return next;
             }
         }
-//        System.out.println("Perra");
         return null;
     }
 
+    /**
+     * Method for when a user registers and write it in the file
+     *
+     * @param user user to register
+     * @return true if you registered it, false otherwise
+     */
     @Override
     public boolean registrarse(User user) {
         boolean repeat = false;
@@ -79,16 +97,23 @@ public class UserDAO implements UserInterface {
         }
     }
 
+    /**
+     * method that returns all the users that are in the file
+     *
+     * @return all the users that are in the file
+     */
     @Override
     public List<User> listar() {
         return users;
     }
 
-    @Override
-    public boolean actualizar(User user) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
+    /**
+     * Method for when a user enters and verify if the data is correct
+     *
+     * @param email email of the User
+     * @param password password of the User
+     * @return the User who entered
+     */
     @Override
     public User signIn(String email, String password) {
         Iterator<User> iterador = users.iterator();
@@ -101,19 +126,14 @@ public class UserDAO implements UserInterface {
         return null;
     }
 
+    /**
+     * Method to insert a product in the list of products of a specific User
+     *
+     * @param producto product to insert
+     * @param userID id of the user to whom the product will be inserted
+     */
     @Override
     public void insertarProducto(Producto producto, String userID) {
-//         Alumno a = alumnos.get(alumnos.size()-1);
-//        Alumno alumnoCopy = new Alumno(a.getId()+1, alumno.getNombre(), alumno.getApellidos());
-//        return alumnos.add(alumnoCopy);
-//        ArrayList<Producto> producto1 = users.get(users.size()-1).getListaProductos();
-//        if(producto1.isEmpty()&&users.size()==1){
-//             producto.setNumeroConsecutivo(1);
-//        }else{      
-//             Producto productoNumero = producto1.get(producto1.size()-1);
-//             producto.setNumeroConsecutivo(productoNumero.getNumeroConsecutivo()+1);
-//        }
-//      
         int cantidad = 0;
         Iterator<User> iteradorN = users.iterator();
         while (iteradorN.hasNext()) {
@@ -126,7 +146,6 @@ public class UserDAO implements UserInterface {
         } else {
             producto.setNumeroConsecutivo(cantidad + 1);
         }
-
         Iterator<User> iterador = users.iterator();
         while (iterador.hasNext()) {
             User next = iterador.next();
@@ -160,12 +179,14 @@ public class UserDAO implements UserInterface {
             e.printStackTrace();
         }
     }
-//
-//    0=normal
-//1=pendienteTrueque
-//2=aceptado
-//3=rechazado
 
+    /**
+     * Ask the User for a product for barter
+     *
+     * @param productoUsuario Product to be exchanged
+     * @param solicitado Product requested
+     * @param userID id of the User to request barter
+     */
     @Override
     public void insertarSolicitud(Producto productoUsuario, Producto solicitado, String userID) {
         productoUsuario.setEstadoTrueque(2);
@@ -227,9 +248,14 @@ public class UserDAO implements UserInterface {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
+    /**
+     * Method to use if the User accepts the barter
+     *
+     * @param productoAceptar Product to receive
+     * @param userID id of the user
+     */
     public void accept(Producto productoAceptar, String userID) {
         int consecProduct = 0;
         int consecProductUser = 0;
@@ -346,6 +372,12 @@ public class UserDAO implements UserInterface {
         }
     }
 
+    /**
+     * Method to use if the user rejects the barter
+     *
+     * @param productoBorrar product to refuse
+     * @param userID id of the user
+     */
     @Override
     public void rechazar(Producto productoBorrar, String userID) {
         int posicion = 0;
@@ -432,6 +464,11 @@ public class UserDAO implements UserInterface {
         }
     }
 
+    /**
+     * Change status from accepted to false
+     *
+     * @param userID id of the user
+     */
     public void cambiarAceptadoFalso(String userID) {
 
         Iterator<User> iterador1 = users.iterator();
@@ -471,6 +508,11 @@ public class UserDAO implements UserInterface {
         }
     }
 
+    /**
+     * Change the status of rejected to false
+     *
+     * @param userID id of the user
+     */
     public void cambiarRechazadoFalso(String userID) {
 
         Iterator<User> iterador1 = users.iterator();
@@ -510,5 +552,4 @@ public class UserDAO implements UserInterface {
             e.printStackTrace();
         }
     }
-
 }

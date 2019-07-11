@@ -24,6 +24,13 @@ import modelo.User;
  */
 public class ManejoArchivos {
 
+    /**
+     *
+     * @param ruta
+     * @return
+     * @throws FileNotFoundException
+     * @throws IOException
+     */
     public ArrayList<User> leerArchivo(String ruta) throws FileNotFoundException, IOException {
         ArrayList<User> list = new ArrayList<>();
         File file = new File(ruta);
@@ -131,6 +138,11 @@ public class ManejoArchivos {
         return list;
     }
 
+    /**
+     *
+     * @param list
+     * @return
+     */
     public String imprimirValores(ArrayList<User> list) {
         String usersList = "";
         ArrayList<User> lista = list;
@@ -142,6 +154,11 @@ public class ManejoArchivos {
         return usersList;
     }
 
+    /**
+     *
+     * @param user
+     * @return
+     */
     public String conversor(User user) {
         String strImages = "";
         String strProducts = "";
@@ -162,6 +179,13 @@ public class ManejoArchivos {
         return strProducts;
     }
 
+    /**
+     *
+     * @param ruta
+     * @param user
+     * @throws FileNotFoundException
+     * @throws IOException
+     */
     public void escribirArchivo(String ruta, User user) throws FileNotFoundException, IOException {
         File file = new File(ruta);
         FileWriter wr = new FileWriter(file.getAbsoluteFile(), true);

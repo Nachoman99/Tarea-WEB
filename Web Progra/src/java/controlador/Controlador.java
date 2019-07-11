@@ -1,12 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controlador;
 
 import DAO.UserDAO;
-import com.sun.faces.application.WebPrintWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -21,40 +15,104 @@ import modelo.Producto;
 import modelo.User;
 
 /**
- *
+ * Class that is responsible for window navigation
  * @author Kevin Trejos
  */
 @WebServlet(name = "Controlador", urlPatterns = {"/Controlador"})
 public class Controlador extends HttpServlet {
 
+    /**
+     *Open the Register view
+     */
     public String registrarse = "vistas/Registrarse.jsp";
+
+    /**
+     *Open the Enter view
+     */
     public String ingresar = "vistas/Ingresar.jsp";
+
+    /**
+     * Open the view to add 
+     */
     public String añadir = "vistas/añadir.jsp";
+
+    /**
+     * Open the list view
+     */
     public String lista = "vistas/lista.jsp";
+
+    /**
+     * Open the profile view
+     */
     public String perfil = "vistas/perfil.jsp";
+
+    /**
+     * Open the barter view
+     */
     public String trueque = "vistas/trueque.jsp";
+
+    /**
+     * Open the menu view
+     */
     public String menu = "vistas/Menu.jsp";
+
+    /**
+     * Open the index view
+     */
     public String inicio = "index.jsp";
+
+    /**
+     * Open the product features view
+     */
     public String caracteristicas = "vistas/productoCaracteristicas.jsp";
+
+    /**
+     * Open the barter view
+     */
     public String validarTrueque = "vistas/hacerTrueque.jsp";
+
+    /**
+     * Open the notifications view
+     */
     public String notificaciones = "vistas/Notifications.jsp";
+
+    /**
+     * Open the list of products view
+     */
     public String listaProductos = "vistas/ListaProductos.jsp";
 
     public boolean seguir = false;
     private static boolean emailValid = false;
     String producto1S = null;
     String producto2S = null;
+
     public User user = new User();
+
     public UserDAO dao;
 
+    /**
+     * Constructor
+     * @throws IOException
+     */
     public Controlador() throws IOException {
         this.dao = new UserDAO();
     }
 
+    /**
+     * get
+     * @return
+     */
     public static boolean isEmailValid() {
         return emailValid;
     }
 
+    /**
+     * 
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
@@ -78,6 +136,13 @@ public class Controlador extends HttpServlet {
         }
     }
 
+    /**
+     * Method that does the whole validation and navigation process
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String acceso = "";
@@ -311,11 +376,22 @@ public class Controlador extends HttpServlet {
         vista.forward(request, response);
     }
 
+    /**
+     * 
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
 
+    /**
+     *
+     * @return
+     */
     public String getServletInfo() {
         return "Short description";
     }

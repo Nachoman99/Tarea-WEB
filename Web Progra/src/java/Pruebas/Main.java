@@ -6,7 +6,7 @@
 package Pruebas;
 
 import Archivos.ManejoArchivos;
-import Archivos.ManejoJson;
+import Archivos.FileManagement;
 import Archivos.ManejoXML;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -23,6 +23,10 @@ import modelo.User;
  */
 public class Main {
     
+    /**
+     *
+     * @param args
+     */
     public static void main(String[] args) {
         
         ManejoXML xml = null;
@@ -52,7 +56,7 @@ public class Main {
         listaProd.add(pr);
         User user2 = new User("098", "Kevin", "trejos", "kevin.trejos", "Alajuela", "San ramón", "San Ramón", "qwer", listaProd);
         User user3 = new User("4321", "Fernanda", "Herrera", "Fer12", "Alajuela", "san Ramon", "SAn ramon", "Fer1233", listaProd);
-        ManejoJson json = new ManejoJson();
+        FileManagement json = new FileManagement();
         
         try {
             json.write("files/jsonFile.json", user);

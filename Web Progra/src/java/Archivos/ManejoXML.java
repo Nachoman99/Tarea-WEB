@@ -41,10 +41,19 @@ public class ManejoXML {
         decoder = new XMLDecoder(new FileInputStream(ruta));
     }
 
+    /**
+     *
+     */
     public void closeEncoder() {
         encoder.close();
     }
 
+    /**
+     *
+     * @param ruta
+     * @param user
+     * @throws FileNotFoundException
+     */
     public void write(String ruta, User user) throws FileNotFoundException {
         if (encoder == null) {
             createEncoder(ruta);
@@ -54,6 +63,12 @@ public class ManejoXML {
         }
     }
 
+    /**
+     *
+     * @param ruta
+     * @return
+     * @throws FileNotFoundException
+     */
     public User readFirst(String ruta) throws FileNotFoundException {
         if (decoder == null) {
             createDecoder(ruta);
@@ -68,6 +83,11 @@ public class ManejoXML {
         return null;
     }
 
+    /**
+     *
+     * @param ruta
+     * @return
+     */
     public ArrayList<User> readAll(String ruta) {
         ArrayList<User> listUser = new ArrayList<>();
         User user = null;
