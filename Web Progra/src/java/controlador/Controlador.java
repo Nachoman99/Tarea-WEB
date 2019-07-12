@@ -16,23 +16,24 @@ import modelo.User;
 
 /**
  * Class that is responsible for window navigation
+ *
  * @author Kevin Trejos
  */
 @WebServlet(name = "Controlador", urlPatterns = {"/Controlador"})
 public class Controlador extends HttpServlet {
 
     /**
-     *Open the Register view
+     * Open the Register view
      */
     public String registrarse = "vistas/Registrarse.jsp";
 
     /**
-     *Open the Enter view
+     * Open the Enter view
      */
     public String ingresar = "vistas/Ingresar.jsp";
 
     /**
-     * Open the view to add 
+     * Open the view to add
      */
     public String añadir = "vistas/añadir.jsp";
 
@@ -92,6 +93,7 @@ public class Controlador extends HttpServlet {
 
     /**
      * Constructor
+     *
      * @throws IOException
      */
     public Controlador() throws IOException {
@@ -100,6 +102,7 @@ public class Controlador extends HttpServlet {
 
     /**
      * get
+     *
      * @return
      */
     public static boolean isEmailValid() {
@@ -107,7 +110,7 @@ public class Controlador extends HttpServlet {
     }
 
     /**
-     * 
+     *
      * @param request
      * @param response
      * @throws ServletException
@@ -138,6 +141,7 @@ public class Controlador extends HttpServlet {
 
     /**
      * Method that does the whole validation and navigation process
+     *
      * @param request
      * @param response
      * @throws ServletException
@@ -157,21 +161,31 @@ public class Controlador extends HttpServlet {
             request.setAttribute("ingreso", "true");
             acceso = ingresar;
         } else if (accion.equalsIgnoreCase("anadir")) {
+            request.setAttribute("productoCorrecto", "false");
             acceso = añadir;
         } else if (accion.equalsIgnoreCase("introducir")) {
             //metodo de meter la vara saica
             Producto producto;
             String corta = request.getParameter("txtDescripcionCorta");
             String detallada = request.getParameter("txtDescripcionDetallada");
-            int precio = Integer.parseInt(request.getParameter("txtPrecio"));
+            String precioS = request.getParameter("txtPrecio");
+            int precio = 0;
+            if (!precioS.equals("")) {
+                precio = Integer.parseInt(precioS);
+            }
             String imagen = request.getParameter("txtImagen");
             String categoria = request.getParameter("categoria");
-            ArrayList<String> imagenes = new ArrayList<>();
-            imagenes.add(imagen);
-            producto = new Producto(imagenes, corta, detallada, categoria, precio, 0);
-            dao.insertarProducto(producto, user.getId());
-            acceso = menu;
-
+            if (!corta.equals("") && !detallada.equals("") && !imagen.equals("") && precio > 0) {
+                request.setAttribute("productoCorrecto", "false");
+                ArrayList<String> imagenes = new ArrayList<>();
+                imagenes.add(imagen);
+                producto = new Producto(imagenes, corta, detallada, categoria, precio, 0);
+                dao.insertarProducto(producto, user.getId());
+                acceso = menu;
+            } else {
+                request.setAttribute("productoCorrecto", "true");
+                acceso = añadir;
+            }
         } else if (accion.equalsIgnoreCase("listar")) {
             request.setAttribute("id", user.getId());
             acceso = lista;
@@ -254,12 +268,12 @@ public class Controlador extends HttpServlet {
                             request.setAttribute("aceptado", "true");
                             request.setAttribute("rechazado", "false");
                             acceso = notificaciones;
-                        }else if(rechazado){
+                        } else if (rechazado) {
                             request.setAttribute("id", userAux.getId());
                             request.setAttribute("aceptado", "false");
                             request.setAttribute("rechazado", "true");
                             acceso = notificaciones;
-                        }else{
+                        } else {
                             request.setAttribute("id", userAux.getId());
                             request.setAttribute("aceptado", "false");
                             request.setAttribute("rechazado", "false");
@@ -361,11 +375,11 @@ public class Controlador extends HttpServlet {
         } else if (accion.equalsIgnoreCase("listaProductos")) {
             request.setAttribute("id", user.getId());
             acceso = listaProductos;
-        }else if(accion.equalsIgnoreCase("aceptadoPrimera")){
+        } else if (accion.equalsIgnoreCase("aceptadoPrimera")) {
             String id = request.getParameter("id");
             dao.cambiarAceptadoFalso(id);
             acceso = menu;
-        }else if(accion.equalsIgnoreCase("rechazoPrimero")){
+        } else if (accion.equalsIgnoreCase("rechazoPrimero")) {
             System.out.println("Entra a rechazo");
             String id = request.getParameter("id");
             dao.cambiarRechazadoFalso(id);
@@ -377,7 +391,7 @@ public class Controlador extends HttpServlet {
     }
 
     /**
-     * 
+     *
      * @param request
      * @param response
      * @throws ServletException
