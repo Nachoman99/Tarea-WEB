@@ -302,7 +302,6 @@ public class Controlador extends HttpServlet {
             }
         } else if (accion.equalsIgnoreCase("perfil")) {
             request.setAttribute("id", user.getId());
-            System.out.println("USER " + user.getId());
             acceso = perfil;
         } else if (accion.equalsIgnoreCase("inicio")) {
             acceso = inicio;
@@ -323,7 +322,6 @@ public class Controlador extends HttpServlet {
             request.setAttribute("precioIncorrecto", "false");
             acceso = validarTrueque;
         } else if (accion.equalsIgnoreCase("notification")) {
-//            System.out.println("Holaaa");
             request.setAttribute("id", user.getId());
             request.setAttribute("aceptado", "false");
             request.setAttribute("rechazado", "false");
@@ -333,15 +331,9 @@ public class Controlador extends HttpServlet {
 
         } else if (accion.equalsIgnoreCase("aceptacion")) {
             int intProduct1 = Integer.parseInt(request.getParameter("producto1"));
-            System.out.println("PRODUCTO1 " + intProduct1);
             int intProduct2 = Integer.parseInt(request.getParameter("producto2"));
-            System.out.println("PRODUCT2 " + intProduct2);
             Producto producto1 = dao.searchProduct(intProduct1);
             Producto producto2 = dao.searchProduct(intProduct2);
-            System.out.println("Producto " + producto1);
-            System.out.println("Producto2 " + producto2);
-            System.out.println("Producto1 " + producto1S);
-            System.out.println("Producto2 " + producto2S);
             if (producto1.getPrecio() >= producto2.getPrecio()) {
                 if ((producto1.getPrecio() - producto2.getPrecio()) > 1000) {
                     request.setAttribute("productoPrimero", producto1S);
@@ -375,7 +367,6 @@ public class Controlador extends HttpServlet {
         } else if (accion.equalsIgnoreCase("aceptarTrueque")) {
             int product = Integer.parseInt(request.getParameter("prodIntercambiar"));
             Producto producto1 = dao.searchProduct(product);
-            System.out.println("EL PRODUCTO ES: " + producto1);
             dao.accept(producto1, user.getId());
             acceso = menu;
         } else if (accion.equalsIgnoreCase("rechazarTrueque")) {
@@ -391,7 +382,6 @@ public class Controlador extends HttpServlet {
             dao.cambiarAceptadoFalso(id);
             acceso = menu;
         } else if (accion.equalsIgnoreCase("rechazoPrimero")) {
-            System.out.println("Entra a rechazo");
             String id = request.getParameter("id");
             dao.cambiarRechazadoFalso(id);
             acceso = menu;

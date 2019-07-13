@@ -268,45 +268,18 @@ public class UserDAO implements UserInterface {
             for (int i = 0; i < next.getListaProductos().size(); i++) {
                 if (productoAceptar.getNumeroConsecutivo() == next.getListaProductos().get(i).getNumeroConsecutivo()) {
                     productoCambiar1 = next.getListaProductos().remove(i);
-                    System.out.println("Producto1 " + productoCambiar1);
                 }
             }
-//            for (int i = 0; i < next.getProductosSolicitados().size(); i++) {
-//                System.out.println("Productossssss " + next.getProductosSolicitados().get(i));
-//                if (productoAceptar.getNumeroConsecutivo() == next.getProductosSolicitados().get(i).getNumeroConsecutivo()) {
-//                    productoCambiar2 = next.getListaProductos().remove(i);
-//                    System.out.println("Producto2 " + productoCambiar2);
-////                    if (productoAceptar.getNumeroConsecutivo() == next.getListaProductos().get(i).getNumeroConsecutivo()) {
-////                        for (int j = 0; j < next.getListaProductos().size(); j++) {
-////                            if (productoAceptar.getNumeroConsecutivo() == next.getListaProductos().get(i).getNumeroConsecutivo()) {
-////                                
-////                            }
-////                        }
-////                    }
-//                }
-//            }
         }
 
         Iterator<User> iterador6 = users.iterator();
         while (iterador6.hasNext()) {
-            Producto intercambio = null;
             User next = iterador6.next();
-//            if (intercambio == null) {
-//                for (int i = 0; i < next.getProductosSolicitados().size(); i++) {
-//                    if (productoAceptar.getNumeroConsecutivo() == next.getProductosSolicitados().get(i).getNumeroConsecutivo()) {
-//                        intercambio = next.getProductosSolicitados().get(i);
-//                        System.out.println("Producto Intercambio " + intercambio);
-//                    }
-//                }
-//            }
-//            if (intercambio != null) {
-                for (int i = 0; i < next.getListaProductos().size(); i++) {
-                    if (next.getListaProductos().get(i).getEstadoTrueque() == 1) {
-                        productoCambiar2 = next.getListaProductos().remove(i);
-                        System.out.println("Producto2 " + productoCambiar2);
-                    }
+            for (int i = 0; i < next.getListaProductos().size(); i++) {
+                if (next.getListaProductos().get(i).getEstadoTrueque() == 1) {
+                    productoCambiar2 = next.getListaProductos().remove(i);
                 }
-//            }
+            }
         }
 
         Iterator<User> iterador5 = users.iterator();
