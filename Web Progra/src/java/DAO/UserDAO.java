@@ -153,31 +153,7 @@ public class UserDAO implements UserInterface {
                 next.agregarProducto(producto);
             }
         }
-        List<User> listaAux = new ArrayList<>();
-        Iterator<User> iterador2 = users.iterator();
-        while (iterador2.hasNext()) {
-            User next = iterador2.next();
-            listaAux.add(next);
-        }
-        try {
-            json.deleteFile("jsonFile.json");
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-        Iterator<User> iterador3 = listaAux.iterator();
-        while (iterador3.hasNext()) {
-            User next = iterador3.next();
-            try {
-                json.write("jsonFile.json", next);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        try {
-            users = DatosArray.getInstance().users;
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        recargarJSON();
     }
 
     /**
@@ -223,31 +199,7 @@ public class UserDAO implements UserInterface {
 
         }
 
-        List<User> listaAux = new ArrayList<>();
-        Iterator<User> iterador2 = users.iterator();
-        while (iterador2.hasNext()) {
-            User next = iterador2.next();
-            listaAux.add(next);
-        }
-        try {
-            json.deleteFile("jsonFile.json");
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-        Iterator<User> iterador3 = listaAux.iterator();
-        while (iterador3.hasNext()) {
-            User next = iterador3.next();
-            try {
-                json.write("jsonFile.json", next);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        try {
-            users = DatosArray.getInstance().users;
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        recargarJSON();
     }
 
     /**
@@ -347,32 +299,7 @@ public class UserDAO implements UserInterface {
             }
         }
 
-        List<User> listaAux = new ArrayList<>();
-        Iterator<User> iteradorUser = users.iterator();
-        while (iteradorUser.hasNext()) {
-            User next = iteradorUser.next();
-            listaAux.add(next);
-        }
-        try {
-            json.deleteFile("jsonFile.json");
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-
-        Iterator<User> iteradorList = listaAux.iterator();
-        while (iteradorList.hasNext()) {
-            User next = iteradorList.next();
-            try {
-                json.write("jsonFile.json", next);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        try {
-            users = DatosArray.getInstance().users;
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        recargarJSON();
     }
 
     /**
@@ -440,31 +367,7 @@ public class UserDAO implements UserInterface {
             }
         }
 
-        List<User> listaAux = new ArrayList<>();
-        Iterator<User> iterador2 = users.iterator();
-        while (iterador2.hasNext()) {
-            User next = iterador2.next();
-            listaAux.add(next);
-        }
-        try {
-            json.deleteFile("jsonFile.json");
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-        Iterator<User> iterador3 = listaAux.iterator();
-        while (iterador3.hasNext()) {
-            User next = iterador3.next();
-            try {
-                json.write("jsonFile.json", next);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        try {
-            users = DatosArray.getInstance().users;
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        recargarJSON();
     }
 
     /**
@@ -484,31 +387,7 @@ public class UserDAO implements UserInterface {
             }
         }
 
-        List<User> listaAux = new ArrayList<>();
-        Iterator<User> iterador2 = users.iterator();
-        while (iterador2.hasNext()) {
-            User next = iterador2.next();
-            listaAux.add(next);
-        }
-        try {
-            json.deleteFile("jsonFile.json");
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-        Iterator<User> iterador3 = listaAux.iterator();
-        while (iterador3.hasNext()) {
-            User next = iterador3.next();
-            try {
-                json.write("jsonFile.json", next);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        try {
-            users = DatosArray.getInstance().users;
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        recargarJSON();
     }
 
     /**
@@ -529,6 +408,14 @@ public class UserDAO implements UserInterface {
             }
         }
 
+        recargarJSON();
+    }
+
+    /**
+     * Reload the json witn new users or changes
+     *
+     */
+    public void recargarJSON() {
         List<User> listaAux = new ArrayList<>();
         Iterator<User> iterador2 = users.iterator();
         while (iterador2.hasNext()) {
@@ -555,4 +442,5 @@ public class UserDAO implements UserInterface {
             e.printStackTrace();
         }
     }
+
 }
