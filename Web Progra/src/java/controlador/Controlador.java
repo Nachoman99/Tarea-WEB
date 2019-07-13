@@ -153,6 +153,7 @@ public class Controlador extends HttpServlet {
         String accion = request.getParameter("accion");
         System.out.println("La accion es: " + accion);
         if (accion.equalsIgnoreCase("registrarse")) {
+            request.setAttribute("idUsado", "false");
             request.setAttribute("email", "true");
             request.setAttribute("vacio", "false");
             acceso = registrarse;
@@ -204,26 +205,36 @@ public class Controlador extends HttpServlet {
             if (!nombre.equals("") && !id.equals("") && !apellidos.equals("") && !correo.equals("") && !provincia.equals("") && !canton.equals("") && !distrito.equals("") && !password.equals("")) {
                 isEmpty = false;
                 if (verifyEmail(correo)) {
-                    System.out.println("Hola");
+                    User userID = null;
+                    userID = dao.searchUser(id);
                     emailVerify = true;
-                    user.setCanton(canton);
-                    user.setDistrito(distrito);
-                    user.setEmail(correo);
-                    user.setId(id);
-                    user.setName(nombre);
-                    user.setPassword(password);
-                    user.setProvincia(provincia);
-                    user.setSecondName(apellidos);
-                    dao.registrarse(user);
-                    acceso = menu;
+                    if (userID == null) {
+                        user.setCanton(canton);
+                        user.setDistrito(distrito);
+                        user.setEmail(correo);
+                        user.setId(id);
+                        user.setName(nombre);
+                        user.setPassword(password);
+                        user.setProvincia(provincia);
+                        user.setSecondName(apellidos);
+                        dao.registrarse(user);
+                        acceso = menu;
+                    } else {
+                        request.setAttribute("idUsado", "true");
+                        request.setAttribute("email", "true");
+                        request.setAttribute("vacio", "false");
+                        acceso = registrarse;
+                    }
                 } else {
                     emailVerify = false;
+                    request.setAttribute("idUsado", "false");
                     request.setAttribute("email", "false");
                     request.setAttribute("vacio", "false");
                     acceso = registrarse;
                 }
             } else {
                 isEmpty = true;
+                request.setAttribute("idUsado", "false");
                 request.setAttribute("email", "false");
                 request.setAttribute("vacio", "true");
                 acceso = registrarse;

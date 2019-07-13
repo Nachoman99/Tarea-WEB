@@ -18,11 +18,11 @@
     </head>
     <body>
         <%
+            String idUsado1 = (String) request.getAttribute("idUsado");
             String email1 = (String) request.getAttribute("email");
             String vacio1 = (String) request.getAttribute("vacio");
-            System.out.println("email " + email1);
-            System.out.println("vacio " + vacio1);
 
+            boolean idUsado = false;
             boolean email = false;
             boolean vacio = false;
             if (email1.equalsIgnoreCase("false") && vacio1.equalsIgnoreCase("false")) {
@@ -36,7 +36,11 @@
             } else if (vacio1.equalsIgnoreCase("true")) {
                 vacio = true;
             }
-            
+            if (idUsado1.equalsIgnoreCase("true")) {
+                idUsado = true;
+            } else {
+                idUsado = false;
+            }
         %>
 
         <%
@@ -102,7 +106,38 @@
         </div>
         <%
             }
+            if (idUsado) {
         %> 
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $("#idUsado").modal('show');
+            });
+
+        </script>
+        <!-- Modal -->
+        
+        <div id="idUsado" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Error de Registro</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Esa identificación ya ha sido usada</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <%
+        }    
+        %>
         <h1>Registrarse</h1>
         <form action="Controlador">
             Número de cédula:<br>

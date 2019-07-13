@@ -24,7 +24,7 @@
             String id = (String) request.getAttribute("id");
             User user = null;
             if (id != null) {
-                user = dao.search(id);
+                user = dao.searchUser(id);
             }
         %>
         <h1>Mi perfil</h1>

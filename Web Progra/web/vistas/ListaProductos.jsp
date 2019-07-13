@@ -30,7 +30,7 @@
             <%
                 UserDAO dao = new UserDAO();
                 String idUser = (String) request.getAttribute("id");
-                User user = dao.search(idUser);
+                User user = dao.searchUser(idUser);
                 ArrayList<Producto> list = user.getListaProductos();
                 Iterator<Producto> iterador = list.iterator();
                 while (iterador.hasNext()) {

@@ -36,7 +36,7 @@
                 User user = null;
                 String descripcionCorta = "";
                 if (id != null) {
-                    user = dao.search(id);
+                    user = dao.searchUser(id);
                 }
                 for (int i = 0; i < user.getListaProductos().size(); i++) {
                     if (user.getListaProductos().get(i).isAceptadoPrimeraVez()) {
